@@ -19,5 +19,5 @@ CAN Related Awesome Lists
 
 - Video Training
   - [What is Automotive MACsec? - Technica Engineering](https://youtu.be/5QiHmMoJCOE)
-- Whitepaper
+- Whitepapers
   - [Marvell - The Need for MACsec Security in Ehternet-Based Vehicle E/E Architecture](https://www.marvell.com/content/dam/marvell/en/public-collateral/automotive-solutions/marvell-macsec-security-in-ethernet-based-vehicle-white-paper.pdf) 
