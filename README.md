@@ -2,6 +2,10 @@
 
 A curated Awesome-list for automotive security tools and knowledge. If other better lists exist, we'll try to reference them instead of duplicating work.
 
+# Automotive Security Research
+
+- [Automotive Security Timeline](https://github.com/delikely/Automotive-Security-Timeline)
+  
 # Automotive Communication Protocol Knowledge
 ## CAN
 
