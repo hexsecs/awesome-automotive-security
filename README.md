@@ -6,7 +6,7 @@ A curated Awesome-list for automotive security tools and knowledge. If other bet
 
 - [Automotive Security Timeline](https://github.com/delikely/Automotive-Security-Timeline)
   
-# Automotive Communication Protocol Knowledge
+# Automotive Networking
 ## CAN
 
 CAN Related Awesome Lists
@@ -21,3 +21,7 @@ CAN Related Awesome Lists
   - [What is Automotive MACsec? - Technica Engineering](https://youtu.be/5QiHmMoJCOE)
 - Whitepapers
   - [Marvell - The Need for MACsec Security in Ehternet-Based Vehicle E/E Architecture](https://www.marvell.com/content/dam/marvell/en/public-collateral/automotive-solutions/marvell-macsec-security-in-ethernet-based-vehicle-white-paper.pdf) 
+
+### Additional Knowledge
+
+- [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml)
