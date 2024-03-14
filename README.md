@@ -22,6 +22,6 @@ CAN Related Awesome Lists
 - Whitepapers
   - [Marvell - The Need for MACsec Security in Ehternet-Based Vehicle E/E Architecture](https://www.marvell.com/content/dam/marvell/en/public-collateral/automotive-solutions/marvell-macsec-security-in-ethernet-based-vehicle-white-paper.pdf) 
 
-### Additional Knowledge
+## Additional Knowledge
 
 - [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml)
