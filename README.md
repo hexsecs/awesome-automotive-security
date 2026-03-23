@@ -88,5 +88,6 @@ A curated Awesome-list for automotive security tools and knowledge. If other bet
 
 ## Related Awesome Lists
 
+* [Awesome Embedded Security](https://github.com/hexsecs/awesome-embedded-security) - Tools and knowledge for embedded security research.
 * [Awesome CANbus](https://github.com/iDoka/awesome-canbus) - Comprehensive CAN bus security resources.
 * [Awesome CANb IDs](https://github.com/iDoka/awesome-automotive-can-id) - CAN bus ID reference and documentation.
