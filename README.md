@@ -27,6 +27,7 @@ A curated Awesome-list for automotive security tools and knowledge. If other bet
 * [CANgaroo](https://github.com/wikilift/CANgaroo) - Open-source CAN bus analyzer with transmit/receive support for standard and FD frames plus DBC decoding.
 * [CaringCaribou](https://github.com/CaringCaribou/caringcaribou) - Python automotive security exploration tool designed as the nmap of CAN bus with fuzzing, ECU discovery, and attack modules.
 * [CANalyse](https://github.com/canalyse/CANalyse-2.0) - Vehicle network analysis tool with SQL-like queries on CAN data, smart signal scanning, and Telegram bot integration.
+* [CANarchy](https://github.com/hexsecs/canarchy) - Stream-first CAN analysis and manipulation runtime designed for automation, security research, and agent-driven workflows.
 * [CANter](https://ceur-ws.org/Vol-3962/paper69.pdf) - Intrusion detection system for CAN and CAN-FD that detects drop-and-spoof attacks using frequency analysis of frame intervals.
 * [OBDium](https://github.com/provrb/obdium) - Rust-based OBD-II diagnostic tool with modern Tauri GUI supporting live data, DTC analysis, and offline VIN decoding.
 
