@@ -1,0 +1,77 @@
+name: Suggest an entry
+description: Propose a tool, dataset, or resource for the list
+title: 'Add: '
+labels: ['new-entry']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) first — it
+        describes what earns a place on the list.
+
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      placeholder: CaringCaribou
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      placeholder: https://github.com/owner/project
+    validations:
+      required: true
+
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      options:
+        - CAN Bus Analysis
+        - Diagnostic Tools
+        - Firmware and ECU Reverse Engineering
+        - Automotive Ethernet
+        - RF and Key Fob Analysis
+        - Infotainment and IVI
+        - V2X Security
+        - EV Charging Security
+        - Hardware Interfaces
+        - Security Analysis
+        - Penetration Testing
+        - Datasets
+        - Learning Resources
+        - Related Awesome Lists
+        - New section (explain below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Proposed description
+      description: One sentence, ending in a period. Say what it does and what makes it distinct.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it belongs here
+      description: How does it meet the inclusion criteria? Is it maintained? Is it already covered by a linked Awesome list?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This is automotive-specific and useful for security work.
+          required: true
+        - label: The URL is public and I have confirmed it resolves.
+          required: true
+        - label: I checked that it is not already on the list.
+          required: true
