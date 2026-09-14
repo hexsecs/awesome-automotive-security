@@ -84,11 +84,16 @@ is immediate and does not depend on having accumulated citations.
 ## Books
 
 The [Books](README.md#books) section is for full-length books whose subject is
-automotive or vehicle security. General security or embedded titles that merely
-contain a vehicle chapter belong elsewhere, or nowhere.
+automotive or vehicle security, plus the vehicle network references that such
+work depends on, such as CAN protocol guides. General security or embedded
+titles that merely contain a vehicle chapter belong elsewhere, or nowhere.
 
 * Link the publisher's page, or a free full-text edition where the author or
-  publisher offers one.
+  publisher offers one. Where the publisher's own site refuses automated
+  clients, link a neutral catalogue record instead so the entry stays
+  machine-checkable; `books.google.com` and `www.wiley.com` work, while
+  `packtpub.com`, `onlinelibrary.wiley.com`, `oreilly.com`, `link.springer.com`
+  and `amazon.com` do not.
 * Credit the author, publisher and year as `Author, Publisher Year.` at the
   start of the description, then say what the book covers in one sentence.
 

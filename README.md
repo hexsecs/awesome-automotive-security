@@ -174,10 +174,13 @@ publication. Open-access copies are linked where one exists.
 * [SoK: Kicking CAN Down the Road. Systematizing CAN Security Knowledge](https://arxiv.org/abs/2510.02960) - Serag et al., 2025. Systematization of two decades of CAN security, with a unified taxonomy and assessment model for attackers, attacks, and defences.
 
 ## Books
-
-* [Automotive Cybersecurity Engineering Handbook](https://www.oreilly.com/library/view/automotive-cybersecurity-engineering/9781801076531/) - Ahmad MK Nasser, Packt 2023. Practitioner's guide to building cyber-resilient vehicles, covering threat analysis, hardware security, and ISO/SAE 21434 engineering practice.
+* [A Comprehensible Guide to Controller Area Network](https://copperhilltech.com/a-comprehensible-guide-to-controller-area-network/) - Wilfried Voss, Copperhill 2005. The standard plain-language reference on CAN itself, covering frame formats, arbitration, error handling, and timing that vehicle network attacks depend on.
+* [Automotive Cyber Security](https://books.google.com/books?id=uTD_DwAAQBAJ) - Shiho Kim and Rakesh Shrestha, Springer 2020. Academic introduction to connected and autonomous vehicle security, threats, and the standardisation landscape.
+* [Automotive Cybersecurity Engineering Handbook](https://books.google.com/books/about/Automotive_Cybersecurity_Engineering_Han.html?id=UK_YEAAAQBAJ) - Ahmad MK Nasser, Packt 2023. Practitioner's guide to building cyber-resilient vehicles, covering threat analysis, hardware security, and ISO/SAE 21434 engineering practice.
 * [Building Secure Cars](https://www.wiley.com/en-us/Building+Secure+Cars:+Assuring+the+Automotive+Software+Development+Lifecycle-p-9781119710745) - Dennis Kengo Oka, Wiley 2021. Focuses on assuring the automotive software development lifecycle, from secure coding and static analysis through fuzzing and penetration testing.
+* [Cybersecurity for Commercial Vehicles](https://books.google.com/books?id=R3h0EAAAQBAJ) - Gloria D'Anna, SAE International 2018. Covers heavy vehicle and fleet security, how it differs from passenger cars, SAE J3061, platooning, and breach forensics.
 * [Hacking Connected Cars](https://www.wiley.com/en-us/-p-9781119491804) - Alissa Knight, Wiley 2020. Tactics, techniques, and procedures for penetration testing, threat modelling, and risk assessment of telematics control units and infotainment systems.
+* [Offensive Automotive Cybersecurity](https://books.google.com/books/about/Offensive_Automotive_Cybersecurity.html?id=tQbfEQAAQBAJ) - Ahmad MK Nasser and Dennis Kengo Oka, Packt 2026. The two handbook authors together on the offensive side, covering exploitation of modern automotive platforms.
 * [The Car Hacker's Handbook](https://www.opengarages.org/handbook/) - Craig Smith, No Starch Press 2016. The foundational practical guide to vehicle security, covering threat modelling, CAN reverse engineering, and ECU exploitation; free to read online via Open Garages.
 
 ## Learning Resources
