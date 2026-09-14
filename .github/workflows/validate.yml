@@ -1,0 +1,37 @@
+name: Validate list
+
+on:
+  push:
+    branches: [main]
+    paths: ['README.md', 'scripts/validate_list.py', '.github/workflows/validate.yml']
+  pull_request:
+    paths: ['README.md', 'scripts/validate_list.py', '.github/workflows/validate.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check list structure
+        run: python3 scripts/validate_list.py
+
+      - name: Check links changed in this PR
+        if: github.event_name == 'pull_request'
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --max-retries 3
+            --accept 200,206,429
+            --exclude-path LICENSE
+            README.md
+          fail: true

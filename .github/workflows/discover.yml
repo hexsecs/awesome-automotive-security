@@ -1,0 +1,88 @@
+name: Discover new entries
+
+on:
+  schedule:
+    # 07:00 UTC on the first of each month.
+    - cron: '0 7 1 * *'
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: 'Optional area to concentrate on (e.g. "EV charging", "V2X")'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    # Skip cleanly rather than failing when the key is not configured.
+    if: github.repository == 'hexsecs/awesome-automotive-security'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check for API key
+        id: key
+        run: |
+          if [ -n "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::ANTHROPIC_API_KEY is not set; skipping discovery run."
+          fi
+
+      - name: Research and propose additions
+        if: steps.key.outputs.present == 'true'
+        uses: anthropics/claude-code-action@v1
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: 'WebSearch,WebFetch,Bash,Read,Edit,Write,Glob,Grep'
+          prompt: |
+            You are maintaining the awesome-automotive-security list in this repository.
+
+            Read CONTRIBUTING.md first. It defines the inclusion criteria and the
+            exact entry format. Every rule there binds you.
+            ${{ inputs.focus && format('Concentrate this run on: {0}.', inputs.focus) || '' }}
+
+            Your job this run:
+
+            1. Read README.md and build the set of URLs already listed.
+            2. Research automotive security tools, research artifacts, datasets, and
+               learning resources published or meaningfully updated in roughly the
+               last year. Look at GitHub topics (automotive-security, car-hacking,
+               can-bus, iso15118, uds), recent conference output (DEF CON Car Hacking
+               Village, Black Hat, Pwn2Own Automotive, escar, VehicleSec), and
+               academic venues (NDSS VehicleSec, USENIX Security).
+            3. For every candidate, FETCH THE URL AND CONFIRM IT RESOLVES before
+               proposing it. Never propose a link you have not opened. Note whether
+               the project is archived; propose archived projects only when they are
+               still canonical or historically important, and say so in the description.
+            4. Drop anything already on the list, anything failing the CONTRIBUTING.md
+               criteria, and anything whose whole subdomain is better served by a
+               linked Awesome list.
+            5. Add the survivors to the right sections of README.md in the required
+               format. Aim for quality over volume: five well-checked entries beat
+               thirty unchecked ones. Zero good candidates is an acceptable outcome —
+               in that case, make no changes and stop.
+            6. While you are there, check the existing entries for links that now 404
+               or redirect to a new canonical home, and fix those.
+            7. Run `python3 scripts/validate_list.py` and make it pass.
+            8. Open a DRAFT pull request against main. In the body, list each proposed
+               entry with the evidence you gathered: what it is, why it meets the
+               criteria, and confirmation that you opened the link. Flag anything you
+               were unsure about so a human can adjudicate it.
+
+            Do not merge anything. Do not push to main. A maintainer reviews every
+            proposal.
+          claude_args: |
+            --max-turns 60
