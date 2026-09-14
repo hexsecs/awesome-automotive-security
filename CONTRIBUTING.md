@@ -38,7 +38,10 @@ One line per entry, in this exact shape:
 * Say what it *does* and what makes it distinct. "CAN tool" is not a description;
   "black-box CAN analysis framework with modular fuzzing and ECU discovery" is.
 * No marketing adjectives, no star counts, no "the best".
-* Add new entries at the end of their section — the list is not alphabetised.
+* Insert new entries in alphabetical order by name within their section,
+  ignoring case. [Research Papers](README.md#research-papers) is the sole
+  exception and is ordered chronologically instead. Nothing is append-only:
+  find the entry's place rather than adding it at the end.
 * Add any new section to the `## Contents` table of contents as well.
 
 Run the validator before opening a pull request:
@@ -54,10 +57,10 @@ and influential work, not for every new paper. To be listed, a paper should be
 peer-reviewed (or a landmark industry report such as the Miller and Valasek
 vehicle work) and should have visibly shaped later research or practice.
 
-* Entries are ordered by year of publication, oldest first. This is the one
-  section that is not append-only: insert a new paper at its place in the
-  sequence. `scripts/validate_list.py` enforces the ordering, and requires
-  every entry to state a year.
+* Entries are ordered chronologically by year of publication, oldest first,
+  rather than alphabetically like every other section. Insert a new paper at
+  its place in the sequence. `scripts/validate_list.py` enforces the ordering
+  and requires every entry to state a year.
 * Link an open-access copy where one exists: the venue's own page for USENIX,
   NDSS, and similar, otherwise arXiv, an institutional repository, or the
   authors' copy. Avoid paywalled links when an open one is available.
