@@ -63,10 +63,15 @@ vehicle work) and should have visibly shaped later research or practice.
   authors' copy. Avoid paywalled links when an open one is available.
 * Credit authors as `Surname et al., Venue Year.` at the start of the
   description, then say in one sentence what the paper established.
-* ACM and IEEE answer the link checker with a bot challenge rather than the
-  page, so those two hosts are excluded from link checking and their URLs are
-  not machine-verified. Use them only when no open copy exists, and check such
-  a link by hand before adding it.
+* Some hosts answer the link checker with a bot challenge rather than the page.
+  `dl.acm.org`, `ieeexplore.ieee.org` and `infoscience.epfl.ch` are therefore
+  excluded from link checking, and their URLs are not machine-verified. Use one
+  only when no open copy exists, and check the link by hand before adding it.
+  Prefer dropping a candidate over adding a fourth excluded host: hosts that
+  have proven reliable here are `usenix.org`, `arxiv.org`, `ndss-symposium.org`
+  and `tches.iacr.org`. Known to bot-challenge, so avoid: `link.springer.com`,
+  `eprint.iacr.org`, `semanticscholar.org`, `researchgate.net`, and Pure
+  repository instances such as `pure.kaist.ac.kr`.
 
 ## Commercial entries
 
