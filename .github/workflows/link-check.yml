@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # See validate.yml: ACM, IEEE and EPFL Infoscience bot-challenge automated clients, so their
+      # See validate.yml: ACM, IEEE, EPFL Infoscience and IACR eprint bot-challenge automated clients, so their
       # DOI-backed URLs cannot be verified by any checker and are excluded here too.
       - name: Check all links
         id: lychee
@@ -30,6 +30,7 @@ jobs:
             --exclude dl\.acm\.org
             --exclude ieeexplore\.ieee\.org
             --exclude infoscience\.epfl\.ch
+            --exclude eprint\.iacr\.org
             README.md CONTRIBUTING.md
           output: ./lychee/out.md
           fail: false

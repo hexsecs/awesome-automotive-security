@@ -56,6 +56,9 @@ The [Research Papers](README.md#research-papers) section is for foundational
 and influential work, not for every new paper. To be listed, a paper should be
 peer-reviewed (or a landmark industry report such as the Miller and Valasek
 vehicle work) and should have visibly shaped later research or practice.
+Systematization papers are the exception: a well-executed SoK or survey that
+maps a subfield earns its place on quality alone, since its value to a reader
+is immediate and does not depend on having accumulated citations.
 
 * Entries are ordered chronologically by year of publication, oldest first,
   rather than alphabetically like every other section. Insert a new paper at
@@ -67,14 +70,32 @@ vehicle work) and should have visibly shaped later research or practice.
 * Credit authors as `Surname et al., Venue Year.` at the start of the
   description, then say in one sentence what the paper established.
 * Some hosts answer the link checker with a bot challenge rather than the page.
-  `dl.acm.org`, `ieeexplore.ieee.org` and `infoscience.epfl.ch` are therefore
-  excluded from link checking, and their URLs are not machine-verified. Use one
-  only when no open copy exists, and check the link by hand before adding it.
-  Prefer dropping a candidate over adding a fourth excluded host: hosts that
-  have proven reliable here are `usenix.org`, `arxiv.org`, `ndss-symposium.org`
-  and `tches.iacr.org`. Known to bot-challenge, so avoid: `link.springer.com`,
-  `eprint.iacr.org`, `semanticscholar.org`, `researchgate.net`, and Pure
-  repository instances such as `pure.kaist.ac.kr`.
+  `dl.acm.org`, `ieeexplore.ieee.org`, `infoscience.epfl.ch` and
+  `eprint.iacr.org` are therefore excluded from link checking, and their URLs
+  are not machine-verified. Use one only when no open copy exists, and check the
+  link by hand before adding it. Prefer dropping a candidate over extending that
+  list: hosts that have proven reliable here are `usenix.org`, `arxiv.org`,
+  `ndss-symposium.org` and `tches.iacr.org`. Known to bot-challenge, so avoid:
+  `link.springer.com`, `semanticscholar.org`, `researchgate.net`,
+  `onlinelibrary.wiley.com`, `packtpub.com`, and Pure repository instances such
+  as `pure.kaist.ac.kr`. For books, `www.wiley.com` and `opengarages.org` have
+  passed where the publisher's other hosts did not.
+
+## Books
+
+The [Books](README.md#books) section is for full-length books whose subject is
+automotive or vehicle security, plus the vehicle network references that such
+work depends on, such as CAN protocol guides. General security or embedded
+titles that merely contain a vehicle chapter belong elsewhere, or nowhere.
+
+* Link the publisher's page, or a free full-text edition where the author or
+  publisher offers one. Where the publisher's own site refuses automated
+  clients, link a neutral catalogue record instead so the entry stays
+  machine-checkable; `books.google.com` and `www.wiley.com` work, while
+  `packtpub.com`, `onlinelibrary.wiley.com`, `oreilly.com`, `link.springer.com`
+  and `amazon.com` do not.
+* Credit the author, publisher and year as `Author, Publisher Year.` at the
+  start of the description, then say what the book covers in one sentence.
 
 ## Commercial entries
 

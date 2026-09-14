@@ -19,6 +19,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Penetration Testing](#penetration-testing)
 * [Datasets](#datasets)
 * [Research Papers](#research-papers)
+* [Books](#books)
 * [Learning Resources](#learning-resources)
 * [Related Awesome Lists](#related-awesome-lists)
 
@@ -150,6 +151,7 @@ publication. Open-access copies are linked where one exists.
 * [Viden: Attacker Identification on In-Vehicle Networks](https://arxiv.org/abs/1708.08414) - Cho and Shin, ACM CCS 2017. Fingerprints transmitting ECUs by their analogue voltage signature, moving CAN defence from detecting an attack to naming the ECU responsible.
 * [WALNUT: Waging Doubt on the Integrity of MEMS Accelerometers with Acoustic Injection Attacks](https://spqrlab1.github.io/papers/trippel-IEEE-oaklawn-walnut-2017.pdf) - Trippel, Weisse, Xu, Honeyman, and Fu, IEEE EuroS&P 2017. Acoustic resonance attacks that forge accelerometer output, establishing analogue sensor integrity as its own threat model.
 * [VulCAN: Efficient Component Authentication and Software Isolation for Automotive Control Networks](https://vanbulck.net/files/acsac17-vulcan.pdf) - Van Bulck, Muhlberg, and Piessens, ACSAC 2017. Combines message authentication with trusted-computing isolation, defending against an adversary running arbitrary code on a participating ECU.
+* [Illusion and Dazzle: Adversarial Optical Channel Exploits Against Lidars for Automotive Applications](https://eprint.iacr.org/2017/613) - Shin, Kim, Kwon, and Kim, CHES 2017. Saturates and spoofs an automotive LiDAR over its optical channel, creating fake points and blinding it entirely; the precursor to later LiDAR perception attacks.
 * [GIDS: GAN based Intrusion Detection System for In-Vehicle Network](https://arxiv.org/abs/1907.07377) - Seo, Song, and Kim, PST 2018. Trains a GAN on normal CAN traffic only, and is a common deep-learning IDS baseline alongside the authors' Car-Hacking dataset.
 * [Beneath the Bonnet: A Breakdown of Diagnostic Security](https://pure-oai.bham.ac.uk/ws/portalfiles/portal/50643148/Beneath_the_Bonnet.pdf) - Van den Herrewegen and Garcia, ESORICS 2018. Reverse engineers the seed-key ciphers of four manufacturers from ECU firmware and achieves remote code execution over CAN through diagnostics alone.
 * [Robust Physical-World Attacks on Deep Learning Visual Classification](https://arxiv.org/abs/1707.08945) - Eykholt et al., CVPR 2018. The stop-sign sticker attack, the canonical physical adversarial example against road sign recognition.
@@ -169,6 +171,17 @@ publication. Open-access copies are linked where one exists.
 * [Exposing New Vulnerabilities of Error Handling Mechanism in CAN](https://www.usenix.org/conference/usenixsecurity21/presentation/serag) - Serag et al., USENIX Security 2021. Systematically tests CAN node behaviour under error conditions with CANOX and finds three further vulnerabilities in the standard beyond the bus-off attack.
 * [Evading Voltage-Based Intrusion Detection on Automotive CAN](https://www.ndss-symposium.org/ndss-paper/evading-voltage-based-intrusion-detection-on-automotive-can/) - Bhatia et al., NDSS 2021. The DUET masquerade attack, in which two compromised ECUs corrupt the bus voltage and defeat every published voltage-based IDS, including Viden.
 * [Brokenwire: Wireless Disruption of CCS Electric Vehicle Charging](https://www.ndss-symposium.org/ndss-paper/brokenwire-wireless-disruption-of-ccs-electric-vehicle-charging/) - Kohler, Baker, Strohmeier, and Martinovic, NDSS 2023. Aborts CCS rapid-charging sessions wirelessly from tens of metres with off-the-shelf radio hardware, against individual vehicles or whole fleets.
+* [SoK: Kicking CAN Down the Road. Systematizing CAN Security Knowledge](https://arxiv.org/abs/2510.02960) - Serag et al., 2025. Systematization of two decades of CAN security, with a unified taxonomy and assessment model for attackers, attacks, and defences.
+
+## Books
+* [A Comprehensible Guide to Controller Area Network](https://copperhilltech.com/a-comprehensible-guide-to-controller-area-network/) - Wilfried Voss, Copperhill 2005. The standard plain-language reference on CAN itself, covering frame formats, arbitration, error handling, and timing that vehicle network attacks depend on.
+* [Automotive Cyber Security](https://books.google.com/books?id=uTD_DwAAQBAJ) - Shiho Kim and Rakesh Shrestha, Springer 2020. Academic introduction to connected and autonomous vehicle security, threats, and the standardisation landscape.
+* [Automotive Cybersecurity Engineering Handbook](https://books.google.com/books/about/Automotive_Cybersecurity_Engineering_Han.html?id=UK_YEAAAQBAJ) - Ahmad MK Nasser, Packt 2023. Practitioner's guide to building cyber-resilient vehicles, covering threat analysis, hardware security, and ISO/SAE 21434 engineering practice.
+* [Building Secure Cars](https://www.wiley.com/en-us/Building+Secure+Cars:+Assuring+the+Automotive+Software+Development+Lifecycle-p-9781119710745) - Dennis Kengo Oka, Wiley 2021. Focuses on assuring the automotive software development lifecycle, from secure coding and static analysis through fuzzing and penetration testing.
+* [Cybersecurity for Commercial Vehicles](https://books.google.com/books?id=R3h0EAAAQBAJ) - Gloria D'Anna, SAE International 2018. Covers heavy vehicle and fleet security, how it differs from passenger cars, SAE J3061, platooning, and breach forensics.
+* [Hacking Connected Cars](https://www.wiley.com/en-us/-p-9781119491804) - Alissa Knight, Wiley 2020. Tactics, techniques, and procedures for penetration testing, threat modelling, and risk assessment of telematics control units and infotainment systems.
+* [Offensive Automotive Cybersecurity](https://books.google.com/books/about/Offensive_Automotive_Cybersecurity.html?id=tQbfEQAAQBAJ) - Ahmad MK Nasser and Dennis Kengo Oka, Packt 2026. The two handbook authors together on the offensive side, covering exploitation of modern automotive platforms.
+* [The Car Hacker's Handbook](https://www.opengarages.org/handbook/) - Craig Smith, No Starch Press 2016. The foundational practical guide to vehicle security, covering threat modelling, CAN reverse engineering, and ECU exploitation; free to read online via Open Garages.
 
 ## Learning Resources
 
@@ -176,7 +189,6 @@ publication. Open-access copies are linked where one exists.
 * [Automotive Security Timeline](https://github.com/automotive-security/Automotive-Security-Timeline) - Continuously updated knowledge base of automotive cybersecurity events including vulnerability disclosures, attack demonstrations, Pwn2Own Automotive results, and supply-chain incidents.
 * [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml) - Automotive networking security standards and solutions overview.
 * [Car Hacking Village](https://www.carhackingvillage.com/events) - Non-profit running hands-on car hacking workshops and CTFs at DEF CON, Black Hat, HITCON, CODE BLUE, and other conferences.
-* [The Car Hacker's Handbook](https://www.opengarages.org/handbook/) - Craig Smith's foundational book on vehicle security, free to read online via Open Garages.
 * [What is Automotive MACsec?](https://youtu.be/5QiHmMoJCOE) - Video training on Automotive MACsec concepts by Technica Engineering.
 
 ## Related Awesome Lists
