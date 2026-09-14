@@ -116,6 +116,21 @@ def main() -> int:
             where = [str(i) for i, n, _, _, _ in entries if n.lower() == name]
             errors.append(f"duplicate entry name '{name}' on lines {', '.join(where)}")
 
+    # --- Every other section is alphabetical by entry name ---
+    previous = {}
+    for lineno, name, _, _, section in entries:
+        if section == PAPERS_SECTION:
+            continue
+        key = name.casefold()
+        last = previous.get(section)
+        if last and key < last[0]:
+            errors.append(
+                f"{lineno}: '{name}' is out of order — it follows '{last[1]}'. "
+                f"{section} is alphabetical by entry name, ignoring case."
+            )
+        else:
+            previous[section] = (key, name)
+
     # --- Research Papers are ordered by year of publication, oldest first ---
     papers = [(i, n, d) for i, n, _, d, sec in entries if sec == PAPERS_SECTION]
     previous_year = 0

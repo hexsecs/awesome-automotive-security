@@ -71,7 +71,9 @@ jobs:
                criteria, and anything whose whole subdomain is better served by a
                linked Awesome list.
             5. Add the survivors to the right sections of README.md in the required
-               format. Aim for quality over volume: five well-checked entries beat
+               format, inserted in alphabetical order by name within the section.
+               Research Papers is the one exception: it is ordered by year of
+               publication, oldest first. Never append to the end of a section. Aim for quality over volume: five well-checked entries beat
                thirty unchecked ones. Zero good candidates is an acceptable outcome —
                in that case, make no changes and stop.
             6. While you are there, check the existing entries for links that now 404
