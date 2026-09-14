@@ -21,6 +21,10 @@ TOC_RE = re.compile(r"^\* \[(?P<title>[^\]]+)\]\(#(?P<anchor>[^)]+)\)$")
 # Sections that hold links to other lists rather than tools.
 TOC_HEADING = "## Contents"
 
+# Section with its own ordering rule, enforced below.
+PAPERS_SECTION = "Research Papers"
+YEAR_RE = re.compile(r"\b(?:19|20)\d{2}\b")
+
 
 def anchor_for(heading: str) -> str:
     """GitHub's anchor slug for a heading."""
@@ -75,7 +79,7 @@ def main() -> int:
             continue
 
         name, url, desc = m.group("name"), m.group("url"), m.group("desc")
-        entries.append((i, name, url, desc))
+        entries.append((i, name, url, desc, current_section))
 
         if current_section is None:
             errors.append(f"{i}: entry appears before any section heading")
@@ -102,15 +106,37 @@ def main() -> int:
         u = url.rstrip("/").lower()
         return u[len("https://") :] if u.startswith("https://") else u
 
-    for url, count in Counter(normalise(u) for _, _, u, _ in entries).items():
+    for url, count in Counter(normalise(u) for _, _, u, _, _ in entries).items():
         if count > 1:
-            where = [str(i) for i, _, u, _ in entries if normalise(u) == url]
+            where = [str(i) for i, _, u, _, _ in entries if normalise(u) == url]
             errors.append(f"duplicate URL '{url}' on lines {', '.join(where)}")
 
-    for name, count in Counter(n.lower() for _, n, _, _ in entries).items():
+    for name, count in Counter(n.lower() for _, n, _, _, _ in entries).items():
         if count > 1:
-            where = [str(i) for i, n, _, _ in entries if n.lower() == name]
+            where = [str(i) for i, n, _, _, _ in entries if n.lower() == name]
             errors.append(f"duplicate entry name '{name}' on lines {', '.join(where)}")
+
+    # --- Research Papers are ordered by year of publication, oldest first ---
+    papers = [(i, n, d) for i, n, _, d, sec in entries if sec == PAPERS_SECTION]
+    previous_year = 0
+    previous_name = None
+    for lineno, name, desc in papers:
+        match = YEAR_RE.search(desc)
+        if not match:
+            errors.append(
+                f"{lineno}: '{name}' must state its publication year, as "
+                "'Surname et al., Venue Year.'"
+            )
+            continue
+        year = int(match.group(0))
+        if year < previous_year:
+            errors.append(
+                f"{lineno}: '{name}' ({year}) is out of order — it follows "
+                f"'{previous_name}' ({previous_year}). {PAPERS_SECTION} is "
+                "ordered by year, oldest first."
+            )
+        else:
+            previous_year, previous_name = year, name
 
     if errors:
         print(f"{len(errors)} problem(s) found in README.md:\n", file=sys.stderr)

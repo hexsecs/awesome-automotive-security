@@ -49,13 +49,15 @@ python3 scripts/validate_list.py
 
 ## Research papers
 
-The [Research Papers](README.md#research-papers) section is for foundational and
-heavily cited work, not for every new paper. To be listed, a paper should be
+The [Research Papers](README.md#research-papers) section is for foundational
+and influential work, not for every new paper. To be listed, a paper should be
 peer-reviewed (or a landmark industry report such as the Miller and Valasek
 vehicle work) and should have visibly shaped later research or practice.
 
-* Order is approximately by citation count, most cited first. Exact counts are
-  not recorded in entries — they go stale and vary by index.
+* Entries are ordered by year of publication, oldest first. This is the one
+  section that is not append-only: insert a new paper at its place in the
+  sequence. `scripts/validate_list.py` enforces the ordering, and requires
+  every entry to state a year.
 * Link an open-access copy where one exists: the venue's own page for USENIX,
   NDSS, and similar, otherwise arXiv, an institutional repository, or the
   authors' copy. Avoid paywalled links when an open one is available.
