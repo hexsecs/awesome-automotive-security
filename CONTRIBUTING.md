@@ -61,6 +61,10 @@ vehicle work) and should have visibly shaped later research or practice.
   authors' copy. Avoid paywalled links when an open one is available.
 * Credit authors as `Surname et al., Venue Year.` at the start of the
   description, then say in one sentence what the paper established.
+* ACM and IEEE answer the link checker with a bot challenge rather than the
+  page, so those two hosts are excluded from link checking and their URLs are
+  not machine-verified. Use them only when no open copy exists, and check such
+  a link by hand before adding it.
 
 ## Commercial entries
 
