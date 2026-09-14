@@ -24,6 +24,9 @@ jobs:
       - name: Check list structure
         run: python3 scripts/validate_list.py
 
+      # ACM and IEEE answer automated clients with 403/202 bot challenges rather
+      # than serving the page, so no link checker can verify them. Their DOI-backed
+      # URLs are stable; everything else, including every other paper host, is checked.
       - name: Check links changed in this PR
         if: github.event_name == 'pull_request'
         uses: lycheeverse/lychee-action@v2
@@ -33,5 +36,7 @@ jobs:
             --max-retries 3
             --accept 200,206,429
             --exclude-path LICENSE
+            --exclude dl\.acm\.org
+            --exclude ieeexplore\.ieee\.org
             README.md
           fail: true

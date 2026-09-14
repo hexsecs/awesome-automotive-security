@@ -18,6 +18,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Security Analysis](#security-analysis)
 * [Penetration Testing](#penetration-testing)
 * [Datasets](#datasets)
+* [Research Papers](#research-papers)
 * [Learning Resources](#learning-resources)
 * [Related Awesome Lists](#related-awesome-lists)
 
@@ -120,6 +121,33 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [ROAD](https://0xsam.com/road/) - Real ORNL Automotive Dynamometer CAN intrusion dataset with verified fuzzing, targeted ID, masquerade, and accelerator attacks captured on a dynamometer.
 * [CAN-MIRGU](https://github.com/sampathrajapaksha/CAN-MIRGU) - CAN bus attack dataset from a modern vehicle driven on real roads over six days, with physically verified masquerade, suspension, and real attacks.
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
+
+## Research Papers
+
+Foundational and most-cited peer-reviewed work in automotive security, ordered
+approximately by citation count. Preference is given to open-access copies.
+
+* [Experimental Security Analysis of a Modern Automobile](https://www.autosec.org/pubs/cars-oakland2010.pdf) - Koscher et al., IEEE S&P 2010. The paper that opened the field, demonstrating that an attacker with access to any single ECU can disable the brakes and stop the engine of a moving vehicle.
+* [Comprehensive Experimental Analyses of Automotive Attack Surfaces](https://www.usenix.org/conference/usenix-security-11/comprehensive-experimental-analyses-automotive-attack-surfaces) - Checkoway et al., USENIX Security 2011. Follow-up establishing the remote attack surface, compromising a vehicle over Bluetooth, cellular, and the CD player.
+* [Securing Vehicular Ad Hoc Networks](https://infoscience.epfl.ch/entities/publication/2976e5d8-215b-4465-834e-875efe55844f) - Raya and Hubaux, Journal of Computer Security 2007. Threat analysis and security architecture for VANETs that set the direction for most later V2X security work.
+* [Relay Attacks on Passive Keyless Entry and Start Systems in Modern Cars](https://www.ndss-symposium.org/ndss2011/relay-attacks-on-passive-keyless-entry-and-start-systems-in-modern-cars/) - Francillon, Danev, and Capkun, NDSS 2011. Demonstrates the relay attack that still underpins most keyless vehicle theft today, against ten PKES systems from eight manufacturers.
+* [Remote Exploitation of an Unaltered Passenger Vehicle](https://www.ioactive.com/wp-content/uploads/pdfs/IOActive_Remote_Car_Hacking.pdf) - Miller and Valasek, 2015. The Jeep Cherokee cellular-to-CAN attack chain that triggered a 1.4 million vehicle recall.
+* [Fingerprinting Electronic Control Units for Vehicle Intrusion Detection](https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/cho) - Cho and Shin, USENIX Security 2016. Clock-based IDS that fingerprints ECUs from clock skew in periodic messages, the most-replicated CAN IDS baseline.
+* [Error Handling of In-vehicle Networks Makes Them Vulnerable](https://dl.acm.org/doi/10.1145/2976749.2978302) - Cho and Shin, ACM CCS 2016. The bus-off attack, which abuses CAN error handling to force an uncompromised ECU off the bus without any vehicle-specific reverse engineering.
+* [Security and Privacy Vulnerabilities of In-Car Wireless Networks: A Tire Pressure Monitoring System Case Study](https://www.usenix.org/conference/usenixsecurity10/security-and-privacy-vulnerabilities-car-wireless-networks-tire-pressure) - Rouf et al., USENIX Security 2010. Shows TPMS sensors are unauthenticated and trackable at roughly 40m, the first published wireless in-car network attack.
+* [Gone in 360 Seconds: Hijacking with Hitag2](https://www.usenix.org/conference/usenixsecurity12/technical-sessions/presentation/verdult) - Verdult, Garcia, and Balasch, USENIX Security 2012. Breaks the Hitag2 immobilizer transponder, then fitted to over 200 car models, recovering the key by radio in minutes.
+* [Dismantling Megamos Crypto: Wirelessly Lockpicking a Vehicle Immobilizer](https://www.usenix.org/conference/usenixsecurity15/technical-sessions/presentation/verdult) - Verdult, Garcia, and Ege, USENIX Security 2015. Reverse engineers the Megamos immobilizer used by Audi, Fiat, Honda, Volkswagen, and Volvo; famously injuncted for two years before publication.
+* [Lock It and Still Lose It: On the (In)Security of Automotive Remote Keyless Entry Systems](https://www.usenix.org/conference/usenixsecurity16/technical-sessions/presentation/garcia) - Garcia, Oswald, Kasper, and Pavlides, USENIX Security 2016. Recovers shared global keys covering most Volkswagen Group vehicles sold over two decades, and breaks the Hitag2 rolling-code scheme.
+* [Potential Cyberattacks on Automated Vehicles](https://its.berkeley.edu/publications/potential-cyberattacks-automated-vehicles) - Petit and Shladover, IEEE T-ITS 2015. The standard reference taxonomy of attack vectors against autonomous and cooperative automated vehicles.
+* [Remote Attacks on Automated Vehicles Sensors: Experiments on Camera and LiDAR](https://blackhat.com/docs/eu-15/materials/eu-15-Petit-Self-Driving-And-Connected-Cars-Fooling-Sensors-And-Tracking-Drivers-wp1.pdf) - Petit, Stottelaar, Feiri, and Kargl, Black Hat Europe 2015. First practical spoofing and blinding of automotive camera and LiDAR using commodity hardware.
+* [Adversarial Sensor Attack on LiDAR-based Perception in Autonomous Driving](https://arxiv.org/abs/1907.06826) - Cao et al., ACM CCS 2019. Spoofs LiDAR returns to inject a fake obstacle into the perception pipeline of a production autonomous driving stack.
+* [Fast and Vulnerable: A Story of Telematic Failures](https://www.usenix.org/conference/woot15/workshop-program/presentation/foster) - Foster, Prudhomme, Koscher, and Savage, USENIX WOOT 2015. Shows an aftermarket OBD-II telematics dongle exposing SMS-reachable remote control of vehicle CAN traffic.
+* [Plug-N-Pwned: Comprehensive Vulnerability Analysis of OBD-II Dongles](https://www.usenix.org/conference/usenixsecurity20/presentation/wen) - Wen, Chen, and Lin, USENIX Security 2020. Automated analysis of 77 wireless OBD-II dongles, every one of which exposed at least two vulnerability classes.
+* [Adventures in Automotive Networks and Control Units](https://illmatics.com/car_hacking.pdf) - Miller and Valasek, 2013. The wired precursor to the Jeep work, documenting CAN injection against the Toyota Prius and Ford Escape and the methodology that followed.
+* [GIDS: GAN based Intrusion Detection System for In-Vehicle Network](https://arxiv.org/abs/1907.07377) - Seo, Song, and Kim, PST 2018. Trains a GAN on normal CAN traffic only, and is a common deep-learning IDS baseline alongside the authors' Car-Hacking dataset.
+* [vatiCAN: Vetted, Authenticated CAN Bus](https://christian-rossow.de/publications/vatican-ches2016.pdf) - Nurnberger and Rossow, CHES 2016. Retrofit authentication for CAN using MACs and a global nonce, a reference point for later SecOC-style designs.
+* [Survey on Security Threats and Protection Mechanisms in Embedded Automotive Networks](https://ieeexplore.ieee.org/document/6615528/) - Studnia et al., DSN Workshops 2013. Widely cited survey mapping in-vehicle protocols, the threats against them, and candidate countermeasures.
+* [A Comprehensive Guide to CAN IDS Data and Introduction of the ROAD Dataset](https://arxiv.org/abs/2012.14600) - Verma et al., 2020. Systematises the CAN IDS dataset landscape, documents the flaws in earlier datasets, and introduces ROAD.
 
 ## Learning Resources
 

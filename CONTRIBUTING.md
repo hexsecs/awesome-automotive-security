@@ -47,6 +47,25 @@ Run the validator before opening a pull request:
 python3 scripts/validate_list.py
 ```
 
+## Research papers
+
+The [Research Papers](README.md#research-papers) section is for foundational and
+heavily cited work, not for every new paper. To be listed, a paper should be
+peer-reviewed (or a landmark industry report such as the Miller and Valasek
+vehicle work) and should have visibly shaped later research or practice.
+
+* Order is approximately by citation count, most cited first. Exact counts are
+  not recorded in entries — they go stale and vary by index.
+* Link an open-access copy where one exists: the venue's own page for USENIX,
+  NDSS, and similar, otherwise arXiv, an institutional repository, or the
+  authors' copy. Avoid paywalled links when an open one is available.
+* Credit authors as `Surname et al., Venue Year.` at the start of the
+  description, then say in one sentence what the paper established.
+* ACM and IEEE answer the link checker with a bot challenge rather than the
+  page, so those two hosts are excluded from link checking and their URLs are
+  not machine-verified. Use them only when no open copy exists, and check such
+  a link by hand before adding it.
+
 ## Commercial entries
 
 Commercial and closed-source tools are allowed when they are genuinely used in
