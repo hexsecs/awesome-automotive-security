@@ -175,9 +175,9 @@ publication. Open-access copies are linked where one exists.
 
 ## Books
 
-* [Automotive Cybersecurity Engineering Handbook](https://www.packtpub.com/en-us/product/automotive-cybersecurity-engineering-handbook-9781801076531) - Ahmad MK Nasser, Packt 2023. Practitioner's guide to building cyber-resilient vehicles, covering threat analysis, hardware security, and ISO/SAE 21434 engineering practice.
+* [Automotive Cybersecurity Engineering Handbook](https://www.oreilly.com/library/view/automotive-cybersecurity-engineering/9781801076531/) - Ahmad MK Nasser, Packt 2023. Practitioner's guide to building cyber-resilient vehicles, covering threat analysis, hardware security, and ISO/SAE 21434 engineering practice.
 * [Building Secure Cars](https://www.wiley.com/en-us/Building+Secure+Cars:+Assuring+the+Automotive+Software+Development+Lifecycle-p-9781119710745) - Dennis Kengo Oka, Wiley 2021. Focuses on assuring the automotive software development lifecycle, from secure coding and static analysis through fuzzing and penetration testing.
-* [Hacking Connected Cars](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119491774) - Alissa Knight, Wiley 2020. Tactics, techniques, and procedures for penetration testing, threat modelling, and risk assessment of telematics control units and infotainment systems.
+* [Hacking Connected Cars](https://www.wiley.com/en-us/-p-9781119491804) - Alissa Knight, Wiley 2020. Tactics, techniques, and procedures for penetration testing, threat modelling, and risk assessment of telematics control units and infotainment systems.
 * [The Car Hacker's Handbook](https://www.opengarages.org/handbook/) - Craig Smith, No Starch Press 2016. The foundational practical guide to vehicle security, covering threat modelling, CAN reverse engineering, and ECU exploitation; free to read online via Open Garages.
 
 ## Learning Resources

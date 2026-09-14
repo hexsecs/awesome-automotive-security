@@ -76,8 +76,10 @@ is immediate and does not depend on having accumulated citations.
   link by hand before adding it. Prefer dropping a candidate over extending that
   list: hosts that have proven reliable here are `usenix.org`, `arxiv.org`,
   `ndss-symposium.org` and `tches.iacr.org`. Known to bot-challenge, so avoid:
-  `link.springer.com`, `semanticscholar.org`, `researchgate.net`, and Pure
-  repository instances such as `pure.kaist.ac.kr`.
+  `link.springer.com`, `semanticscholar.org`, `researchgate.net`,
+  `onlinelibrary.wiley.com`, `packtpub.com`, and Pure repository instances such
+  as `pure.kaist.ac.kr`. For books, `www.wiley.com` and `opengarages.org` have
+  passed where the publisher's other hosts did not.
 
 ## Books
 
