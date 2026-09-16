@@ -116,6 +116,16 @@ def main() -> int:
             where = [str(i) for i, n, _, _, _ in entries if n.lower() == name]
             errors.append(f"duplicate entry name '{name}' on lines {', '.join(where)}")
 
+    # --- Section layout: a blank line after each heading, none between entries ---
+    for i, line in enumerate(lines):
+        if line.startswith("## ") and i + 1 < len(lines) and lines[i + 1].strip():
+            errors.append(f"{i + 2}: '{line[3:].strip()}' needs a blank line after the heading")
+        if line.startswith("* [") and i + 1 < len(lines):
+            following = lines[i + 1 :]
+            nxt = next((l for l in following if l.strip()), "")
+            if not lines[i + 1].strip() and nxt.startswith("* ["):
+                errors.append(f"{i + 2}: blank line inside a list; entries are consecutive")
+
     # --- Every other section is alphabetical by entry name ---
     previous = {}
     for lineno, name, _, _, section in entries:
