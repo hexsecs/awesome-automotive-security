@@ -6,12 +6,18 @@
 # compared as the duplicate check compares them (case, trailing slash and
 # https:// ignored). Overturning a decision is deliberate: delete its record in
 # the same change that adds the entry back, and say why in that change.
+# ("kept" records are the exception: they mark entries that stay.)
 #
 # Fields
 #   name      The entry's name as it was, or would have been, listed.
 #   url       The URL that was proposed or listed.
-#   decision  "rejected" for a candidate that never landed on the list, or
-#             "removed" for an entry taken off it.
+#   decision  "rejected" for a candidate that never landed on the list,
+#             "removed" for an entry taken off it, or "kept" for a listed entry
+#             that scripts/list_health.py flags as archived or dormant and a
+#             maintainer judged still canonical or historically important.
+#             Rejected and removed URLs may not appear in the README; a kept
+#             URL must, and the health report then lists it as acknowledged
+#             rather than as a finding.
 #   reason    One or two sentences a later reviewer can judge the candidate by.
 #   date      YYYY-MM-DD, when the decision was made.
 #   ref       Optional. The pull request or issue where it was made, e.g. "#6".
@@ -45,3 +51,11 @@ decision = "rejected"
 reason = "Song, Kim, and Kim, ICOIN 2016. One of the two weakest papers proposed for Research Papers, and its only copy was on Korea University's Pure instance, which answers the checker with 503; dropped rather than given a link-check exclusion."
 date = "2026-09-14"
 ref = "#6"
+
+[[decision]]
+name = "Universal Radio Hacker (URH)"
+url = "https://github.com/jopohl/urh"
+decision = "kept"
+reason = "Archived, but still the canonical open-source tool for investigating unknown wireless protocols; CONTRIBUTING.md criterion 5 cites it as the example of an archived project that stays."
+date = "2026-09-23"
+ref = "#21"

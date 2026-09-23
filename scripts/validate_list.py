@@ -36,7 +36,10 @@ HOST_RE = re.compile(r"^[a-z0-9-]+(?:\.[a-z0-9-]+)*(?:\.\*)?$")
 
 # Fields and values of a [[decision]] record in data/decisions.toml.
 DECISION_FIELDS = ("name", "url", "decision", "reason", "date")
-DECISION_KINDS = ("rejected", "removed")
+DECISION_KINDS = ("rejected", "removed", "kept")
+# Kinds that bar a URL from the list. "kept" records the opposite: an entry the
+# health report flags (archived or dormant) that a maintainer chose to keep.
+EXCLUDING_KINDS = ("rejected", "removed")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 ENTRY_RE = re.compile(r"^\* \[(?P<name>[^\]]+)\]\((?P<url>[^)]+)\) - (?P<desc>.+)$")
@@ -255,7 +258,11 @@ def main() -> int:
             )
 
     # --- Nothing that a curation decision in data/decisions.toml turned away ---
-    decided = {normalise(d["url"]): d for d in decisions if d.get("url")}
+    decided = {
+        normalise(d["url"]): d
+        for d in decisions
+        if d.get("url") and d.get("decision") in EXCLUDING_KINDS
+    }
     for lineno, name, url, _, _ in entries:
         record = decided.get(normalise(url))
         if not record:
@@ -267,6 +274,14 @@ def main() -> int:
             "To overturn that decision, delete its record from "
             "data/decisions.toml in the same change and say why."
         )
+
+    listed = {normalise(url) for _, _, url, _, _ in entries}
+    for record in decisions:
+        if record.get("decision") == "kept" and normalise(record.get("url", "")) not in listed:
+            errors.append(
+                f"data/decisions.toml: '{record.get('name')}' is recorded as kept, but no "
+                "entry links to its URL. Delete the record, or record the entry as removed."
+            )
 
     # --- Section layout: a blank line after each heading, none between entries ---
     for i, line in enumerate(lines):

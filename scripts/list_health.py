@@ -12,9 +12,12 @@ Answers two questions without any AI in the loop:
 
 Archived or dormant does not mean wrong: URH is archived and still canonical.
 The report surfaces candidates for a human to judge, it does not judge them.
+Once a maintainer has judged one, a `kept` record in data/decisions.toml moves
+it to an acknowledged table so it stops counting as a finding.
 
 Prints Markdown by default, or JSON with --json. Always exits 0 unless
---fail-on-findings is given and something is archived, moved or missing.
+--fail-on-findings is given and something not kept is archived, moved or
+missing.
 """
 
 from __future__ import annotations
@@ -24,6 +27,7 @@ import json
 import os
 import re
 import sys
+import tomllib
 import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -32,6 +36,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 README = Path(__file__).resolve().parent.parent / "README.md"
+DECISIONS = README.parent / "data" / "decisions.toml"
 
 ENTRY_RE = re.compile(r"^\* \[(?P<name>[^\]]+)\]\((?P<url>[^)]+)\) - (?P<desc>.+)$")
 TOC_HEADING = "## Contents"
@@ -52,6 +57,46 @@ NAME_RE = re.compile(r"^[A-Za-z0-9_.-]+$")
 
 # Categories that --fail-on-findings treats as actionable.
 ACTIONABLE = ("archived", "moved", "missing")
+# Categories a `kept` decision acknowledges. Moved and missing still need a fix.
+KEEPABLE = ("archived", "dormant")
+
+
+def normalise(url: str) -> str:
+    """Comparison key for URLs, as scripts/validate_list.py compares them."""
+    u = url.rstrip("/").lower()
+    return u[len("https://") :] if u.startswith("https://") else u
+
+
+def load_kept(path: Path) -> dict[str, dict[str, Any]]:
+    """`kept` records from data/decisions.toml, keyed by normalised URL.
+
+    The validator owns checking that file; here a missing or unreadable file
+    simply means nothing is acknowledged.
+    """
+    try:
+        with path.open("rb") as f:
+            records = tomllib.load(f).get("decision", [])
+    except (OSError, tomllib.TOMLDecodeError):
+        return {}
+    return {normalise(r["url"]): r for r in records
+            if r.get("decision") == "kept" and r.get("url")}
+
+
+def acknowledge(findings: dict[str, list[dict[str, Any]]],
+                kept: dict[str, dict[str, Any]]) -> None:
+    """Move archived or dormant rows a maintainer chose to keep into `kept`."""
+    findings["kept"] = []
+    for key in KEEPABLE:
+        remaining = []
+        for row in findings[key]:
+            record = kept.get(normalise(row["url"]))
+            if record:
+                findings["kept"].append({**row, "status": key, "reason": record.get("reason", ""),
+                                         "ref": record.get("ref", "")})
+            else:
+                remaining.append(row)
+        findings[key] = remaining
+    findings["kept"].sort(key=lambda r: r["entries"][0].casefold())
 
 
 def parse_readme(text: str) -> tuple[list[str], list[dict[str, Any]]]:
@@ -254,7 +299,8 @@ def render_markdown(report: dict[str, Any]) -> str:
     if meta is not None:
         summary += (f" GitHub: {meta['checked']} of {meta['repos']} repositories checked — "
                     + ", ".join(f"{len(findings[k])} {k}" for k in
-                                ("archived", "moved", "missing", "dormant", "errors", "unchecked"))
+                                ("archived", "moved", "missing", "dormant", "errors", "unchecked",
+                                 "kept"))
                     + ".")
     out += [f"**Summary:** {summary}", "", f"Generated {report['generated']}.", ""]
 
@@ -297,6 +343,8 @@ def render_markdown(report: dict[str, Any]) -> str:
                    lambda r: [entry_cell(r), r["url"], md_escape(r["error"])]),
         "unchecked": ("Unchecked", ["Entry", "Listed URL", "Reason"],
                       lambda r: [entry_cell(r), r["url"], md_escape(r["reason"])]),
+        "kept": ("Acknowledged (kept by decision)", ["Entry", "Status", "Reason", "Ref"],
+                 lambda r: [entry_cell(r), r["status"], md_escape(r["reason"]), md_escape(r["ref"])]),
     }
     for key, (title, headers, cells) in tables.items():
         rows = findings[key]
@@ -345,6 +393,7 @@ def main() -> int:
         token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or None
         findings, meta = check_github(entries, token, args.dormant_years, args.max_repos,
                                       args.timeout, now)
+        acknowledge(findings, load_kept(DECISIONS))
         report["findings"], report["github"] = findings, meta
         for warning in meta["warnings"]:
             print(f"warning: {warning}", file=sys.stderr)

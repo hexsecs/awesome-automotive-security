@@ -130,7 +130,12 @@ away, so that automated discovery never proposes it again.
   also ask for the record in a review comment and leave the author to write it.
 * Record judgements about the resource, not routine fixes: a moved or renamed
   link is not a decision.
-* `scripts/validate_list.py` rejects any entry whose URL has a record.
+* When the health report flags a listed entry as archived or dormant and you
+  decide it stays, because it is still canonical or historically important,
+  record that as `kept` with the reason. The report then lists it as
+  acknowledged instead of raising it again every month.
+* `scripts/validate_list.py` rejects any entry whose URL has a `rejected` or
+  `removed` record, and any `kept` record whose entry is no longer listed.
   Overturning a decision is deliberate: delete its record in the same change
   that adds the entry back, and say in that change what has changed, for
   example that an archived project has come back to life.
