@@ -13,6 +13,9 @@ permissions:
 jobs:
   link-check:
     runs-on: ubuntu-latest
+    # Read by fix-links below.
+    outputs:
+      broken: ${{ steps.lychee.outputs.exit_code != 0 }}
     steps:
       - uses: actions/checkout@v4
 
@@ -44,3 +47,106 @@ jobs:
           labels: |
             maintenance
             broken-link
+
+  # Proposes repairs for the links found broken above, as a draft PR. The task
+  # itself lives in prompts/fix-links.md so the Routine and this job share it.
+  fix-links:
+    needs: link-check
+    if: >-
+      github.repository == 'hexsecs/awesome-automotive-security' &&
+      needs.link-check.outputs.broken == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # No github_token input: the action exchanges an OIDC token (id-token) for a
+    # Claude GitHub App token, and PRs opened with it trigger validate.yml.
+    # issues: read lets the report step below read the issue link-check opened.
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: read
+      id-token: write
+    steps:
+      # Skip cleanly rather than failing when no credential is configured.
+      - name: Check for Claude credentials
+        id: key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -n "$ANTHROPIC_API_KEY" ] || [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Neither ANTHROPIC_API_KEY nor CLAUDE_CODE_OAUTH_TOKEN is set; skipping link fixes."
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.key.outputs.present == 'true'
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        if: steps.key.outputs.present == 'true'
+        with:
+          python-version: '3.12'
+
+      # The report reaches this job through the issue link-check just opened,
+      # whose body is lychee's output. Labels need triage access, so only
+      # maintainers and workflows can have applied broken-link. The report is
+      # written to .scratch/, which is kept out of git for this run.
+      - name: Fetch the broken-links report
+        id: report
+        if: steps.key.outputs.present == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .scratch .git/info
+          echo '.scratch/' >> .git/info/exclude
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --label broken-link \
+            --state open --limit 20 --json number,title \
+            --jq 'map(select(.title == "Broken links found in the list")) | .[0].number // empty')
+          if [ -z "$number" ]; then
+            echo "::error::No open broken-link issue found to take the report from."
+            exit 1
+          fi
+          gh issue view "$number" --repo "$GITHUB_REPOSITORY" --json body --jq .body \
+            > .scratch/lychee-report.md
+          echo "issue=$number" >> "$GITHUB_OUTPUT"
+          echo "date=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+
+      # Bash is limited to exact commands where the arguments are known up
+      # front, so the PR body, branch and push target cannot be redirected.
+      # Read is scoped to the checkout minus .git/, whose config holds the App
+      # token in the remote URL; Edit covers only the files a fix may touch.
+      - name: Propose fixes for broken links
+        if: steps.key.outputs.present == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Read and follow prompts/fix-links.md.
+
+            Run context (GitHub Actions):
+            - Report file: .scratch/lychee-report.md, the body of issue #${{ steps.report.outputs.issue }}.
+            - Broken-links issue: #${{ steps.report.outputs.issue }}
+            - Today (UTC): ${{ steps.report.outputs.date }}
+            - Branch: fix-links/${{ steps.report.outputs.date }}
+            - Scratch directory, never committed: .scratch/. Write the pull request
+              body to .scratch/pr-body.md.
+            - Use WebFetch and WebSearch for HTTP; there is no curl.
+            - Bash accepts only these commands, character for character (git add and
+              git commit -m take any arguments):
+                python3 scripts/validate_list.py
+                git status
+                git diff
+                git checkout -b fix-links/${{ steps.report.outputs.date }}
+                git add <files>
+                git commit -m "<message>"
+                git push -u origin fix-links/${{ steps.report.outputs.date }}
+                gh pr create --draft --base main --head fix-links/${{ steps.report.outputs.date }} --title 'Fix broken links found on ${{ steps.report.outputs.date }}' --body-file .scratch/pr-body.md
+          claude_args: |
+            --max-turns 40
+            --allowedTools "WebSearch,WebFetch,Read(./**),Edit(./README.md),Edit(./CONTRIBUTING.md),Edit(./data/decisions.toml),Edit(./.scratch/**),Bash(python3 scripts/validate_list.py),Bash(git status),Bash(git diff),Bash(git checkout -b fix-links/${{ steps.report.outputs.date }}),Bash(git add:*),Bash(git commit -m:*),Bash(git push -u origin fix-links/${{ steps.report.outputs.date }}),Bash(gh pr create --draft --base main --head fix-links/${{ steps.report.outputs.date }} --title 'Fix broken links found on ${{ steps.report.outputs.date }}' --body-file .scratch/pr-body.md)"
+            --disallowedTools "Read(./.git/**)"
