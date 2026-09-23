@@ -20,7 +20,9 @@ have.
    revived, a paper that has since become influential), you may propose it
    only by deleting its record in the same change and arguing the case in the
    PR body.
-4. Run `python3 scripts/list_health.py` and read the report. Thin sections are
+4. Run `python3 scripts/list_health.py` (with `GITHUB_TOKEN` set if you have
+   one) and read the report. If its GitHub API calls all fail, as they can in
+   a sandbox, run it with `--no-github` for coverage alone. Thin sections are
    where research effort goes first; archived, moved and dormant entries are
    candidates for a successor or a URL update.
 
