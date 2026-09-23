@@ -4,7 +4,8 @@
 Enforces the conventions described in CONTRIBUTING.md so that both human and
 automated contributions stay consistent. Exits non-zero on any error.
 
-Link-host rules come from data/hosts.toml. With --lychee-excludes, prints one
+Link-host rules come from data/hosts.toml, and candidates already rejected or
+removed from data/decisions.toml. With --lychee-excludes, prints one
 lychee exclude regex per `excluded` host instead of validating, for the
 workflows to build their link-check flags from.
 """
@@ -26,11 +27,17 @@ except ModuleNotFoundError:  # Python < 3.11
 ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
 HOSTS = ROOT / "data" / "hosts.toml"
+DECISIONS = ROOT / "data" / "decisions.toml"
 
 # Groups in data/hosts.toml; see the header of that file for their meaning.
 HOST_GROUPS = ("excluded", "avoid", "reliable")
 # A lowercase domain, optionally a prefix pattern ending in '.*' (e.g. 'pure.*').
 HOST_RE = re.compile(r"^[a-z0-9-]+(?:\.[a-z0-9-]+)*(?:\.\*)?$")
+
+# Fields and values of a [[decision]] record in data/decisions.toml.
+DECISION_FIELDS = ("name", "url", "decision", "reason", "date")
+DECISION_KINDS = ("rejected", "removed")
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 ENTRY_RE = re.compile(r"^\* \[(?P<name>[^\]]+)\]\((?P<url>[^)]+)\) - (?P<desc>.+)$")
 TOC_RE = re.compile(r"^\* \[(?P<title>[^\]]+)\]\(#(?P<anchor>[^)]+)\)$")
@@ -106,6 +113,39 @@ def load_hosts(errors: list[str]) -> dict[str, list[dict]]:
     return groups
 
 
+def load_decisions(errors: list[str]) -> list[dict]:
+    """data/decisions.toml records. Problems with the file are added to errors."""
+    try:
+        with DECISIONS.open("rb") as f:
+            data = tomllib.load(f)
+    except (OSError, tomllib.TOMLDecodeError) as e:
+        errors.append(f"data/decisions.toml could not be read: {e}")
+        return []
+
+    for table in sorted(set(data) - {"decision"}):
+        errors.append(f"data/decisions.toml: unknown table '{table}'; use [[decision]]")
+
+    records = data.get("decision", [])
+    seen: set[str] = set()
+    for record in records:
+        where = f"data/decisions.toml [[decision]] '{record.get('name', '')}'"
+        for field in DECISION_FIELDS:
+            if not record.get(field):
+                errors.append(f"{where}: needs '{field}'")
+        if record.get("decision") and record["decision"] not in DECISION_KINDS:
+            errors.append(
+                f"{where}: decision must be one of {', '.join(DECISION_KINDS)}, "
+                f"not '{record['decision']}'"
+            )
+        if record.get("date") and not DATE_RE.match(str(record["date"])):
+            errors.append(f"{where}: date must be YYYY-MM-DD, not '{record['date']}'")
+        key = normalise(record.get("url", ""))
+        if key and key in seen:
+            errors.append(f"{where}: URL is already recorded by another decision")
+        seen.add(key)
+    return records
+
+
 def lychee_excludes() -> int:
     """Print one lychee exclude regex per excluded host, e.g. dl\\.acm\\.org."""
     errors: list[str] = []
@@ -124,6 +164,7 @@ def main() -> int:
     lines = text.split("\n")
     errors: list[str] = []
     hosts = load_hosts(errors)
+    decisions = load_decisions(errors)
 
     # --- collect sections and entries ---
     sections: list[str] = []
@@ -212,6 +253,20 @@ def main() -> int:
                 f"{lineno}: '{name}' links to {matched}, which data/hosts.toml "
                 f"lists under avoid: {record.get('reason')}"
             )
+
+    # --- Nothing that a curation decision in data/decisions.toml turned away ---
+    decided = {normalise(d["url"]): d for d in decisions if d.get("url")}
+    for lineno, name, url, _, _ in entries:
+        record = decided.get(normalise(url))
+        if not record:
+            continue
+        ref = f" in {record['ref']}" if record.get("ref") else ""
+        errors.append(
+            f"{lineno}: '{name}' was {record.get('decision')}{ref} as "
+            f"'{record.get('name')}' on {record.get('date')}: {record.get('reason')} "
+            "To overturn that decision, delete its record from "
+            "data/decisions.toml in the same change and say why."
+        )
 
     # --- Section layout: a blank line after each heading, none between entries ---
     for i, line in enumerate(lines):

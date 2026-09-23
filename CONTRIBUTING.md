@@ -116,11 +116,29 @@ returned and in which pull request. The validator and both workflows read the
 file, so nothing else needs editing. Its header explains how hosts match,
 including prefix patterns such as `pure.*`.
 
+## Curation decisions
+
+[`data/decisions.toml`](data/decisions.toml) records what the list has turned
+away, so that automated discovery never proposes it again.
+
+* A reviewer who rejects a candidate, or removes an entry, adds a
+  `[[decision]]` record in the same pull request: the `name`, the `url`, the
+  `decision` (`rejected` or `removed`), a `reason` a later reviewer can judge
+  it by, the `date`, and the pull request or issue as `ref`. A reviewer can
+  also ask for the record in a review comment and leave the author to write it.
+* Record judgements about the resource, not routine fixes: a moved or renamed
+  link is not a decision.
+* `scripts/validate_list.py` rejects any entry whose URL has a record.
+  Overturning a decision is deliberate: delete its record in the same change
+  that adds the entry back, and say in that change what has changed, for
+  example that an archived project has come back to life.
+
 ## Automated maintenance
 
 This repository maintains itself in part:
 
-* `validate.yml` checks list formatting on every pull request.
+* `validate.yml` checks list formatting on every pull request, including the
+  host rules and curation decisions in `data/`.
 * `link-check.yml` runs weekly and opens an issue when links rot.
 * Both link checks take their exclusions from `data/hosts.toml`.
 * `discover.yml` runs monthly, researches candidate additions against the
