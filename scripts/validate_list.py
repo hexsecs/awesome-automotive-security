@@ -3,17 +3,41 @@
 
 Enforces the conventions described in CONTRIBUTING.md so that both human and
 automated contributions stay consistent. Exits non-zero on any error.
+
+Link-host rules come from data/hosts.toml, and candidates already rejected or
+removed from data/decisions.toml. With --lychee-excludes, prints one
+lychee exclude regex per `excluded` host instead of validating, for the
+workflows to build their link-check flags from.
 """
 
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from collections import Counter
 from pathlib import Path
 from urllib.parse import urlparse
 
-README = Path(__file__).resolve().parent.parent / "README.md"
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python < 3.11
+    sys.exit("validate_list.py needs Python 3.11 or newer, for tomllib.")
+
+ROOT = Path(__file__).resolve().parent.parent
+README = ROOT / "README.md"
+HOSTS = ROOT / "data" / "hosts.toml"
+DECISIONS = ROOT / "data" / "decisions.toml"
+
+# Groups in data/hosts.toml; see the header of that file for their meaning.
+HOST_GROUPS = ("excluded", "avoid", "reliable")
+# A lowercase domain, optionally a prefix pattern ending in '.*' (e.g. 'pure.*').
+HOST_RE = re.compile(r"^[a-z0-9-]+(?:\.[a-z0-9-]+)*(?:\.\*)?$")
+
+# Fields and values of a [[decision]] record in data/decisions.toml.
+DECISION_FIELDS = ("name", "url", "decision", "reason", "date")
+DECISION_KINDS = ("rejected", "removed")
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 ENTRY_RE = re.compile(r"^\* \[(?P<name>[^\]]+)\]\((?P<url>[^)]+)\) - (?P<desc>.+)$")
 TOC_RE = re.compile(r"^\* \[(?P<title>[^\]]+)\]\(#(?P<anchor>[^)]+)\)$")
@@ -33,10 +57,114 @@ def anchor_for(heading: str) -> str:
     return re.sub(r"\s+", "-", slug)
 
 
+def normalise(url: str) -> str:
+    """Comparison key for URLs: case, trailing slash and https:// ignored."""
+    u = url.rstrip("/").lower()
+    return u[len("https://") :] if u.startswith("https://") else u
+
+
+def host_matches(host: str, pattern: str) -> bool:
+    """Whether a URL host falls under a data/hosts.toml host entry.
+
+    A plain entry matches itself and its subdomains; one ending in '.*' is a
+    prefix pattern matching any host that starts with the labels before it.
+    """
+    if pattern.endswith(".*"):
+        return host.startswith(pattern[:-1])
+    return host == pattern or host.endswith("." + pattern)
+
+
+def load_hosts(errors: list[str]) -> dict[str, list[dict]]:
+    """data/hosts.toml by group. Problems with the file are added to errors."""
+    try:
+        with HOSTS.open("rb") as f:
+            data = tomllib.load(f)
+    except (OSError, tomllib.TOMLDecodeError) as e:
+        errors.append(f"data/hosts.toml could not be read: {e}")
+        return {group: [] for group in HOST_GROUPS}
+
+    for group in sorted(set(data) - set(HOST_GROUPS)):
+        errors.append(
+            f"data/hosts.toml: unknown group '{group}'; expected one of "
+            f"{', '.join(HOST_GROUPS)}"
+        )
+
+    groups: dict[str, list[dict]] = {}
+    seen: dict[str, str] = {}
+    for group in HOST_GROUPS:
+        groups[group] = data.get(group, [])
+        for record in groups[group]:
+            host = record.get("host", "")
+            where = f"data/hosts.toml [[{group}]] '{host}'"
+            if not isinstance(host, str) or not HOST_RE.match(host):
+                errors.append(f"{where}: host must be a lowercase domain name")
+            if not record.get("reason"):
+                errors.append(f"{where}: needs a reason")
+            if group == "excluded" and host.endswith(".*"):
+                errors.append(f"{where}: lychee exclusions must be exact hosts")
+            if "allow" in record and group != "avoid":
+                errors.append(f"{where}: only [[avoid]] entries take 'allow'")
+            for url in record.get("allow", []):
+                if not host_matches(urlparse(url).hostname or "", host):
+                    errors.append(f"{where}: allowed URL '{url}' is not on this host")
+            if host in seen:
+                errors.append(f"{where}: already listed under [[{seen[host]}]]")
+            seen[host] = group
+    return groups
+
+
+def load_decisions(errors: list[str]) -> list[dict]:
+    """data/decisions.toml records. Problems with the file are added to errors."""
+    try:
+        with DECISIONS.open("rb") as f:
+            data = tomllib.load(f)
+    except (OSError, tomllib.TOMLDecodeError) as e:
+        errors.append(f"data/decisions.toml could not be read: {e}")
+        return []
+
+    for table in sorted(set(data) - {"decision"}):
+        errors.append(f"data/decisions.toml: unknown table '{table}'; use [[decision]]")
+
+    records = data.get("decision", [])
+    seen: set[str] = set()
+    for record in records:
+        where = f"data/decisions.toml [[decision]] '{record.get('name', '')}'"
+        for field in DECISION_FIELDS:
+            if not record.get(field):
+                errors.append(f"{where}: needs '{field}'")
+        if record.get("decision") and record["decision"] not in DECISION_KINDS:
+            errors.append(
+                f"{where}: decision must be one of {', '.join(DECISION_KINDS)}, "
+                f"not '{record['decision']}'"
+            )
+        if record.get("date") and not DATE_RE.match(str(record["date"])):
+            errors.append(f"{where}: date must be YYYY-MM-DD, not '{record['date']}'")
+        key = normalise(record.get("url", ""))
+        if key and key in seen:
+            errors.append(f"{where}: URL is already recorded by another decision")
+        seen.add(key)
+    return records
+
+
+def lychee_excludes() -> int:
+    """Print one lychee exclude regex per excluded host, e.g. dl\\.acm\\.org."""
+    errors: list[str] = []
+    hosts = load_hosts(errors)
+    if errors:
+        for err in errors:
+            print(err, file=sys.stderr)
+        return 1
+    for record in hosts["excluded"]:
+        print(record["host"].replace(".", r"\."))
+    return 0
+
+
 def main() -> int:
     text = README.read_text(encoding="utf-8")
     lines = text.split("\n")
     errors: list[str] = []
+    hosts = load_hosts(errors)
+    decisions = load_decisions(errors)
 
     # --- collect sections and entries ---
     sections: list[str] = []
@@ -102,10 +230,6 @@ def main() -> int:
         )
 
     # --- duplicates ---
-    def normalise(url: str) -> str:
-        u = url.rstrip("/").lower()
-        return u[len("https://") :] if u.startswith("https://") else u
-
     for url, count in Counter(normalise(u) for _, _, u, _, _ in entries).items():
         if count > 1:
             where = [str(i) for i, _, u, _, _ in entries if normalise(u) == url]
@@ -115,6 +239,34 @@ def main() -> int:
         if count > 1:
             where = [str(i) for i, n, _, _, _ in entries if n.lower() == name]
             errors.append(f"duplicate entry name '{name}' on lines {', '.join(where)}")
+
+    # --- No links on hosts that data/hosts.toml says to avoid ---
+    for lineno, name, url, _, _ in entries:
+        host = (urlparse(url).hostname or "").lower()
+        for record in hosts["avoid"]:
+            pattern = record.get("host", "")
+            allowed = {normalise(u) for u in record.get("allow", [])}
+            if not host_matches(host, pattern) or normalise(url) in allowed:
+                continue
+            matched = host if host == pattern else f"{host} (as '{pattern}')"
+            errors.append(
+                f"{lineno}: '{name}' links to {matched}, which data/hosts.toml "
+                f"lists under avoid: {record.get('reason')}"
+            )
+
+    # --- Nothing that a curation decision in data/decisions.toml turned away ---
+    decided = {normalise(d["url"]): d for d in decisions if d.get("url")}
+    for lineno, name, url, _, _ in entries:
+        record = decided.get(normalise(url))
+        if not record:
+            continue
+        ref = f" in {record['ref']}" if record.get("ref") else ""
+        errors.append(
+            f"{lineno}: '{name}' was {record.get('decision')}{ref} as "
+            f"'{record.get('name')}' on {record.get('date')}: {record.get('reason')} "
+            "To overturn that decision, delete its record from "
+            "data/decisions.toml in the same change and say why."
+        )
 
     # --- Section layout: a blank line after each heading, none between entries ---
     for i, line in enumerate(lines):
@@ -164,7 +316,7 @@ def main() -> int:
             previous_year, previous_name = year, name
 
     if errors:
-        print(f"{len(errors)} problem(s) found in README.md:\n", file=sys.stderr)
+        print(f"{len(errors)} problem(s) found:\n", file=sys.stderr)
         for err in errors:
             print(f"  - {err}", file=sys.stderr)
         return 1
@@ -177,4 +329,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument(
+        "--lychee-excludes",
+        action="store_true",
+        help="print a lychee exclude regex per excluded host in data/hosts.toml",
+    )
+    args = parser.parse_args()
+    sys.exit(lychee_excludes() if args.lychee_excludes else main())

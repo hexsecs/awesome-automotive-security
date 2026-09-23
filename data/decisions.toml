@@ -1,0 +1,47 @@
+# Curation decisions: candidates a reviewer rejected, and entries removed from
+# the list, with the reason. Automated discovery reads this file so that it
+# never re-proposes something already turned down.
+#
+# scripts/validate_list.py fails if a README entry's URL matches a record here,
+# compared as the duplicate check compares them (case, trailing slash and
+# https:// ignored). Overturning a decision is deliberate: delete its record in
+# the same change that adds the entry back, and say why in that change.
+#
+# Fields
+#   name      The entry's name as it was, or would have been, listed.
+#   url       The URL that was proposed or listed.
+#   decision  "rejected" for a candidate that never landed on the list, or
+#             "removed" for an entry taken off it.
+#   reason    One or two sentences a later reviewer can judge the candidate by.
+#   date      YYYY-MM-DD, when the decision was made.
+#   ref       Optional. The pull request or issue where it was made, e.g. "#6".
+#
+# Example
+#   [[decision]]
+#   name = "Example CAN Tool"
+#   url = "https://github.com/example/can-tool"
+#   decision = "removed"
+#   reason = "Archived in 2024 with no successor, and superseded by tools already listed."
+#   date = "2026-09-20"
+#   ref = "#42"
+#
+# Keep records in date order, oldest first. Deliberately not recorded:
+# Illusion and Dazzle, dropped in #8 but restored in #10, since a restored
+# candidate carries no decision; and the URL moves for URH, Atlas and the
+# Automotive Security Timeline in #5, which were fixes rather than decisions.
+
+[[decision]]
+name = "Entropy-based Anomaly Detection for In-Vehicle Networks"
+url = "https://www.semanticscholar.org/paper/Entropy-based-anomaly-detection-for-in-vehicle-M%C3%BCter-Asaj/7e0e23218cfad13c0efb6a506bbc44a6ddbace3a"
+decision = "rejected"
+reason = "Muter and Asaj, IV 2011. One of the two weakest papers proposed for Research Papers, and its only copy was on Semantic Scholar, which answers the checker with a 202 challenge; dropped rather than given a link-check exclusion."
+date = "2026-09-14"
+ref = "#6"
+
+[[decision]]
+name = "Intrusion Detection System Based on the Analysis of Time Intervals of CAN Messages"
+url = "https://pure.korea.ac.kr/en/publications/intrusion-detection-system-based-on-the-analysis-of-time-interval/"
+decision = "rejected"
+reason = "Song, Kim, and Kim, ICOIN 2016. One of the two weakest papers proposed for Research Papers, and its only copy was on Korea University's Pure instance, which answers the checker with 503; dropped rather than given a link-check exclusion."
+date = "2026-09-14"
+ref = "#6"
