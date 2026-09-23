@@ -16,8 +16,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # See validate.yml: ACM, IEEE, EPFL Infoscience and IACR eprint bot-challenge automated clients, so their
-      # DOI-backed URLs cannot be verified by any checker and are excluded here too.
+      # See validate.yml: hosts under [[excluded]] in data/hosts.toml bot-challenge
+      # automated clients, so their DOI-backed URLs cannot be verified by any
+      # checker and are excluded here too. The runner's system python3 (3.12 on
+      # ubuntu-24.04) has tomllib, so no setup-python step is needed.
+      - name: Build link-check exclusions from data/hosts.toml
+        id: hosts
+        shell: bash
+        run: |
+          flags=$(python3 scripts/validate_list.py --lychee-excludes | sed "s/.*/--exclude '&'/" | paste -sd ' ' -)
+          echo "excludes=$flags" >> "$GITHUB_OUTPUT"
+          echo "lychee exclusions: $flags"
+
       - name: Check all links
         id: lychee
         uses: lycheeverse/lychee-action@v2
@@ -27,10 +37,7 @@ jobs:
             --max-retries 3
             --accept 200,206,429
             --exclude-path LICENSE
-            --exclude dl\.acm\.org
-            --exclude ieeexplore\.ieee\.org
-            --exclude infoscience\.epfl\.ch
-            --exclude eprint\.iacr\.org
+            ${{ steps.hosts.outputs.excludes }}
             README.md CONTRIBUTING.md
           output: ./lychee/out.md
           fail: false
