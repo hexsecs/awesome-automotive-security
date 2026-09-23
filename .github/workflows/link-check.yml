@@ -45,12 +45,26 @@ jobs:
           output: ./lychee/out.md
           fail: false
 
+      # Reuse the open broken-links issue if there is one, so weekly runs update
+      # a single issue and the fix-links job and daily sweep see one report.
+      - name: Find existing broken-links issue
+        id: existing
+        if: steps.lychee.outputs.exit_code != 0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --label broken-link \
+            --search 'in:title "Broken links found in the list"' --json number,title \
+            --jq '[.[] | select(.title == "Broken links found in the list")][0].number // empty')
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
       - name: Open or update an issue for broken links
         if: steps.lychee.outputs.exit_code != 0
         uses: peter-evans/create-issue-from-file@v5
         with:
           title: Broken links found in the list
           content-filepath: ./lychee/out.md
+          issue-number: ${{ steps.existing.outputs.number }}
           labels: |
             maintenance
             broken-link
