@@ -8,6 +8,9 @@ have.
 
 ## Before you start
 
+0. If an open PR whose body starts with `<!-- automated: discover -->` was
+   opened this calendar month, another runner has already done this month's
+   pass: stop without changes.
 1. Read `CONTRIBUTING.md`. It defines the inclusion criteria and the exact
    entry format, and every rule in it binds you.
 2. Read `data/hosts.toml`. Never link a host listed under `avoid`; prefer
