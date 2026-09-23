@@ -53,9 +53,11 @@ python3 scripts/validate_list.py
 ## Research papers
 
 The [Research Papers](README.md#research-papers) section is for foundational
-and influential work, not for every new paper. To be listed, a paper should be
-peer-reviewed (or a landmark industry report such as the Miller and Valasek
-vehicle work) and should have visibly shaped later research or practice.
+and influential work, not for every new paper. To be listed, a paper should
+have visibly shaped later research or practice. Peer review is the usual
+evidence of that but is not required: arXiv preprints and landmark industry
+reports such as the Miller and Valasek vehicle work are both eligible, judged
+on the same influence bar as everything else.
 Systematization papers are the exception: a well-executed SoK or survey that
 maps a subfield earns its place on quality alone, since its value to a reader
 is immediate and does not depend on having accumulated citations.
