@@ -1,0 +1,67 @@
+name: List health
+
+on:
+  schedule:
+    # 05:00 UTC on the 15th of each month, clear of discover (1st, 07:00) and
+    # link-check (Mondays, 06:00).
+    - cron: '0 5 15 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Exit 1 means archived, moved or missing repositories were found; any
+      # other non-zero status is a failure of the script itself.
+      - name: Build health report
+        id: report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          python3 scripts/list_health.py --fail-on-findings > health.md
+          status=$?
+          set -e
+          cat health.md >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -eq 0 ]; then
+            echo "findings=false" >> "$GITHUB_OUTPUT"
+          elif [ "$status" -eq 1 ] && [ -s health.md ]; then
+            echo "findings=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::list_health.py failed with status $status"
+            exit "$status"
+          fi
+
+      # Reuse the open report issue if there is one, so monthly runs update a
+      # single issue instead of opening a new one each time.
+      - name: Find existing report issue
+        id: existing
+        if: steps.report.outputs.findings == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          number=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --label health \
+            --search 'in:title "List health report"' --json number,title \
+            --jq '[.[] | select(.title == "List health report")][0].number // empty')
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update the report issue
+        if: steps.report.outputs.findings == 'true'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: List health report
+          content-filepath: ./health.md
+          issue-number: ${{ steps.existing.outputs.number }}
+          labels: |
+            maintenance
+            health
