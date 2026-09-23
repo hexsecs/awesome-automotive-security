@@ -142,14 +142,31 @@ away, so that automated discovery never proposes it again.
 
 ## Automated maintenance
 
-This repository maintains itself in part:
+This repository maintains itself in part, and learns from review as it goes.
+
+Checks in GitHub Actions, which need no credentials:
 
 * `validate.yml` checks list formatting on every pull request, including the
-  host rules and curation decisions in `data/`.
+  host rules and curation decisions in `data/`, and link-checks the README.
 * `link-check.yml` runs weekly and opens an issue when links rot.
-* Both link checks take their exclusions from `data/hosts.toml`.
-* `discover.yml` runs monthly, researches candidate additions against the
-  criteria above, and opens a **draft** pull request for a human to review.
+* `health.yml` runs monthly and opens an issue when a listed repository is
+  archived, has moved or has gone missing, unless a `kept` decision already
+  covers it. `python3 scripts/list_health.py` gives the same report locally.
 
-Nothing lands automatically. Every automated proposal still needs a maintainer
-to read it, check the links, and merge it.
+Claude-driven maintenance follows the runbooks in `prompts/`:
+
+* `discover.md` researches additions monthly, aimed at the thinnest sections.
+* `triage.md` judges a "Suggest an entry" issue against the criteria above,
+  comments with a verdict, and drafts a pull request when it qualifies.
+* `fix-links.md` proposes repairs for the links the weekly check found broken.
+* `sweep.md` runs daily: it applies the two runbooks above to anything
+  waiting, and turns maintainer rejections on automated pull requests into
+  `data/decisions.toml` records so they are not proposed again.
+
+These run as scheduled Claude Code Routines. `discover.yml`, `triage.yml` and
+the `fix-links` job in `link-check.yml` run the same runbooks from GitHub
+Actions, event-driven, once an `ANTHROPIC_API_KEY` or `CLAUDE_CODE_OAUTH_TOKEN`
+secret is configured; until then they skip.
+
+Nothing lands automatically. Every automated proposal is a draft pull request
+that a maintainer reads, checks and merges.
