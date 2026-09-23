@@ -11,14 +11,18 @@ on:
         required: false
         type: string
 
+# id-token lets claude-code-action exchange an OIDC token for a Claude GitHub App
+# token. PRs opened with that token trigger validate.yml; ones opened with the
+# default GITHUB_TOKEN would not, so the bot's proposals would go unchecked.
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
 
 jobs:
   discover:
     runs-on: ubuntu-latest
-    # Skip cleanly rather than failing when the key is not configured.
+    # Forks inherit the schedule but not the secret; don't run there.
     if: github.repository == 'hexsecs/awesome-automotive-security'
     steps:
       - uses: actions/checkout@v4
@@ -29,6 +33,7 @@ jobs:
         with:
           python-version: '3.12'
 
+      # Skip cleanly rather than failing when the key is not configured.
       - name: Check for API key
         id: key
         run: |
@@ -42,11 +47,8 @@ jobs:
       - name: Research and propose additions
         if: steps.key.outputs.present == 'true'
         uses: anthropics/claude-code-action@v1
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: 'WebSearch,WebFetch,Bash,Read,Edit,Write,Glob,Grep'
           prompt: |
             You are maintaining the awesome-automotive-security list in this repository.
 
@@ -86,5 +88,9 @@ jobs:
 
             Do not merge anything. Do not push to main. A maintainer reviews every
             proposal.
+          # v1 takes tool permissions and turn limits as CLI flags; the old
+          # allowed_tools input is silently ignored. Bash is limited to what the
+          # job needs: the validator, git, and opening the draft PR.
           claude_args: |
             --max-turns 60
+            --allowedTools "WebSearch,WebFetch,Read,Edit,Write,Glob,Grep,Bash(python3 scripts/validate_list.py),Bash(git status:*),Bash(git diff:*),Bash(git checkout:*),Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(gh pr create:*)"
