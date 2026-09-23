@@ -71,17 +71,12 @@ is immediate and does not depend on having accumulated citations.
   authors' copy. Avoid paywalled links when an open one is available.
 * Credit authors as `Surname et al., Venue Year.` at the start of the
   description, then say in one sentence what the paper established.
-* Some hosts answer the link checker with a bot challenge rather than the page.
-  `dl.acm.org`, `ieeexplore.ieee.org`, `infoscience.epfl.ch` and
-  `eprint.iacr.org` are therefore excluded from link checking, and their URLs
-  are not machine-verified. Use one only when no open copy exists, and check the
-  link by hand before adding it. Prefer dropping a candidate over extending that
-  list: hosts that have proven reliable here are `usenix.org`, `arxiv.org`,
-  `ndss-symposium.org` and `tches.iacr.org`. Known to bot-challenge, so avoid:
-  `link.springer.com`, `semanticscholar.org`, `researchgate.net`,
-  `onlinelibrary.wiley.com`, `packtpub.com`, and Pure repository instances such
-  as `pure.kaist.ac.kr`. For books, `www.wiley.com` and `opengarages.org` have
-  passed where the publisher's other hosts did not.
+* Many paper hosts answer the link checker with a bot challenge rather than
+  the page. Before choosing a URL, check the host against
+  [Link hosts](#link-hosts): prefer a `reliable` host, never use an `avoid`
+  one, and use an `excluded` host only when no open copy exists, checking the
+  link by hand before adding it. Prefer dropping a candidate over extending the
+  exclusions.
 
 ## Books
 
@@ -93,9 +88,8 @@ titles that merely contain a vehicle chapter belong elsewhere, or nowhere.
 * Link the publisher's page, or a free full-text edition where the author or
   publisher offers one. Where the publisher's own site refuses automated
   clients, link a neutral catalogue record instead so the entry stays
-  machine-checkable; `books.google.com` and `www.wiley.com` work, while
-  `packtpub.com`, `onlinelibrary.wiley.com`, `oreilly.com`, `link.springer.com`
-  and `amazon.com` do not.
+  machine-checkable. [Link hosts](#link-hosts) records which book hosts pass
+  and which refuse.
 * Credit the author, publisher and year as `Author, Publisher Year.` at the
   start of the description, then say what the book covers in one sentence.
 
@@ -106,14 +100,73 @@ the field, but the description must be neutral and factual. Pull requests that
 add only a vendor's own product, from an account with no other history, will be
 looked at sceptically.
 
+## Link hosts
+
+What the list has learned about link hosts lives in one place,
+[`data/hosts.toml`](data/hosts.toml), in three groups:
+
+* `excluded` hosts bot-challenge automated clients but have stable,
+  DOI-backed URLs. They are allowed, and both link-check workflows skip them,
+  so their links are not machine-verified.
+* `avoid` hosts bot-challenge and usually have an open alternative.
+  `scripts/validate_list.py` rejects any entry linking to one.
+* `reliable` hosts have passed the link checker here.
+
+When a host teaches you something new, add a `[[excluded]]`, `[[avoid]]` or
+`[[reliable]]` table with its `host` and a `reason` saying what the checker
+returned and in which pull request. The validator and both workflows read the
+file, so nothing else needs editing. Its header explains how hosts match,
+including prefix patterns such as `pure.*`.
+
+## Curation decisions
+
+[`data/decisions.toml`](data/decisions.toml) records what the list has turned
+away, so that automated discovery never proposes it again.
+
+* A reviewer who rejects a candidate, or removes an entry, adds a
+  `[[decision]]` record in the same pull request: the `name`, the `url`, the
+  `decision` (`rejected` or `removed`), a `reason` a later reviewer can judge
+  it by, the `date`, and the pull request or issue as `ref`. A reviewer can
+  also ask for the record in a review comment and leave the author to write it.
+* Record judgements about the resource, not routine fixes: a moved or renamed
+  link is not a decision.
+* When the health report flags a listed entry as archived or dormant and you
+  decide it stays, because it is still canonical or historically important,
+  record that as `kept` with the reason. The report then lists it as
+  acknowledged instead of raising it again every month.
+* `scripts/validate_list.py` rejects any entry whose URL has a `rejected` or
+  `removed` record, and any `kept` record whose entry is no longer listed.
+  Overturning a decision is deliberate: delete its record in the same change
+  that adds the entry back, and say in that change what has changed, for
+  example that an archived project has come back to life.
+
 ## Automated maintenance
 
-This repository maintains itself in part:
+This repository maintains itself in part, and learns from review as it goes.
 
-* `validate.yml` checks list formatting on every pull request.
+Checks in GitHub Actions, which need no credentials:
+
+* `validate.yml` checks list formatting on every pull request, including the
+  host rules and curation decisions in `data/`, and link-checks the README.
 * `link-check.yml` runs weekly and opens an issue when links rot.
-* `discover.yml` runs monthly, researches candidate additions against the
-  criteria above, and opens a **draft** pull request for a human to review.
+* `health.yml` runs monthly and opens an issue when a listed repository is
+  archived, has moved or has gone missing, unless a `kept` decision already
+  covers it. `python3 scripts/list_health.py` gives the same report locally.
 
-Nothing lands automatically. Every automated proposal still needs a maintainer
-to read it, check the links, and merge it.
+Claude-driven maintenance follows the runbooks in `prompts/`:
+
+* `discover.md` researches additions monthly, aimed at the thinnest sections.
+* `triage.md` judges a "Suggest an entry" issue against the criteria above,
+  comments with a verdict, and drafts a pull request when it qualifies.
+* `fix-links.md` proposes repairs for the links the weekly check found broken.
+* `sweep.md` runs daily: it applies the two runbooks above to anything
+  waiting, and turns maintainer rejections on automated pull requests into
+  `data/decisions.toml` records so they are not proposed again.
+
+These run as scheduled Claude Code Routines. `discover.yml`, `triage.yml` and
+the `fix-links` job in `link-check.yml` run the same runbooks from GitHub
+Actions, event-driven, once an `ANTHROPIC_API_KEY` or `CLAUDE_CODE_OAUTH_TOKEN`
+secret is configured; until then they skip.
+
+Nothing lands automatically. Every automated proposal is a draft pull request
+that a maintainer reads, checks and merges.

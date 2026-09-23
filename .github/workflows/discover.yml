@@ -11,14 +11,18 @@ on:
         required: false
         type: string
 
+# id-token lets claude-code-action exchange an OIDC token for a Claude GitHub App
+# token. PRs opened with that token trigger validate.yml; ones opened with the
+# default GITHUB_TOKEN would not, so the bot's proposals would go unchecked.
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
 
 jobs:
   discover:
     runs-on: ubuntu-latest
-    # Skip cleanly rather than failing when the key is not configured.
+    # Forks inherit the schedule but not the secret; don't run there.
     if: github.repository == 'hexsecs/awesome-automotive-security'
     steps:
       - uses: actions/checkout@v4
@@ -29,62 +33,63 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Check for API key
+      # Discovery normally runs as a scheduled Claude Code Routine that follows
+      # the same runbook. This workflow is the optional in-CI path: it runs only
+      # when a Claude credential is configured and skips cleanly otherwise.
+      - name: Check for a Claude credential
         id: key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
-          if [ -n "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+          if [ -n "$ANTHROPIC_API_KEY" ] || [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::ANTHROPIC_API_KEY is not set; skipping discovery run."
+            echo "::notice::Neither ANTHROPIC_API_KEY nor CLAUDE_CODE_OAUTH_TOKEN is set; skipping discovery run."
           fi
+
+      - name: Prepare the run
+        id: run
+        if: steps.key.outputs.present == 'true'
+        run: |
+          mkdir -p .scratch .git/info
+          echo '.scratch/' >> .git/info/exclude
+          echo "month=$(date -u +%Y-%m)" >> "$GITHUB_OUTPUT"
 
       - name: Research and propose additions
         if: steps.key.outputs.present == 'true'
         uses: anthropics/claude-code-action@v1
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
+          # Either credential satisfies the action; the unset one is empty.
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: 'WebSearch,WebFetch,Bash,Read,Edit,Write,Glob,Grep'
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            You are maintaining the awesome-automotive-security list in this repository.
+            Read and follow prompts/discover.md.
+            ${{ inputs.focus && format('Focus area for this run: {0}.', inputs.focus) || '' }}
 
-            Read CONTRIBUTING.md first. It defines the inclusion criteria and the
-            exact entry format. Every rule there binds you.
-            ${{ inputs.focus && format('Concentrate this run on: {0}.', inputs.focus) || '' }}
-
-            Your job this run:
-
-            1. Read README.md and build the set of URLs already listed.
-            2. Research automotive security tools, research artifacts, datasets, and
-               learning resources published or meaningfully updated in roughly the
-               last year. Look at GitHub topics (automotive-security, car-hacking,
-               can-bus, iso15118, uds), recent conference output (DEF CON Car Hacking
-               Village, Black Hat, Pwn2Own Automotive, escar, VehicleSec), and
-               academic venues (NDSS VehicleSec, USENIX Security).
-            3. For every candidate, FETCH THE URL AND CONFIRM IT RESOLVES before
-               proposing it. Never propose a link you have not opened. Note whether
-               the project is archived; propose archived projects only when they are
-               still canonical or historically important, and say so in the description.
-            4. Drop anything already on the list, anything failing the CONTRIBUTING.md
-               criteria, and anything whose whole subdomain is better served by a
-               linked Awesome list.
-            5. Add the survivors to the right sections of README.md in the required
-               format, inserted in alphabetical order by name within the section.
-               Research Papers is the one exception: it is ordered by year of
-               publication, oldest first. Never append to the end of a section. Aim for quality over volume: five well-checked entries beat
-               thirty unchecked ones. Zero good candidates is an acceptable outcome —
-               in that case, make no changes and stop.
-            6. While you are there, check the existing entries for links that now 404
-               or redirect to a new canonical home, and fix those.
-            7. Run `python3 scripts/validate_list.py` and make it pass.
-            8. Open a DRAFT pull request against main. In the body, list each proposed
-               entry with the evidence you gathered: what it is, why it meets the
-               criteria, and confirmation that you opened the link. Flag anything you
-               were unsure about so a human can adjudicate it.
-
-            Do not merge anything. Do not push to main. A maintainer reviews every
-            proposal.
+            Run context (GitHub Actions):
+            - Scratch directory, never committed: .scratch/. Write the pull request
+              body to .scratch/pr-body.md.
+            - Bash accepts only these commands, character for character (git add and
+              git commit -m take any arguments):
+                python3 scripts/validate_list.py
+                python3 scripts/list_health.py
+                python3 scripts/list_health.py --no-github
+                git status
+                git diff
+                git checkout -b discover/${{ steps.run.outputs.month }}
+                git add <files>
+                git commit -m "<message>"
+                git push -u origin discover/${{ steps.run.outputs.month }}
+                gh pr create --draft --base main --head discover/${{ steps.run.outputs.month }} --title 'Discovery: proposed additions for ${{ steps.run.outputs.month }}' --body-file .scratch/pr-body.md
+          # v1 takes tool permissions and turn limits as CLI flags; the old
+          # allowed_tools input is silently ignored. As in link-check.yml's
+          # fix-links job: Bash is limited to exact commands, so the branch, push
+          # target and PR cannot be redirected; Read is scoped to the checkout
+          # minus .git/, whose config holds the App token; Edit covers only the
+          # files a discovery run may change.
           claude_args: |
             --max-turns 60
+            --allowedTools "WebSearch,WebFetch,Read(./**),Edit(./README.md),Edit(./data/decisions.toml),Edit(./data/hosts.toml),Edit(./.scratch/**),Bash(python3 scripts/validate_list.py),Bash(python3 scripts/list_health.py),Bash(python3 scripts/list_health.py --no-github),Bash(git status),Bash(git diff),Bash(git checkout -b discover/${{ steps.run.outputs.month }}),Bash(git add:*),Bash(git commit -m:*),Bash(git push -u origin discover/${{ steps.run.outputs.month }}),Bash(gh pr create --draft --base main --head discover/${{ steps.run.outputs.month }} --title 'Discovery: proposed additions for ${{ steps.run.outputs.month }}' --body-file .scratch/pr-body.md)"
+            --disallowedTools "Read(./.git/**)"
