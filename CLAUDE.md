@@ -66,3 +66,12 @@ delete it here, so this file stays short.
   GitHub tools instead, or `list_health.py --no-github`.
 * When several agents work in parallel, give each a disjoint set of files and
   shared schemas up front; their branches then merge without conflicts.
+* A Routine's session starts with only the repositories and MCP servers in its
+  own config. The discovery and sweep Routines were created with neither, so
+  their sessions had no repository and no `add_repo`, could not push, and were
+  still recorded as succeeded. Select this repository on each Routine in
+  claude.ai; `create_trigger` cannot attach connectors in this organization.
+* The Routine prompts live in the trigger config, not in this repository. Both
+  end by requiring a first line of `RESULT: ...`, because the scheduler's
+  status says nothing about what a run achieved; read that line, not the
+  status.
