@@ -34,6 +34,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [CANdevStudio](https://github.com/GENIVI/CANdevStudio) - Flow-based graphical CAN simulation environment that wires senders, receivers, DBC decoders, and signal viewers together to stand in for missing ECUs on a bench.
 * [CANflict](https://github.com/necst/CANflict) - C library that manipulates the CAN bus at the data link layer from an unmodified microcontroller, abusing pin conflicts between peripherals to craft polyglot frames; the implementation behind the CCS 2022 paper.
 * [CANgaroo](https://github.com/wikilift/CANgaroo) - Open-source CAN bus analyzer with transmit/receive support for standard and FD frames plus DBC decoding.
+* [CanLab](https://github.com/Sherin-SEF-AI/CanLab) - PyQt6 desktop application for offline CAN capture reverse engineering, combining automated counter and checksum detection with entropy-based signal boundary analysis, a visual DBC builder, and UDS/OBD-II/J1939/XCP/DoIP diagnostic support.
 * [canmatrix](https://github.com/ebroecker/canmatrix) - Python package to read and write CAN database formats, converting between DBC, ARXML, KCD, SYM, LDF, ODX, and more.
 * [cannelloni](https://github.com/mguentner/cannelloni) - Tunnels SocketCAN interfaces over UDP, TCP, or SCTP, bridging a vehicle bus to a remote analysis machine and letting bench setups share one physical CAN adapter.
 * [CANter](https://ceur-ws.org/Vol-3962/paper69.pdf) - Intrusion detection system for CAN and CAN-FD that detects drop-and-spoof attacks using frequency analysis of frame intervals.
@@ -96,6 +97,8 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 * [Chimaera](https://link.springer.com/article/10.1007/s11416-024-00522-4) - Research framework for IVI (In-Vehicle Infotainment) firmware reverse engineering and exploitation targeting Hyundai/Kia Gen5W_L systems.
 * [ic1101](https://github.com/librick/ic1101) - Open research project for reverse engineering 10th generation Honda Civic infotainment systems (Android-based, NVIDIA Tegra 3).
+* [MMI3G-Toolkit](https://github.com/dspl1236/MMI3G-Toolkit) - SD-card-based toolkit for Audi/VW MMI3G head units covering boot-image extraction, reverse-engineered GEMMI protocol details, and an FSC signature-bypass technique alongside CAN diagnostic and variant-dumping tools.
+* [Q50 Reverse Engineering](https://github.com/oneezeeroo/Q50-Reverse-Engineering) - Independent reverse-engineering research into the Infiniti Q50 infotainment platform's Linux/Android environment, documenting its EPK firmware package format, code-signing process, and USB app-installation flow.
 
 ## V2X Security
 
@@ -117,7 +120,9 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## Hardware Interfaces
 
+* [CAN-DAQ](https://github.com/eccentricOrange/can-daq) - Open hardware ESP32-S3 CAN data-capture device with DBC-driven real-time plotting and SQLite logging, published in HardwareX as a sub-$25 alternative to commercial CAN loggers.
 * [CANtact](https://github.com/linklayer/cantact-app) - Open-source hardware CAN interface and desktop app supporting live tracing, frame transmission, ISO-TP, JavaScript scripting, and candump-format traces.
+* [CFUC](https://github.com/ucandevices/CFDC_embedded) - Open hardware and firmware ISO CAN FD to USB dongle built on the STM32G431, presenting as a native SocketCAN or gs_usb interface with a bundled python-can plugin.
 * [panda](https://github.com/commaai/panda) - Open-source CAN and CAN FD interface firmware from comma.ai running on an STM32H725, with Python bindings for full read/write access to vehicle buses.
 * [RAMN](https://github.com/ToyotaInfoTech/RAMN) - Resistant Automotive Miniature Network, a four-ECU CAN/CAN FD testbed on a single board with KiCad sources, CARLA closed-loop simulation, and use as the Car Hacking Village CTF platform.
 * [SuperCAN](https://github.com/jgressmann/supercan) - Open-source USB to CAN FD adapter firmware for the ATSAME51 and several other supported boards, giving a low-cost interface for capturing and injecting CAN and CAN FD traffic.
