@@ -59,3 +59,19 @@ decision = "kept"
 reason = "Archived, but still the canonical open-source tool for investigating unknown wireless protocols; CONTRIBUTING.md criterion 5 cites it as the example of an archived project that stays."
 date = "2026-09-23"
 ref = "#21"
+
+[[decision]]
+name = "mib2q-carplay-rgi"
+url = "https://github.com/luka-dev/mib2q-carplay-rgi"
+decision = "rejected"
+reason = "Extensive reverse engineering of Audi MHI2Q firmware and the CarPlay iAP2 protocol, but the deliverable is a consumer feature patch (cluster route guidance for CarPlay), not an analysis, testing, or defense tool. Out of scope under CONTRIBUTING.md criterion 2's tuning-project carve-out despite the RE depth."
+date = "2026-09-27"
+ref = "#25"
+
+[[decision]]
+name = "flipper-tesla-fsd"
+url = "https://github.com/hypery11/flipper-tesla-fsd"
+decision = "rejected"
+reason = "Popular (1.1k stars) Flipper Zero/ESP32 Tesla mod, but it is a feature-unlock and tuning tool (FSD region unlock, nag killer, track mode) rather than security tooling. Out of scope under CONTRIBUTING.md criterion 2; likely to resurface in future GitHub topic searches given its star count."
+date = "2026-09-27"
+ref = "#25"
