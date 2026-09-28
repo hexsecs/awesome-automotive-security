@@ -50,6 +50,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [opendbc](https://github.com/commaai/opendbc) - Python API for your car, bundling community-maintained DBC files with CAN parsing and car interface libraries for reading vehicle state and actuating controls.
 * [python-can](https://github.com/hardbyte/python-can) - Python library providing a common interface over many CAN hardware backends with CAN FD support and logging to ASC, BLF, MF4, TRC, CSV, and SQLite.
 * [SavvyCAN](https://github.com/collin80/SavvyCAN) - Cross-platform Qt-based CAN bus reverse engineering and capture tool with DBC file loading, UDS scanning, and fuzzing support.
+* [can-bus-lab-lite](https://github.com/numbpill3d/can-bus-lab-lite) - MCP2515 bench starter + candump parser.
 
 ## Diagnostic Tools
 
