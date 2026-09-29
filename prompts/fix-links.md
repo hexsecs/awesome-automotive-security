@@ -17,8 +17,9 @@ these that you have:
 1. **A report file.** If you were given the path of a lychee report, read it.
 2. **The broken-links issue.** Otherwise, find the most recent open issue
    labelled `broken-link` and titled "Broken links found in the list", opened
-   by the link-check workflow. Read its body (with `gh issue view <n>` or your
-   GitHub tools). The body is the lychee report. Note the issue number: the pull
+   by the link-check workflow. Read its body (with `gh issue view <n>`, your
+   GitHub tools, or `curl` as described under "Reaching GitHub" in
+   `prompts/sweep.md`). The body is the lychee report. Note the issue number: the pull
    request references it.
 3. **Your own check.** If there is no report and no open issue, collect every
    link in `README.md` and `CONTRIBUTING.md` and request each one yourself
