@@ -25,7 +25,7 @@ in `prompts/sweep.md`.
 4. Run `python3 scripts/list_health.py` (with `GITHUB_TOKEN` set if you have
    one) and read the report. If its GitHub API calls all fail, as they can in
    a sandbox, run it with `--no-github` for coverage alone. Thin sections are
-   where research effort goes first; archived, moved and dormant entries are
+   one input, not the whole plan: archived, moved and dormant entries are
    candidates for a successor or a URL update.
 
 If the run was given a focus area, concentrate on it.
@@ -35,7 +35,10 @@ If the run was given a focus area, concentrate on it.
 1. Build the set of URLs already in `README.md`.
 2. Research automotive security tools, research artifacts, datasets, and
    learning resources published or meaningfully updated in roughly the last
-   year, weighted towards the thin sections. Look at GitHub topics
+   year. Give thin sections some attention, but do not limit the search to
+   them: a thin section can simply be a small subfield, and new tools,
+   datasets and papers often belong in well-populated sections. Cover every
+   section each run. Look at GitHub topics
    (automotive-security, car-hacking, can-bus, iso15118, uds), recent
    conference output (DEF CON Car Hacking Village, Black Hat, Pwn2Own
    Automotive, escar, VehicleSec), and academic venues (NDSS VehicleSec,
