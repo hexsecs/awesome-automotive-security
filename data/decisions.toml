@@ -75,17 +75,3 @@ decision = "rejected"
 reason = "Popular (1.1k stars) Flipper Zero/ESP32 Tesla mod, but it is a feature-unlock and tuning tool (FSD region unlock, nag killer, track mode) rather than security tooling. Out of scope under CONTRIBUTING.md criterion 2; likely to resurface in future GitHub topic searches given its star count."
 date = "2026-09-27"
 ref = "#25"
-
-[[decision]]
-name = "NullSec CarFuzz"
-url = "https://github.com/bad-antics/nullsec-carfuzz"
-decision = "rejected"
-reason = "Rust CAN/UDS/OBD-II/DoIP fuzzer, but 6 commits and 2 stars, and one component of a larger vendor-branded tool suite; no evidence of use in the field. Listed fuzzers (gallia, ProtoCrawler, CANarchy) already cover these protocols."
-date = "2026-09-29"
-
-[[decision]]
-name = "uds-server"
-url = "https://github.com/zombieCraig/uds-server"
-decision = "rejected"
-reason = "CAN UDS simulator and fuzzer for ICSim training, but it duplicates UDSim, already listed under Diagnostic Tools and by the same author, with 12 commits and no distinct capability. Revisit only if it gains features UDSim lacks."
-date = "2026-09-29"
