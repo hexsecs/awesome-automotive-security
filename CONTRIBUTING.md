@@ -155,7 +155,7 @@ Checks in GitHub Actions, which need no credentials:
 
 Claude-driven maintenance follows the runbooks in `prompts/`:
 
-* `discover.md` researches additions monthly, aimed at the thinnest sections.
+* `discover.md` researches additions monthly across every section, giving thin sections extra attention.
 * `triage.md` judges a "Suggest an entry" issue against the criteria above,
   comments with a verdict, and drafts a pull request when it qualifies.
 * `fix-links.md` proposes repairs for the links the weekly check found broken.
