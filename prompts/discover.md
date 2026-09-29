@@ -70,7 +70,15 @@ This is what makes the list improve rather than just grow. In the same PR:
   that will still hold next month (out of scope, superseded, vendor-only
   marketing, no open copy anywhere) gets a `rejected` record in
   `data/decisions.toml`, so no future run spends effort on it again. Do not
-  record transient reasons such as a host being down today.
+  record transient reasons such as a host being down today. Only record clear
+  failures of CONTRIBUTING.md (plainly out of scope, an `avoid` host with no
+  open copy, a duplicate of a listed entry).
+* **Flag borderline candidates, do not reject them.** If a candidate is a
+  judgement call (low traction, overlaps a listed tool, thin evidence of use),
+  the decision is the maintainer's, not yours. Add it to `README.md` like any
+  other entry, and list it in a "Flagged for review" section of the PR body
+  with your concern. Record no `rejected` decision for it. If the maintainer
+  removes it in review, the sweep records the rejection.
 * **Host lessons.** If a host bot-challenged you or served the page only to a
   browser, add it to `data/hosts.toml` under `avoid` with the reason. If a new
   host worked reliably, add it under `reliable`.
@@ -84,8 +92,8 @@ This is what makes the list improve rather than just grow. In the same PR:
    `<!-- automated: discover -->` so later runs can find it. Then list each
    proposed entry with the evidence you gathered: what it is, why it meets
    the criteria, and confirmation that you opened the link. List the
-   decisions and host records you added and why. Flag anything you were
-   unsure about so a human can adjudicate it.
+   decisions and host records you added and why. Put every borderline
+   candidate under "Flagged for review" as described above.
 
 Never merge anything and never push to `main`. A maintainer reviews every
 proposal.
