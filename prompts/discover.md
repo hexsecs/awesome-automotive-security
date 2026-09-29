@@ -25,7 +25,7 @@ in `prompts/sweep.md`.
 4. Run `python3 scripts/list_health.py` (with `GITHUB_TOKEN` set if you have
    one) and read the report. If its GitHub API calls all fail, as they can in
    a sandbox, run it with `--no-github` for coverage alone. Thin sections are
-   one input, not the whole plan: archived, moved and dormant entries are
+   where research effort goes first; archived, moved and dormant entries are
    candidates for a successor or a URL update.
 
 If the run was given a focus area, concentrate on it.
@@ -35,10 +35,7 @@ If the run was given a focus area, concentrate on it.
 1. Build the set of URLs already in `README.md`.
 2. Research automotive security tools, research artifacts, datasets, and
    learning resources published or meaningfully updated in roughly the last
-   year. Give thin sections some attention, but do not limit the search to
-   them: a thin section can simply be a small subfield, and new tools,
-   datasets and papers often belong in well-populated sections. Cover every
-   section each run. Look at GitHub topics
+   year, weighted towards the thin sections. Look at GitHub topics
    (automotive-security, car-hacking, can-bus, iso15118, uds), recent
    conference output (DEF CON Car Hacking Village, Black Hat, Pwn2Own
    Automotive, escar, VehicleSec), and academic venues (NDSS VehicleSec,
@@ -70,15 +67,7 @@ This is what makes the list improve rather than just grow. In the same PR:
   that will still hold next month (out of scope, superseded, vendor-only
   marketing, no open copy anywhere) gets a `rejected` record in
   `data/decisions.toml`, so no future run spends effort on it again. Do not
-  record transient reasons such as a host being down today. Only record clear
-  failures of CONTRIBUTING.md (plainly out of scope, an `avoid` host with no
-  open copy, a duplicate of a listed entry).
-* **Flag borderline candidates, do not reject them.** If a candidate is a
-  judgement call (low traction, overlaps a listed tool, thin evidence of use),
-  the decision is the maintainer's, not yours. Add it to `README.md` like any
-  other entry, and list it in a "Flagged for review" section of the PR body
-  with your concern. Record no `rejected` decision for it. If the maintainer
-  removes it in review, the sweep records the rejection.
+  record transient reasons such as a host being down today.
 * **Host lessons.** If a host bot-challenged you or served the page only to a
   browser, add it to `data/hosts.toml` under `avoid` with the reason. If a new
   host worked reliably, add it under `reliable`.
@@ -92,8 +81,8 @@ This is what makes the list improve rather than just grow. In the same PR:
    `<!-- automated: discover -->` so later runs can find it. Then list each
    proposed entry with the evidence you gathered: what it is, why it meets
    the criteria, and confirmation that you opened the link. List the
-   decisions and host records you added and why. Put every borderline
-   candidate under "Flagged for review" as described above.
+   decisions and host records you added and why. Flag anything you were
+   unsure about so a human can adjudicate it.
 
 Never merge anything and never push to `main`. A maintainer reviews every
 proposal.
