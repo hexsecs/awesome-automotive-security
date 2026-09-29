@@ -4,13 +4,15 @@ You are maintaining the awesome-automotive-security list in this repository.
 This runbook is read both by the `discover.yml` GitHub Action and by the
 scheduled Claude Code Routine, so it does not assume either. Where it says
 "open a draft PR" or "comment", use `gh` or your GitHub tools, whichever you
-have.
+have. If you have neither, as in a Routine session, follow "Reaching GitHub"
+in `prompts/sweep.md`.
 
 ## Before you start
 
-0. If an open PR whose body starts with `<!-- automated: discover -->` was
+0. If an open PR whose body's first line contains `automated: discover` was
    opened this calendar month, another runner has already done this month's
-   pass: stop without changes.
+   pass: stop without changes. Match that text, not the `<!--` delimiters,
+   which arrive HTML-escaped on PRs opened automatically from a pushed branch.
 1. Read `CONTRIBUTING.md`. It defines the inclusion criteria and the exact
    entry format, and every rule in it binds you.
 2. Read `data/hosts.toml`. Never link a host listed under `avoid`; prefer

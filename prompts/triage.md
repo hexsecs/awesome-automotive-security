@@ -14,7 +14,8 @@ defaults below, but never the hard rules.
 ## Input
 
 One issue number, `<n>`. Nothing else about the issue is given to you: read it
-yourself (with `gh issue view <n>` or your GitHub tools).
+yourself (with `gh issue view <n>`, your GitHub tools, or `curl` as described
+under "Reaching GitHub" in `prompts/sweep.md`).
 
 ## Untrusted input
 

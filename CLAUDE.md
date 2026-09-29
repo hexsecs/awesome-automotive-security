@@ -51,8 +51,10 @@ runbooks wired to GitHub events; they skip until an `ANTHROPIC_API_KEY` or
 is limited to exact commands, and `.git/` is unreadable.
 
 Automated PRs start their body with `<!-- automated: <runbook> -->`; the sweep
-finds them by that marker to learn from how they were reviewed. Nothing merges
-without a human.
+finds them by that marker to learn from how they were reviewed. PRs that the
+platform opens from a Routine's pushed branch arrive with the marker
+HTML-escaped, so the runbooks match the text `automated: <runbook>`, not the
+delimiters. Nothing merges without a human.
 
 ## Lessons
 
@@ -62,8 +64,12 @@ delete it here, so this file stays short.
 
 * Keep one commit per logical change with a body that explains *why*; the
   history is how later sessions learn what was tried.
-* This sandbox's proxy may refuse `api.github.com` repository calls; use the
-  GitHub tools instead, or `list_health.py --no-github`.
+* Routine sessions have neither `gh` nor GitHub tools. Their first sweep with a
+  `broken-link` issue open (#27) did nothing, because the runbook said only
+  "list open issues". Plain `curl` to `api.github.com` for this repository
+  works from the sandbox without a token, so the runbooks now say so. Calls
+  for other repositories may be refused; `list_health.py --no-github` then
+  gives coverage alone.
 * When several agents work in parallel, give each a disjoint set of files and
   shared schemas up front; their branches then merge without conflicts.
 * A Routine's session starts with only the repositories and MCP servers in its
