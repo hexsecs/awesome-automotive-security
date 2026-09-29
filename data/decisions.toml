@@ -83,3 +83,11 @@ decision = "removed"
 reason = "The GitHub repository was deleted or made private (404 under both spellings, gone from the author's repository list), and QuickTARA now lives only at quicktara.com, where it is no longer open source. Removed at the maintainer's request instead of being relinked there."
 date = "2026-09-29"
 ref = "#27"
+
+[[decision]]
+name = "can-bus-lab-lite"
+url = "https://github.com/numbpill3d/can-bus-lab-lite"
+decision = "rejected"
+reason = "A four-commit starter (a candump parser and MCP2515 wiring notes) with no adoption, built as a free lead-in to the author's paid Gumroad courses. Listed tools such as python-can, cantools, SavvyCAN and CANarchy already cover it. Worth a new suggestion only if the author's work becomes established in the field."
+date = "2026-09-29"
+ref = "#26"
