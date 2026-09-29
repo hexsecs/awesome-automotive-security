@@ -75,3 +75,11 @@ decision = "rejected"
 reason = "Popular (1.1k stars) Flipper Zero/ESP32 Tesla mod, but it is a feature-unlock and tuning tool (FSD region unlock, nag killer, track mode) rather than security tooling. Out of scope under CONTRIBUTING.md criterion 2; likely to resurface in future GitHub topic searches given its star count."
 date = "2026-09-27"
 ref = "#25"
+
+[[decision]]
+name = "QuickTARA"
+url = "https://github.com/leonkalema/quicktara"
+decision = "removed"
+reason = "The GitHub repository was deleted or made private (404 under both spellings, gone from the author's repository list), and QuickTARA now lives only at quicktara.com, where it is no longer open source. Removed at the maintainer's request instead of being relinked there."
+date = "2026-09-29"
+ref = "#27"
