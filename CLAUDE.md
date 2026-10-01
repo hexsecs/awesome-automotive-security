@@ -81,3 +81,10 @@ delete it here, so this file stays short.
   end by requiring a first line of `RESULT: ...`, because the scheduler's
   status says nothing about what a run achieved; read that line, not the
   status.
+* A cloud session's egress proxy may allow far less than CI does. In the
+  2026-10 discovery run only `github.com` was reachable, and only through
+  WebFetch: `curl` to GitHub got a proxy 403, and arxiv.org, usenix.org,
+  ndss-symposium.org, ocslab.hksecurity.net, automotiveisac.com and
+  i.blackhat.com were all refused. That is the sandbox, not the host, so do not
+  record those hosts in `data/hosts.toml`. Note unreachable candidates in the
+  PR as leads, unproposed, rather than adding links you could not open.
