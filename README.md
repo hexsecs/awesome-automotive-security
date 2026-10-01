@@ -31,6 +31,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [CANalyse](https://github.com/canalyse/CANalyse-2.0) - Vehicle network analysis tool with SQL-like queries on CAN data, smart signal scanning, and Telegram bot integration.
 * [CANalyzat0r](https://github.com/schutzwerk/CANalyzat0r) - Security analysis toolkit for proprietary car protocols with graphical sniffing, fuzzing, packet comparison, background-noise filtering, and UDS fuzzing.
 * [CANarchy](https://github.com/hexsecs/canarchy) - Stream-first CAN and J1939 toolkit that emits structured JSONL for automation, with live capture, DBC/ARXML/KCD decoding, J1939 PGN/SPN and DM1 fault parsing, UDS and DoIP support, constrained fuzzing, and an MCP server for agent-driven workflows.
+* [CanCat](https://github.com/atlas0fd00m/CanCat) - Firmware for Arduino CAN shields and Macchina M2 boards paired with a Python client for sniffing and injecting CAN traffic, running UDS and CCP sessions, and placing a device in the middle of a CAN link.
 * [CANdevStudio](https://github.com/GENIVI/CANdevStudio) - Flow-based graphical CAN simulation environment that wires senders, receivers, DBC decoders, and signal viewers together to stand in for missing ECUs on a bench.
 * [CANflict](https://github.com/necst/CANflict) - C library that manipulates the CAN bus at the data link layer from an unmodified microcontroller, abusing pin conflicts between peripherals to craft polyglot frames; the implementation behind the CCS 2022 paper.
 * [CANgaroo](https://github.com/wikilift/CANgaroo) - Open-source CAN bus analyzer with transmit/receive support for standard and FD frames plus DBC decoding.
@@ -71,6 +72,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 ## Firmware and ECU Reverse Engineering
 
 * [ghidra-tc1797](https://github.com/christianobora/ghidra-tc1797) - Ghidra processor specification and language definitions for the Infineon TriCore TC1797, used to label memory regions when disassembling MED17 and similar ECU firmware.
+* [ghidra_v850](https://github.com/esaulenka/ghidra_v850) - Ghidra processor module for Renesas V850E2 and V850E3/RH850 microcontrollers, the core families behind many ECUs, for disassembling and decompiling their firmware.
 * [medc17-checksum-tool](https://github.com/ConnorHowell/medc17-checksum-tool) - Analyses and corrects CRC32, ADD32, and ADD16 checksums in Bosch MED17 and EDC17 firmware, resolving CRC values algebraically rather than by brute force and regenerating RSA signatures after modification.
 * [pyA2L](https://github.com/christoph2/pya2l) - Python parser for ASAM MCD-2 MC (A2L) description files, exposing the characteristic, measurement, and memory-layout metadata needed to make sense of ECU calibration data during firmware analysis.
 * [Simos18_SBOOT](https://github.com/bri3d/Simos18_SBOOT) - Documented exploit chain against the VW Simos18 supplier bootloader, chaining PWM entry, a weak Mersenne Twister seed/key, and a CRC bounds-check flaw into arbitrary flash read.
@@ -96,6 +98,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## Infotainment and IVI
 
+* [byd-dolphin-hacking](https://github.com/wheregoes/byd-dolphin-hacking) - Reverse engineering of the BYD Dolphin DiLink 3 head unit (Android 10 on a Qualcomm QCM6125), documenting its MCU and CAN interfaces, OTA update paths, and NFC digital key, along with permission-bypass and root-level service findings.
 * [Chimaera](https://link.springer.com/article/10.1007/s11416-024-00522-4) - Research framework for IVI (In-Vehicle Infotainment) firmware reverse engineering and exploitation targeting Hyundai/Kia Gen5W_L systems.
 * [ic1101](https://github.com/librick/ic1101) - Open research project for reverse engineering 10th generation Honda Civic infotainment systems (Android-based, NVIDIA Tegra 3).
 * [MMI3G-Toolkit](https://github.com/dspl1236/MMI3G-Toolkit) - SD-card-based toolkit for Audi/VW MMI3G head units covering boot-image extraction, reverse-engineered GEMMI protocol details, and an FSC signature-bypass technique alongside CAN diagnostic and variant-dumping tools.
@@ -111,6 +114,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## EV Charging Security
 
+* [AcCCS](https://github.com/IdahoLabResearch/AcCCS) - Idaho National Laboratory test platform on a Raspberry Pi that emulates either the vehicle or the charger in a CCS session, driving the J1772 control pilot, HomePlug Green PHY SLAC, and DIN 70121 exchange so either side can be tested without the other present.
 * [dsV2Gshark](https://github.com/dspace-group/dsV2Gshark) - Wireshark plugin that dissects ISO 15118 and DIN 70121 traffic, decoding EXI-encoded V2G payloads and SLAC handshakes into readable fields.
 * [EVerest](https://github.com/EVerest/everest-core) - Linux Foundation Energy full-stack open-source EV charging firmware implementing OCPP 1.6/2.0.1/2.1, ISO 15118-2/-3/-20, IEC 61851, and DIN SPEC 70121, useful as a reference target and test peer.
 * [open-plc-utils](https://github.com/qca/open-plc-utils) - Qualcomm Atheros powerline toolkit for HomePlug AV and Green PHY devices, the standard means of inspecting and manipulating the PLC layer that CCS charging sessions run over.
@@ -122,6 +126,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 ## Hardware Interfaces
 
 * [CAN-DAQ](https://github.com/eccentricOrange/can-daq) - Open hardware ESP32-S3 CAN data-capture device with DBC-driven real-time plotting and SQLite logging, published in HardwareX as a sub-$25 alternative to commercial CAN loggers.
+* [candleLight_fw](https://github.com/candle-usb/candleLight_fw) - Open firmware for low-cost STM32 USB to CAN adapters such as CANable, cantact, and candleLight that implements the mainline Linux gs_usb interface, turning them into native SocketCAN devices without a vendor driver.
 * [CANtact](https://github.com/linklayer/cantact-app) - Open-source hardware CAN interface and desktop app supporting live tracing, frame transmission, ISO-TP, JavaScript scripting, and candump-format traces.
 * [CFUC](https://github.com/ucandevices/CFDC_embedded) - Open hardware and firmware ISO CAN FD to USB dongle built on the STM32G431, presenting as a native SocketCAN or gs_usb interface with a bundled python-can plugin.
 * [panda](https://github.com/commaai/panda) - Open-source CAN and CAN FD interface firmware from comma.ai running on an STM32H725, with Python bindings for full read/write access to vehicle buses.
@@ -139,6 +144,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 * [AutoFuze](https://github.com/DanAurea/AutoFuze) - Python toolkit for fuzzing and penetration testing ECUs over UDS, XCP, SOME/IP, and OBD, across CAN, DoIP, USB, and SPI transports.
 * [automotive-security-research](https://github.com/ps1337/automotive-security-research) - Published reverse engineering results for two production vehicles including CAN matrices, extracted ECU security access keys, and UDS scanning proof-of-concepts.
+* [CANHack](https://github.com/kentindell/canhack) - Ken Tindell's proof-of-concept toolkit of low-level CAN protocol attacks such as Janus frames, bit-banged from a Raspberry Pi Pico on the CANPico board, with a Sigrok decoder for observing the attacks on a logic analyser.
 * [Car Toolkit](https://github.com/j-schmied/car-toolkit) - Python-based toolkit for automotive penetration testing with CAN suite, CARAL, and virtual test bench setup.
 * [DongleScope](https://github.com/OSUSecLab/DongleScope) - Automated tool for detecting vulnerabilities in wireless OBD-II dongles based on USENIX Security 2020 research.
 * [NullSec CarFuzz](https://github.com/bad-antics/nullsec-carfuzz) - Rust fuzzer for CAN, UDS, OBD-II, and DoIP with grammar-aware test generation and coverage tracking.
@@ -146,6 +152,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [pwnobd](https://github.com/Nnubes256/pwnobd) - Offensive cybersecurity toolkit for vulnerability analysis of OBD-II devices presented at Black Hat Europe 2024.
 * [SecOC Key Extractor](https://github.com/i-can-hack/secoc) - Scripts to extract SecOC (Secure On-Board Communication) keys from Toyota vehicles using comma.ai panda hardware.
 * [tesla-opener](https://github.com/rgerganov/tesla-opener) - Open-source tool to open Tesla charging port using HackRF and WebUSB with ASK/OOK RF transmission.
+* [TruckDevil](https://github.com/LittleBlondeDevil/TruckDevil) - Framework for assessing heavy-vehicle ECUs that communicate over J1939, with ECU discovery, message reading and sending, and a J1939 fuzzer, running on a Macchina M2 or any python-can interface.
 
 ## Datasets
 
@@ -154,6 +161,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
 * [ROAD](https://0xsam.com/road/) - Real ORNL Automotive Dynamometer CAN intrusion dataset with verified fuzzing, targeted ID, masquerade, and accelerator attacks captured on a dynamometer.
 * [SynCAN](https://github.com/etas/SynCAN) - ETAS synthetic CAN benchmark with continuous, plateau, playback, suspension, and flooding attacks in the signal space, for comparing IDS that work on decoded signals rather than raw arbitration IDs.
+* [VeReMi Extension](https://github.com/josephkamel/VeReMi-Dataset) - Simulated V2X misbehavior detection dataset generated with F2MD over the Luxembourg SUMO scenario, labelling position, speed, timing, replay, DoS, and Sybil attacks alongside faulty-sensor behaviour.
 
 ## Research Papers
 
