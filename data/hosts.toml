@@ -1,0 +1,144 @@
+# Link hosts: the single source of truth for how the list treats a URL's host.
+#
+# Read by scripts/validate_list.py, which fails on README URLs whose host is in
+# `avoid`, and which prints the lychee exclusions for `excluded`
+# (`python3 scripts/validate_list.py --lychee-excludes`). Both workflows build
+# their lychee `--exclude` flags from that output, so this file is the only place
+# an exclusion is ever added.
+#
+# Groups
+#   excluded  Bot-challenges automated clients, but its URLs are stable and
+#             DOI-backed. Allowed in README.md; lychee skips it, so its links
+#             are not machine-verified. Check them by hand.
+#   avoid     Bot-challenges automated clients, and an open alternative usually
+#             exists. The validator rejects README URLs on it.
+#   reliable  Has passed the link checker here. Informational: prefer these
+#             when choosing between copies of the same resource.
+#
+# Matching
+#   `host = "usenix.org"` matches that host and any subdomain of it, so it
+#   covers www.usenix.org. It does not match "notusenix.org". List the narrowest
+#   host that is true: `www.wiley.com` passes while `onlinelibrary.wiley.com`
+#   does not, so neither is written as plain `wiley.com`.
+#
+#   A host ending in `.*` is a prefix pattern, matching any host whose leading
+#   labels are exactly those given. `pure.*` matches pure.kaist.ac.kr and
+#   pure.korea.ac.kr, but not pure-oai.bham.ac.uk, which serves the checker.
+#   Prefix patterns are accepted in `avoid` and `reliable` only: lychee
+#   exclusions must be exact hosts.
+#
+# Exceptions
+#   An `avoid` entry may carry `allow`, a list of exact URLs on that host that
+#   are known to pass the checker and are kept deliberately. Use it only for an
+#   entry already on the list; a new candidate should find another host.
+#
+# Adding a host
+#   Add a `[[group]]` table with `host` and a one-line `reason` that says what
+#   the checker saw (status code) and where, citing the PR. Keep each group in
+#   alphabetical order by host.
+
+# --- excluded: allowed in the list, skipped by lychee ---------------------------
+
+[[excluded]]
+host = "dl.acm.org"
+reason = "Answers automated clients with 403 (#6). DOI-backed and stable; used only where no open copy exists."
+
+[[excluded]]
+host = "eprint.iacr.org"
+reason = "Answers automated clients with 403 (#8). Stable archive; excluded in #10 to restore Illusion and Dazzle, which has no checkable open copy."
+
+[[excluded]]
+host = "ieeexplore.ieee.org"
+reason = "Answers automated clients with a 202 challenge (#6). DOI-backed and stable; used only where no open copy exists."
+
+[[excluded]]
+host = "infoscience.epfl.ch"
+reason = "Answers 202 host-wide, entity pages and direct bitstreams alike (#8). Hosts Raya and Hubaux, which has no other open copy."
+
+# --- avoid: the validator rejects README URLs on these ------------------------
+
+[[avoid]]
+host = "amazon.com"
+reason = "Documented as refusing automated clients (#10). Link the publisher, or a books.google.com record, instead."
+
+[[avoid]]
+host = "link.springer.com"
+reason = "Documented as bot-challenging since #8, and as refusing Springer book pages in #10. Link an arXiv or author copy, or a books.google.com record, instead."
+# Chimaera's article page has been on the list since #1 and passed lychee in
+# every CI run that checked it, including the #10 run whose only error was
+# oreilly.com. The refusal documented for books does not cover every page.
+allow = ["https://link.springer.com/article/10.1007/s11416-024-00522-4"]
+
+[[avoid]]
+host = "onlinelibrary.wiley.com"
+reason = "Answers automated clients with 403 (#10). www.wiley.com serves the same books and passes."
+
+[[avoid]]
+host = "oreilly.com"
+reason = "Answers automated clients with 403 (#10). Use a books.google.com record for licensed titles."
+
+[[avoid]]
+host = "packtpub.com"
+reason = "Answers automated clients with 403 (#10). Use a books.google.com record instead."
+
+[[avoid]]
+host = "pure.*"
+reason = "Elsevier Pure repository instances answer 503: pure.korea.ac.kr (#6) and pure.kaist.ac.kr (#8). Use arXiv or an author copy."
+
+[[avoid]]
+host = "researchgate.net"
+reason = "Documented as bot-challenging automated clients (#8). Link the venue, arXiv, or an author copy."
+
+[[avoid]]
+host = "semanticscholar.org"
+reason = "Answers automated clients with a 202 challenge (#6). Link the venue, arXiv, or an author copy."
+
+# --- reliable: proven to pass the checker -------------------------------------
+
+[[reliable]]
+host = "arxiv.org"
+reason = "Passed in every CI run; the default for preprints and open copies of papers."
+
+[[reliable]]
+host = "books.google.com"
+reason = "Passed in #10; the neutral catalogue record for books whose publisher refuses the checker."
+
+[[reliable]]
+host = "copperhilltech.com"
+reason = "Passed in #10 as the publisher page for the Voss CAN guide."
+
+[[reliable]]
+host = "github.com"
+reason = "The bulk of the list; passes consistently."
+
+[[reliable]]
+host = "ndss-symposium.org"
+reason = "Passed in every CI run; the venue's own open copy of NDSS papers."
+
+[[reliable]]
+host = "opengarages.org"
+reason = "Passed in every CI run since #5; serves the free Car Hacker's Handbook."
+
+[[reliable]]
+host = "pure-oai.bham.ac.uk"
+reason = "Passed since #7. Not a `pure.*` instance: Birmingham's OAI export serves plain PDFs."
+
+[[reliable]]
+host = "spqrlab1.github.io"
+reason = "Passed in #8 as an author copy."
+
+[[reliable]]
+host = "tches.iacr.org"
+reason = "Passed in every CI run since #7; the open journal copy of CHES papers, unlike eprint.iacr.org."
+
+[[reliable]]
+host = "usenix.org"
+reason = "Passed in every CI run; the venue's own open copy of USENIX papers."
+
+[[reliable]]
+host = "vanbulck.net"
+reason = "Passed in #8 as an author copy."
+
+[[reliable]]
+host = "www.wiley.com"
+reason = "Passed in #10, where onlinelibrary.wiley.com did not: the block is per host, not per publisher."

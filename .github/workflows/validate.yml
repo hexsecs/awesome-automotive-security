@@ -3,9 +3,9 @@ name: Validate list
 on:
   push:
     branches: [main]
-    paths: ['README.md', 'scripts/validate_list.py', '.github/workflows/validate.yml']
+    paths: ['README.md', 'data/**', 'scripts/validate_list.py', '.github/workflows/validate.yml']
   pull_request:
-    paths: ['README.md', 'scripts/validate_list.py', '.github/workflows/validate.yml']
+    paths: ['README.md', 'data/**', 'scripts/validate_list.py', '.github/workflows/validate.yml']
   workflow_dispatch:
 
 permissions:
@@ -24,10 +24,19 @@ jobs:
       - name: Check list structure
         run: python3 scripts/validate_list.py
 
-      # ACM, IEEE, EPFL Infoscience and IACR eprint answer automated clients with 403/202 bot
-      # challenges rather
-      # than serving the page, so no link checker can verify them. Their DOI-backed
-      # URLs are stable; everything else, including every other paper host, is checked.
+      # Hosts under [[excluded]] in data/hosts.toml answer automated clients with a
+      # bot challenge rather than the page, so no link checker can verify them;
+      # their DOI-backed URLs are stable. Everything else is checked. The flags go
+      # on one line because lychee-action evals its args, and single quotes keep
+      # each regex's escapes intact through that eval.
+      - name: Build link-check exclusions from data/hosts.toml
+        id: hosts
+        shell: bash
+        run: |
+          flags=$(python3 scripts/validate_list.py --lychee-excludes | sed "s/.*/--exclude '&'/" | paste -sd ' ' -)
+          echo "excludes=$flags" >> "$GITHUB_OUTPUT"
+          echo "lychee exclusions: $flags"
+
       - name: Check links changed in this PR
         if: github.event_name == 'pull_request'
         uses: lycheeverse/lychee-action@v2
@@ -37,9 +46,6 @@ jobs:
             --max-retries 3
             --accept 200,206,429
             --exclude-path LICENSE
-            --exclude dl\.acm\.org
-            --exclude ieeexplore\.ieee\.org
-            --exclude infoscience\.epfl\.ch
-            --exclude eprint\.iacr\.org
+            ${{ steps.hosts.outputs.excludes }}
             README.md
           fail: true

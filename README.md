@@ -31,9 +31,11 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [CANalyse](https://github.com/canalyse/CANalyse-2.0) - Vehicle network analysis tool with SQL-like queries on CAN data, smart signal scanning, and Telegram bot integration.
 * [CANalyzat0r](https://github.com/schutzwerk/CANalyzat0r) - Security analysis toolkit for proprietary car protocols with graphical sniffing, fuzzing, packet comparison, background-noise filtering, and UDS fuzzing.
 * [CANarchy](https://github.com/hexsecs/canarchy) - Stream-first CAN and J1939 toolkit that emits structured JSONL for automation, with live capture, DBC/ARXML/KCD decoding, J1939 PGN/SPN and DM1 fault parsing, UDS and DoIP support, constrained fuzzing, and an MCP server for agent-driven workflows.
+* [CanCat](https://github.com/atlas0fd00m/CanCat) - Firmware for Arduino CAN shields and Macchina M2 boards paired with a Python client for sniffing and injecting CAN traffic, running UDS and CCP sessions, and placing a device in the middle of a CAN link.
 * [CANdevStudio](https://github.com/GENIVI/CANdevStudio) - Flow-based graphical CAN simulation environment that wires senders, receivers, DBC decoders, and signal viewers together to stand in for missing ECUs on a bench.
 * [CANflict](https://github.com/necst/CANflict) - C library that manipulates the CAN bus at the data link layer from an unmodified microcontroller, abusing pin conflicts between peripherals to craft polyglot frames; the implementation behind the CCS 2022 paper.
 * [CANgaroo](https://github.com/wikilift/CANgaroo) - Open-source CAN bus analyzer with transmit/receive support for standard and FD frames plus DBC decoding.
+* [CanLab](https://github.com/Sherin-SEF-AI/CanLab) - PyQt6 desktop application for offline CAN capture reverse engineering, combining automated counter and checksum detection with entropy-based signal boundary analysis, a visual DBC builder, and UDS/OBD-II/J1939/XCP/DoIP diagnostic support.
 * [canmatrix](https://github.com/ebroecker/canmatrix) - Python package to read and write CAN database formats, converting between DBC, ARXML, KCD, SYM, LDF, ODX, and more.
 * [cannelloni](https://github.com/mguentner/cannelloni) - Tunnels SocketCAN interfaces over UDP, TCP, or SCTP, bridging a vehicle bus to a remote analysis machine and letting bench setups share one physical CAN adapter.
 * [CANter](https://ceur-ws.org/Vol-3962/paper69.pdf) - Intrusion detection system for CAN and CAN-FD that detects drop-and-spoof attacks using frequency analysis of frame intervals.
@@ -47,7 +49,9 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Lindwurm](https://github.com/lindwurm-can/lindwurm) - Open-source CAN bus tracing and fuzzing tool designed for penetration testing with Burp Suite-inspired workflow.
 * [OBDium](https://github.com/provrb/obdium) - Rust-based OBD-II diagnostic tool with modern Tauri GUI supporting live data, DTC analysis, and offline VIN decoding.
 * [opendbc](https://github.com/commaai/opendbc) - Python API for your car, bundling community-maintained DBC files with CAN parsing and car interface libraries for reading vehicle state and actuating controls.
+* [pretty_j1939](https://github.com/nmfta-repo/pretty_j1939) - NMFTA's Python library and CLI that decodes J1939 traffic from candump logs using the SAE J1939 Digital Annex, with transport protocol reassembly, filtering, JSON output, and a live terminal view.
 * [python-can](https://github.com/hardbyte/python-can) - Python library providing a common interface over many CAN hardware backends with CAN FD support and logging to ASC, BLF, MF4, TRC, CSV, and SQLite.
+* [python-can-isotp](https://github.com/pylessard/python-can-isotp) - ISO-TP (ISO 15765) transport for Python on top of python-can or Linux SocketCAN, the segmentation layer that UDS and OBD-II diagnostics run over.
 * [SavvyCAN](https://github.com/collin80/SavvyCAN) - Cross-platform Qt-based CAN bus reverse engineering and capture tool with DBC file loading, UDS scanning, and fuzzing support.
 
 ## Diagnostic Tools
@@ -55,12 +59,16 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Atlas](https://github.com/kylehulscher/atlas) - Open-source ECU calibration application for reverse engineering and recalibrating Subaru, Toyota, and Honda ECUs, with an integrated Ghidra bundle for analysing tables and emulating ROM machine code.
 * [AutoPi](https://github.com/autopi-io/autopi-core) - Open-source core software for the AutoPi dongle, a Raspberry Pi-based OBD-II device for vehicle diagnostics, CAN bus data collection, and automotive IoT applications.
 * [conescan](https://github.com/ConnorRigby/conescan) - Automotive ECU hacking supertool for firmware dumping and manipulation via J2534 OBD interfaces.
+* [EcuBus-Pro](https://github.com/ecubus/EcuBus-Pro) - Cross-platform open-source ECU tool with UDS, CAN-TP, DoIP, LIN, and SOME/IP support, DBC and LDF databases, TypeScript scripting in the style of CAPL, and a command-line interface.
 * [Ford-ECU-Bruteforcer](https://github.com/jakka351/Ford-ECU-Bruteforcer) - Security access brute-force tool for pre-2011 Ford ECUs with 3-byte seed and 5-byte key.
 * [gallia](https://github.com/Fraunhofer-AISEC/gallia) - Extendable automotive pentesting framework from Fraunhofer AISEC focused on UDS, with DoIP and ISO-TP transports and structured logging for reproducible scans.
 * [odxtools](https://github.com/mercedes-benz/odxtools) - Python toolkit for parsing ODX/PDX (ISO 22901) diagnostic databases and encoding, decoding, and snooping ECU diagnostic sessions.
+* [OpenSOVD Classic Diagnostic Adapter](https://github.com/eclipse-opensovd/classic-diagnostic-adapter) - Eclipse OpenSOVD bridge in Rust that translates SOVD (ISO 17978) requests into UDS over DoIP for legacy ECUs, with a security plugin architecture.
 * [pq-flasher](https://github.com/I-CAN-hack/pq-flasher) - Python tools for reflashing VW PQ35 EPS using TP 2.0 transport layer and KWP2000 diagnostics.
 * [python-doipclient](https://github.com/jacobschaer/python-doipclient) - Pure Python DoIP (ISO 13400) client that plugs into udsoncan as a transport layer for diagnostics over automotive Ethernet.
+* [uds](https://github.com/mdabrowski1990/uds) - Python package for ISO 14229 UDS in both client and server roles over CAN, Ethernet, LIN, FlexRay, and K-Line, usable for simulation, testing, and decoding UDS traffic.
 * [uds-firmware-extraction](https://github.com/honinb0n/uds-firmware-extraction) - Tool for extracting ECU firmware from UDS flash traffic following ISO-14229 standard.
+* [uds-server](https://github.com/zombieCraig/uds-server) - UDS ECU simulator and fuzzer for use alongside ICSim, for practising diagnostic command discovery and fuzzing scan tools.
 * [UDSim](https://github.com/zombieCraig/UDSim) - UDS (Unified Diagnostic Services) ECU simulator and fuzzer for discovering and testing UDS services.
 * [udsoncan](https://github.com/pylessard/python-udsoncan) - Python implementation of the ISO 14229 UDS protocol covering session control, security access, data identifiers, and routine control.
 * [UnlockECU](https://github.com/jglim/UnlockECU) - Free seed-key unlocking tool for Bosch, Continental, Delphi, Daimler, and Marquardt ECUs without proprietary DLLs.
@@ -69,8 +77,10 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 ## Firmware and ECU Reverse Engineering
 
 * [ghidra-tc1797](https://github.com/christianobora/ghidra-tc1797) - Ghidra processor specification and language definitions for the Infineon TriCore TC1797, used to label memory regions when disassembling MED17 and similar ECU firmware.
+* [ghidra_v850](https://github.com/esaulenka/ghidra_v850) - Ghidra processor module for Renesas V850E2 and V850E3/RH850 microcontrollers, the core families behind many ECUs, for disassembling and decompiling their firmware.
 * [medc17-checksum-tool](https://github.com/ConnorHowell/medc17-checksum-tool) - Analyses and corrects CRC32, ADD32, and ADD16 checksums in Bosch MED17 and EDC17 firmware, resolving CRC values algebraically rather than by brute force and regenerating RSA signatures after modification.
 * [pyA2L](https://github.com/christoph2/pya2l) - Python parser for ASAM MCD-2 MC (A2L) description files, exposing the characteristic, measurement, and memory-layout metadata needed to make sense of ECU calibration data during firmware analysis.
+* [pyXCP](https://github.com/christoph2/pyxcp) - Python implementation of the ASAM MCD-1 XCP protocol over CAN, Ethernet, and USB, with seed-and-key access handling, for measuring, calibrating, and flashing ECUs.
 * [Simos18_SBOOT](https://github.com/bri3d/Simos18_SBOOT) - Documented exploit chain against the VW Simos18 supplier bootloader, chaining PWM entry, a weak Mersenne Twister seed/key, and a CRC bounds-check flaw into arbitrary flash read.
 * [TC1791_CAN_BSL](https://github.com/bri3d/TC1791_CAN_BSL) - CAN bootstrap loader for Infineon TriCore AudoMAX parts such as the TC1791, giving arbitrary flash and RAM read/write on Simos18 and related ECUs without desoldering.
 
@@ -94,9 +104,12 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## Infotainment and IVI
 
+* [byd-dolphin-hacking](https://github.com/wheregoes/byd-dolphin-hacking) - Reverse engineering of the BYD Dolphin DiLink 3 head unit (Android 10 on a Qualcomm QCM6125), documenting its MCU and CAN interfaces, OTA update paths, and NFC digital key, along with permission-bypass and root-level service findings.
 * [Chimaera](https://link.springer.com/article/10.1007/s11416-024-00522-4) - Research framework for IVI (In-Vehicle Infotainment) firmware reverse engineering and exploitation targeting Hyundai/Kia Gen5W_L systems.
 * [gen5fw](https://github.com/rgerganov/gen5fw) - Python tools for decrypting, patching, and redeploying firmware on Mobis Gen5 navigation head units in Hyundai, Kia, and Genesis vehicles, including enabling ADB.
 * [ic1101](https://github.com/librick/ic1101) - Open research project for reverse engineering 10th generation Honda Civic infotainment systems (Android-based, NVIDIA Tegra 3).
+* [MMI3G-Toolkit](https://github.com/dspl1236/MMI3G-Toolkit) - SD-card-based toolkit for Audi/VW MMI3G head units covering boot-image extraction, reverse-engineered GEMMI protocol details, and an FSC signature-bypass technique alongside CAN diagnostic and variant-dumping tools.
+* [Q50 Reverse Engineering](https://github.com/oneezeeroo/Q50-Reverse-Engineering) - Independent reverse-engineering research into the Infiniti Q50 infotainment platform's Linux/Android environment, documenting its EPK firmware package format, code-signing process, and USB app-installation flow.
 
 ## V2X Security
 
@@ -108,6 +121,9 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## EV Charging Security
 
+* [AcCCS](https://github.com/IdahoLabResearch/AcCCS) - Idaho National Laboratory test platform on a Raspberry Pi that emulates either the vehicle or the charger in a CCS session, driving the J1772 control pilot, HomePlug Green PHY SLAC, and DIN 70121 exchange so either side can be tested without the other present.
+* [ChargeSploit](https://github.com/konicst1/ChargeSploit) - Security testing framework for ISO 15118-2 and DIN SPEC 70121 that emulates either the charger or the vehicle, with TLS support and extensible handlers for injecting non-compliant behaviour at any step of a session.
+* [CheckOCPP](https://github.com/vfg27/CheckOCPP) - Wireshark dissector for OCPP 1.6 and 2.0.1 that identifies the protocol version and flags messages that do not match the schema.
 * [dsV2Gshark](https://github.com/dspace-group/dsV2Gshark) - Wireshark plugin that dissects ISO 15118 and DIN 70121 traffic, decoding EXI-encoded V2G payloads and SLAC handshakes into readable fields.
 * [EVerest](https://github.com/EVerest/everest-core) - Linux Foundation Energy full-stack open-source EV charging firmware implementing OCPP 1.6/2.0.1/2.1, ISO 15118-2/-3/-20, IEC 61851, and DIN SPEC 70121, useful as a reference target and test peer.
 * [open-plc-utils](https://github.com/qca/open-plc-utils) - Qualcomm Atheros powerline toolkit for HomePlug AV and Green PHY devices, the standard means of inspecting and manipulating the PLC layer that CCS charging sessions run over.
@@ -118,28 +134,37 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## Hardware Interfaces
 
+* [CAN-DAQ](https://github.com/eccentricOrange/can-daq) - Open hardware ESP32-S3 CAN data-capture device with DBC-driven real-time plotting and SQLite logging, published in HardwareX as a sub-$25 alternative to commercial CAN loggers.
+* [candleLight_fw](https://github.com/candle-usb/candleLight_fw) - Open firmware for low-cost STM32 USB to CAN adapters such as CANable, cantact, and candleLight that implements the mainline Linux gs_usb interface, turning them into native SocketCAN devices without a vendor driver.
 * [CANtact](https://github.com/linklayer/cantact-app) - Open-source hardware CAN interface and desktop app supporting live tracing, frame transmission, ISO-TP, JavaScript scripting, and candump-format traces.
+* [CFUC](https://github.com/ucandevices/CFDC_embedded) - Open hardware and firmware ISO CAN FD to USB dongle built on the STM32G431, presenting as a native SocketCAN or gs_usb interface with a bundled python-can plugin.
 * [OWASP Automotive EMB 60](https://owasp.org/www-project-automotive-emb-60/) - OWASP incubator project with open hardware and software for a single-board computer that acts as a CAN-to-USB interface through SocketCAN for penetration testing.
 * [panda](https://github.com/commaai/panda) - Open-source CAN and CAN FD interface firmware from comma.ai running on an STM32H725, with Python bindings for full read/write access to vehicle buses.
 * [RAMN](https://github.com/ToyotaInfoTech/RAMN) - Resistant Automotive Miniature Network, a four-ECU CAN/CAN FD testbed on a single board with KiCad sources, CARLA closed-loop simulation, and use as the Car Hacking Village CTF platform.
+* [SuperCAN](https://github.com/jgressmann/supercan) - Open-source USB to CAN FD adapter firmware for the ATSAME51 and several other supported boards, giving a low-cost interface for capturing and injecting CAN and CAN FD traffic.
 
 ## Security Analysis
 
+* [Automotive Threat Matrix](https://atm.automotiveisac.com/) - Auto-ISAC's MITRE ATT&CK-style matrix of automotive adversary tactics and techniques, drawn from validated attacks and reproducible research, for threat modelling, TARA, and intelligence sharing.
 * [Automotive Threat Modeling Template](https://github.com/nccgroup/The_Automotive_Threat_Modeling_Template) - NCC Group stencil set for the Microsoft Threat Modeling Tool, supplying vehicle-specific element types, trust boundaries, and threat rules for ECU and in-vehicle network diagrams.
+* [AutoTARA](https://github.com/HackProof/AutoTARA) - Web-based TARA (Threat Analysis and Risk Assessment) framework for ISO/SAE 21434 that models systems as attack graphs and applies MITRE's CTSA/CRRA prioritization methodology with a Meta Attack Language simulation backend.
 * [AVCDL](https://github.com/nutonomy/AVCDL) - Motional's open-sourced Versatile Cybersecurity Development Lifecycle with process definitions and templates mapped to ISO/SAE 21434, ISO 24089, and UN R155/R156, assessed by TUV SUD.
-* [QuickTARA](https://github.com/leonkalema/quicktara) - Professional-grade TARA (Threat Analysis and Risk Assessment) tool implementing STRIDE analysis and ISO 21434/UN R155 compliance.
 * [Security AutoDesigner](https://plaxidityx.com/products/security-autodesigner/) - Automated TARA platform for creating ISO 21434 and UNR 155 compliant threat analysis reports.
+* [Uptane Standard](https://github.com/uptane/uptane-standard) - Specification of Uptane, the compromise-resilient automotive software update security framework standardised as IEEE-ISTO 6100, maintained as a Linux Foundation project.
 
 ## Penetration Testing
 
 * [AutoFuze](https://github.com/DanAurea/AutoFuze) - Python toolkit for fuzzing and penetration testing ECUs over UDS, XCP, SOME/IP, and OBD, across CAN, DoIP, USB, and SPI transports.
 * [automotive-security-research](https://github.com/ps1337/automotive-security-research) - Published reverse engineering results for two production vehicles including CAN matrices, extracted ECU security access keys, and UDS scanning proof-of-concepts.
+* [CANHack](https://github.com/kentindell/canhack) - Ken Tindell's proof-of-concept toolkit of low-level CAN protocol attacks such as Janus frames, bit-banged from a Raspberry Pi Pico on the CANPico board, with a Sigrok decoder for observing the attacks on a logic analyser.
 * [Car Toolkit](https://github.com/j-schmied/car-toolkit) - Python-based toolkit for automotive penetration testing with CAN suite, CARAL, and virtual test bench setup.
 * [DongleScope](https://github.com/OSUSecLab/DongleScope) - Automated tool for detecting vulnerabilities in wireless OBD-II dongles based on USENIX Security 2020 research.
+* [NullSec CarFuzz](https://github.com/bad-antics/nullsec-carfuzz) - Rust fuzzer for CAN, UDS, OBD-II, and DoIP with grammar-aware test generation and coverage tracking.
 * [PiCCANTE](https://github.com/Alia5/PiCCANTE) - Dirt-cheap CAN bus exploration tool built on Raspberry Pi Pico as an open-source hardware/software solution.
 * [pwnobd](https://github.com/Nnubes256/pwnobd) - Offensive cybersecurity toolkit for vulnerability analysis of OBD-II devices presented at Black Hat Europe 2024.
 * [SecOC Key Extractor](https://github.com/i-can-hack/secoc) - Scripts to extract SecOC (Secure On-Board Communication) keys from Toyota vehicles using comma.ai panda hardware.
 * [tesla-opener](https://github.com/rgerganov/tesla-opener) - Open-source tool to open Tesla charging port using HackRF and WebUSB with ASK/OOK RF transmission.
+* [TruckDevil](https://github.com/LittleBlondeDevil/TruckDevil) - Framework for assessing heavy-vehicle ECUs that communicate over J1939, with ECU discovery, message reading and sending, and a J1939 fuzzer, running on a Macchina M2 or any python-can interface.
 
 ## Datasets
 
@@ -149,6 +174,8 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
 * [ROAD](https://0xsam.com/road/) - Real ORNL Automotive Dynamometer CAN intrusion dataset with verified fuzzing, targeted ID, masquerade, and accelerator attacks captured on a dynamometer.
 * [SynCAN](https://github.com/etas/SynCAN) - ETAS synthetic CAN benchmark with continuous, plateau, playback, suspension, and flooding attacks in the signal space, for comparing IDS that work on decoded signals rather than raw arbitration IDs.
+* [TOW-IDS Automotive Ethernet Intrusion Dataset](https://ocslab.hksecurity.net/Datasets/tow-ids-automotive-ethernet-intrusion-dataset) - HCRL captures of AVTP, gPTP, and CAN-over-UDP traffic on an automotive Ethernet network, split into normal driving and five labelled attack scenarios.
+* [VeReMi Extension](https://github.com/josephkamel/VeReMi-Dataset) - Simulated V2X misbehavior detection dataset generated with F2MD over the Luxembourg SUMO scenario, labelling position, speed, timing, replay, DoS, and Sybil attacks alongside faulty-sensor behaviour.
 
 ## Research Papers
 
@@ -206,12 +233,16 @@ publication. Open-access copies are linked where one exists.
 * [On the Realism of LiDAR Spoofing Attacks against Autonomous Driving Vehicle at High Speed and Long Distance](https://www.ndss-symposium.org/ndss-paper/on-the-realism-of-lidar-spoofing-attacks-against-autonomous-driving-vehicle-at-high-speed-and-long-distance/) - Sato et al., NDSS 2025. Moving-vehicle spoofing rig and an adaptive high-frequency removal attack that succeed at 60 km/h and 110 m against production driving stacks, closing the gap between bench demonstrations and moving-vehicle conditions.
 * [SoK: Kicking CAN Down the Road. Systematizing CAN Security Knowledge](https://arxiv.org/abs/2510.02960) - Serag et al., 2025. Systematization of two decades of CAN security, with a unified taxonomy and assessment model for attackers, attacks, and defences.
 * [Current Affairs: A Security Measurement Study of CCS EV Charging Deployments](https://www.usenix.org/conference/usenixsecurity25/presentation/szakaly) - Szakaly et al., USENIX Security 2025. First measurement of publicly deployed CCS DC chargers, finding that only 12 percent of 325 units across four European countries negotiated TLS and that most ran decade-old HomePlug modem firmware.
+* [SoK: Stealing Cars Since Remote Keyless Entry Introduction and How to Defend From It](https://www.usenix.org/conference/vehiclesec25/presentation/bianchi) - Bianchi et al., USENIX VehicleSec 2025. Systematization of RKE and passive keyless entry and start systems, covering their history, the attacks against them, and the defences.
+* [SoK: How Sensor Attacks Disrupt Autonomous Vehicles: An End-to-end Analysis, Challenges, and Missed Threats](https://arxiv.org/abs/2509.11120) - Zhang et al., arXiv 2025. Traces how sensor-induced errors propagate through perception, localization, planning, and control to physical impact, and identifies 12 previously overlooked attack vectors.
+* [SoK: The Next Frontier in AV Security: Systematizing Perception Attacks and the Emerging Threat of Multi-Sensor Fusion](https://arxiv.org/abs/2604.20621) - Khan, Islam, and Hasan, arXiv 2026. Systematizes 48 studies of perception-layer attacks into a taxonomy of 20 attack vectors and shows how multi-sensor fusion opens cross-modal attacks.
 
 ## Books
 
 * [A Comprehensible Guide to Controller Area Network](https://copperhilltech.com/a-comprehensible-guide-to-controller-area-network/) - Wilfried Voss, Copperhill 2005. The standard plain-language reference on CAN itself, covering frame formats, arbitration, error handling, and timing that vehicle network attacks depend on.
 * [Automotive Cyber Security](https://books.google.com/books?id=uTD_DwAAQBAJ) - Shiho Kim and Rakesh Shrestha, Springer 2020. Academic introduction to connected and autonomous vehicle security, threats, and the standardisation landscape.
 * [Automotive Cybersecurity Engineering Handbook](https://books.google.com/books/about/Automotive_Cybersecurity_Engineering_Han.html?id=UK_YEAAAQBAJ) - Ahmad MK Nasser, Packt 2023. Practitioner's guide to building cyber-resilient vehicles, covering threat analysis, hardware security, and ISO/SAE 21434 engineering practice.
+* [Automotive Threat Analysis and Risk Assessment in Practice](https://books.google.com/books/about/Automotive_Threat_Analysis_and_Risk_Asse.html?id=Z_8vEQAAQBAJ) - Rodrigo do Carmo and Alexander Schlensog, Springer 2024. Practitioner's guide to threat analysis and risk assessment (TARA) following ISO/SAE 21434, with worked examples for automotive embedded and IT/OT systems.
 * [Building Secure Cars](https://www.wiley.com/en-us/Building+Secure+Cars:+Assuring+the+Automotive+Software+Development+Lifecycle-p-9781119710745) - Dennis Kengo Oka, Wiley 2021. Focuses on assuring the automotive software development lifecycle, from secure coding and static analysis through fuzzing and penetration testing.
 * [Cybersecurity for Commercial Vehicles](https://books.google.com/books?id=R3h0EAAAQBAJ) - Gloria D'Anna, SAE International 2018. Covers heavy vehicle and fleet security, how it differs from passenger cars, SAE J3061, platooning, and breach forensics.
 * [Hacking Connected Cars](https://www.wiley.com/en-us/-p-9781119491804) - Alissa Knight, Wiley 2020. Tactics, techniques, and procedures for penetration testing, threat modelling, and risk assessment of telematics control units and infotainment systems.

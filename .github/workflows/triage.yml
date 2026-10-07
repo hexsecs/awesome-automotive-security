@@ -1,0 +1,126 @@
+name: Triage entry suggestions
+
+# Judges "Suggest an entry" issues against CONTRIBUTING.md, posts one verdict
+# comment, and opens a draft PR when a suggestion qualifies. The task itself
+# lives in prompts/triage.md, shared with the scheduled Routine.
+on:
+  issues:
+    types: [opened, labeled]
+
+# Issues come from anyone, so this runs the action with
+# allowed_non_write_users: '*', which the action accepts only together with
+# github_token. Everything below follows docs/security.md for that case:
+# the short-lived workflow token instead of the Claude App token, permissions
+# limited to what the job does, and a tool list of exact commands.
+#
+# id-token is deliberately absent: with github_token set the action never
+# requests an OIDC token, so granting it would be unused privilege.
+#
+# PRs opened with the workflow token do not trigger validate.yml, and the repo
+# must allow GitHub Actions to create pull requests (Settings > Actions >
+# General) for gh pr create to succeed.
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+# One triage at a time per issue, never cancelling one that is posting.
+concurrency:
+  group: triage-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # The form applies new-entry when the issue is created, so the opened event
+    # already carries the label and is what triages new suggestions. GitHub also
+    # sends a labeled event for labels applied at creation, attributed to the
+    # issue's author; skipping labeled events sent by the author drops that
+    # duplicate. A labeled event from anyone else is a maintainer adding
+    # new-entry to an existing issue, which is triaged too. Non-write users
+    # cannot add labels, so they cannot re-trigger a run on their own issue.
+    if: >-
+      github.repository == 'hexsecs/awesome-automotive-security' &&
+      github.event.issue.state == 'open' &&
+      (
+        (github.event.action == 'opened' &&
+         contains(github.event.issue.labels.*.name, 'new-entry')) ||
+        (github.event.action == 'labeled' &&
+         github.event.label.name == 'new-entry' &&
+         github.event.sender.login != github.event.issue.user.login)
+      )
+    steps:
+      # Skip cleanly rather than failing when no credential is configured.
+      - name: Check for Claude credentials
+        id: key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -n "$ANTHROPIC_API_KEY" ] || [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Neither ANTHROPIC_API_KEY nor CLAUDE_CODE_OAUTH_TOKEN is set; skipping triage."
+          fi
+
+      # issues events always run the default branch, so the runbook and
+      # validator read here are the maintainers' versions, never the issuer's.
+      - uses: actions/checkout@v4
+        if: steps.key.outputs.present == 'true'
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        if: steps.key.outputs.present == 'true'
+        with:
+          python-version: '3.12'
+
+      - name: Prepare a scratch directory kept out of git
+        if: steps.key.outputs.present == 'true'
+        run: |
+          mkdir -p .scratch .git/info
+          echo '.scratch/' >> .git/info/exclude
+
+      # SECURITY: the issue title and body are attacker-controlled. Only the
+      # issue number, an integer GitHub assigns, is passed in; Claude reads the
+      # issue itself and prompts/triage.md tells it to treat it as data.
+      # Tools: Read is scoped to the checkout minus .git/, Edit to README.md and
+      # the scratch files, and every Bash command is exact, so the comment
+      # target, PR body file, branch and push destination are all fixed here.
+      - name: Triage the suggestion
+        if: steps.key.outputs.present == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          allowed_non_write_users: '*'
+          prompt: |
+            Read and follow prompts/triage.md.
+
+            Run context (GitHub Actions):
+            - Issue number: ${{ github.event.issue.number }}
+            - Scratch directory, never committed: .scratch/. Write the comment to
+              .scratch/comment.md and the pull request body to .scratch/pr-body.md.
+            - Pull requests opened here use the workflow token, so validate.yml
+              does not run on them by itself. Just above "Closes #${{ github.event.issue.number }}" in the
+              pull request body, add: "CI has not run on this pull request yet.
+              Close and reopen it to run validate.yml."
+            - Bash accepts only these commands, character for character:
+                python3 scripts/validate_list.py
+                gh issue view ${{ github.event.issue.number }}
+                gh issue comment ${{ github.event.issue.number }} --body-file .scratch/comment.md
+                git status
+                git diff
+                git checkout -b triage/issue-${{ github.event.issue.number }}
+                git add README.md
+                git commit -m 'feat: add entry suggested in #${{ github.event.issue.number }}'
+                git push -u origin triage/issue-${{ github.event.issue.number }}
+                gh pr create --draft --base main --head triage/issue-${{ github.event.issue.number }} --title 'Add entry suggested in #${{ github.event.issue.number }}' --body-file .scratch/pr-body.md
+          claude_args: |
+            --max-turns 30
+            --allowedTools "WebSearch,WebFetch,Read(./**),Edit(./README.md),Edit(./.scratch/**),Bash(python3 scripts/validate_list.py),Bash(gh issue view ${{ github.event.issue.number }}),Bash(gh issue comment ${{ github.event.issue.number }} --body-file .scratch/comment.md),Bash(git status),Bash(git diff),Bash(git checkout -b triage/issue-${{ github.event.issue.number }}),Bash(git add README.md),Bash(git commit -m 'feat: add entry suggested in #${{ github.event.issue.number }}'),Bash(git push -u origin triage/issue-${{ github.event.issue.number }}),Bash(gh pr create --draft --base main --head triage/issue-${{ github.event.issue.number }} --title 'Add entry suggested in #${{ github.event.issue.number }}' --body-file .scratch/pr-body.md)"
+            --disallowedTools "Read(./.git/**)"
