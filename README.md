@@ -106,6 +106,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 * [byd-dolphin-hacking](https://github.com/wheregoes/byd-dolphin-hacking) - Reverse engineering of the BYD Dolphin DiLink 3 head unit (Android 10 on a Qualcomm QCM6125), documenting its MCU and CAN interfaces, OTA update paths, and NFC digital key, along with permission-bypass and root-level service findings.
 * [Chimaera](https://link.springer.com/article/10.1007/s11416-024-00522-4) - Research framework for IVI (In-Vehicle Infotainment) firmware reverse engineering and exploitation targeting Hyundai/Kia Gen5W_L systems.
+* [gen5fw](https://github.com/rgerganov/gen5fw) - Python tools for decrypting, patching, and redeploying firmware on Mobis Gen5 navigation head units in Hyundai, Kia, and Genesis vehicles, including enabling ADB.
 * [ic1101](https://github.com/librick/ic1101) - Open research project for reverse engineering 10th generation Honda Civic infotainment systems (Android-based, NVIDIA Tegra 3).
 * [MMI3G-Toolkit](https://github.com/dspl1236/MMI3G-Toolkit) - SD-card-based toolkit for Audi/VW MMI3G head units covering boot-image extraction, reverse-engineered GEMMI protocol details, and an FSC signature-bypass technique alongside CAN diagnostic and variant-dumping tools.
 * [Q50 Reverse Engineering](https://github.com/oneezeeroo/Q50-Reverse-Engineering) - Independent reverse-engineering research into the Infiniti Q50 infotainment platform's Linux/Android environment, documenting its EPK firmware package format, code-signing process, and USB app-installation flow.
@@ -137,6 +138,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [candleLight_fw](https://github.com/candle-usb/candleLight_fw) - Open firmware for low-cost STM32 USB to CAN adapters such as CANable, cantact, and candleLight that implements the mainline Linux gs_usb interface, turning them into native SocketCAN devices without a vendor driver.
 * [CANtact](https://github.com/linklayer/cantact-app) - Open-source hardware CAN interface and desktop app supporting live tracing, frame transmission, ISO-TP, JavaScript scripting, and candump-format traces.
 * [CFUC](https://github.com/ucandevices/CFDC_embedded) - Open hardware and firmware ISO CAN FD to USB dongle built on the STM32G431, presenting as a native SocketCAN or gs_usb interface with a bundled python-can plugin.
+* [OWASP Automotive EMB 60](https://owasp.org/www-project-automotive-emb-60/) - OWASP incubator project with open hardware and software for a single-board computer that acts as a CAN-to-USB interface through SocketCAN for penetration testing.
 * [panda](https://github.com/commaai/panda) - Open-source CAN and CAN FD interface firmware from comma.ai running on an STM32H725, with Python bindings for full read/write access to vehicle buses.
 * [RAMN](https://github.com/ToyotaInfoTech/RAMN) - Resistant Automotive Miniature Network, a four-ECU CAN/CAN FD testbed on a single board with KiCad sources, CARLA closed-loop simulation, and use as the Car Hacking Village CTF platform.
 * [SuperCAN](https://github.com/jgressmann/supercan) - Open-source USB to CAN FD adapter firmware for the ATSAME51 and several other supported boards, giving a low-cost interface for capturing and injecting CAN and CAN FD traffic.
@@ -166,6 +168,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## Datasets
 
+* [AutoHack](https://zenodo.org/records/19661007) - Multi-bus CAN dataset from a real vehicle covering C-CAN, P-CAN, and B-CAN, with physically verified fuzzing, spoofing, replay, DoS, and UDS-based attacks.
 * [CAN-MIRGU](https://github.com/sampathrajapaksha/CAN-MIRGU) - CAN bus attack dataset from a modern vehicle driven on real roads over six days, with physically verified masquerade, suspension, and real attacks.
 * [Car Hacking Dataset](https://ocslab.hksecurity.net/Datasets/car-hacking-dataset) - HCRL captures from a Kia Soul with labelled DoS, fuzzing, and RPM and gear spoofing injections, the most widely cited baseline in CAN intrusion detection papers.
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
