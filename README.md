@@ -96,7 +96,6 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 * [Chimaera](https://link.springer.com/article/10.1007/s11416-024-00522-4) - Research framework for IVI (In-Vehicle Infotainment) firmware reverse engineering and exploitation targeting Hyundai/Kia Gen5W_L systems.
 * [gen5fw](https://github.com/rgerganov/gen5fw) - Python tools for decrypting, patching, and redeploying firmware on Mobis Gen5 navigation head units in Hyundai, Kia, and Genesis vehicles, including enabling ADB.
-* [HKG Gen5W ReverseEngineer](https://github.com/cantcs/HKG_Gen5W_ReverseEngineer) - Documentation and methods for patching firmware, gaining root, and installing apps on Android 4.4-based Gen5W head units in Hyundai, Kia, and Genesis vehicles.
 * [ic1101](https://github.com/librick/ic1101) - Open research project for reverse engineering 10th generation Honda Civic infotainment systems (Android-based, NVIDIA Tegra 3).
 
 ## V2X Security
