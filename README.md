@@ -167,9 +167,12 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## Datasets
 
+* [AutoHack](https://zenodo.org/records/19661007) - Real-vehicle CAN intrusion dataset recorded synchronously from three buses (C-CAN, P-CAN, and B-CAN) with fuzzing, spoofing, replay, DoS, and UDS-based attacks, released with benchmark code alongside a USENIX VehicleSec 2026 paper.
 * [CAN-MIRGU](https://github.com/sampathrajapaksha/CAN-MIRGU) - CAN bus attack dataset from a modern vehicle driven on real roads over six days, with physically verified masquerade, suspension, and real attacks.
 * [Car Hacking Dataset](https://ocslab.hksecurity.net/Datasets/car-hacking-dataset) - HCRL captures from a Kia Soul with labelled DoS, fuzzing, and RPM and gear spoofing injections, the most widely cited baseline in CAN intrusion detection papers.
+* [CarDS](https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/5080) - ACSAC 2025 dataset of over nine hours of traffic from a 2020 electric vehicle with 10 CAN buses and 6 automotive Ethernet buses, covering benign driving and attack scenarios.
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
+* [GEM-CAN](https://digitalcommons.odu.edu/ece_fac_pubs/600) - Labelled capture of about 143,000 CAN frames from an autonomous GEM e6 platform, with normal operation, DoS floods, and brake and steering-lock data-tampering injections, for benchmarking lightweight on-device IDS.
 * [ROAD](https://0xsam.com/road/) - Real ORNL Automotive Dynamometer CAN intrusion dataset with verified fuzzing, targeted ID, masquerade, and accelerator attacks captured on a dynamometer.
 * [SynCAN](https://github.com/etas/SynCAN) - ETAS synthetic CAN benchmark with continuous, plateau, playback, suspension, and flooding attacks in the signal space, for comparing IDS that work on decoded signals rather than raw arbitration IDs.
 * [TOW-IDS Automotive Ethernet Intrusion Dataset](https://ocslab.hksecurity.net/Datasets/tow-ids-automotive-ethernet-intrusion-dataset) - HCRL captures of AVTP, gPTP, and CAN-over-UDP traffic on an automotive Ethernet network, split into normal driving and five labelled attack scenarios.
