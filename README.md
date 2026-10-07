@@ -95,6 +95,8 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 ## Infotainment and IVI
 
 * [Chimaera](https://link.springer.com/article/10.1007/s11416-024-00522-4) - Research framework for IVI (In-Vehicle Infotainment) firmware reverse engineering and exploitation targeting Hyundai/Kia Gen5W_L systems.
+* [gen5fw](https://github.com/rgerganov/gen5fw) - Python tools for decrypting, patching, and redeploying firmware on Mobis Gen5 navigation head units in Hyundai, Kia, and Genesis vehicles, including enabling ADB.
+* [HKG Gen5W ReverseEngineer](https://github.com/cantcs/HKG_Gen5W_ReverseEngineer) - Documentation and methods for patching firmware, gaining root, and installing apps on Android 4.4-based Gen5W head units in Hyundai, Kia, and Genesis vehicles.
 * [ic1101](https://github.com/librick/ic1101) - Open research project for reverse engineering 10th generation Honda Civic infotainment systems (Android-based, NVIDIA Tegra 3).
 
 ## V2X Security
@@ -118,6 +120,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 ## Hardware Interfaces
 
 * [CANtact](https://github.com/linklayer/cantact-app) - Open-source hardware CAN interface and desktop app supporting live tracing, frame transmission, ISO-TP, JavaScript scripting, and candump-format traces.
+* [OWASP Automotive EMB 60](https://owasp.org/www-project-automotive-emb-60/) - OWASP incubator project with open hardware and software for a single-board computer that acts as a CAN-to-USB interface through SocketCAN for penetration testing.
 * [panda](https://github.com/commaai/panda) - Open-source CAN and CAN FD interface firmware from comma.ai running on an STM32H725, with Python bindings for full read/write access to vehicle buses.
 * [RAMN](https://github.com/ToyotaInfoTech/RAMN) - Resistant Automotive Miniature Network, a four-ECU CAN/CAN FD testbed on a single board with KiCad sources, CARLA closed-loop simulation, and use as the Car Hacking Village CTF platform.
 
