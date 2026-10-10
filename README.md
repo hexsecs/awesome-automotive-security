@@ -154,7 +154,6 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [AVCDL](https://github.com/nutonomy/AVCDL) - Motional's open-sourced Versatile Cybersecurity Development Lifecycle with process definitions and templates mapped to ISO/SAE 21434, ISO 24089, and UN R155/R156, assessed by TUV SUD.
 * [Security AutoDesigner](https://plaxidityx.com/products/security-autodesigner/) - Automated TARA platform for creating ISO 21434 and UNR 155 compliant threat analysis reports.
 * [Uptane](https://uptane.org/) - Open standard for securing automotive over-the-air updates that extends TUF to limit the damage when a repository or signing key is compromised, governed under the Joint Development Foundation.
-* [Uptane Standard](https://github.com/uptane/uptane-standard) - Specification of Uptane, the compromise-resilient automotive software update security framework standardised as IEEE-ISTO 6100, maintained as a Linux Foundation project.
 
 ## Penetration Testing
 
