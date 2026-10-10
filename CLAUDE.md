@@ -15,6 +15,8 @@ Read these rather than restating them here:
   entries deliberately kept, each with its reason. Never re-propose a rejected
   or removed URL; overturning one means deleting its record in the same change
   and saying why.
+* `data/leads.toml`: candidates found but not yet openable or confirmed. Discovery
+  re-tries them; settle one by adding or rejecting it and deleting its record.
 * `prompts/*.md`: the runbooks for automated work. The Routines and the
   Actions workflows both read them, so change behaviour there, not in YAML.
 
@@ -27,6 +29,14 @@ python3 scripts/validate_list.py
 It must pass. CI also runs lychee over `README.md`, so open every new URL
 yourself before adding it: a URL you have not fetched is a CI round waiting to
 fail.
+
+When you change anything under `scripts/` or `tests/`, also run
+`python3 -m unittest discover -s tests`; CI does.
+
+Before researching, `python3 scripts/probe_egress.py` shows which hosts this
+session can reach, and `python3 scripts/check_candidate.py URL...` vets a
+candidate (duplicates, past decisions, host rules, and for GitHub archived,
+dormant, moved and fork-parent state) before you spend effort on it.
 
 `python3 scripts/list_health.py` reports thin sections and archived, moved or
 dormant GitHub entries (`--no-github` for coverage only, when the API is
@@ -86,18 +96,20 @@ delete it here, so this file stays short.
   WebFetch: `curl` to GitHub got a proxy 403, and arxiv.org, usenix.org,
   ndss-symposium.org, ocslab.hksecurity.net, automotiveisac.com and
   i.blackhat.com were all refused. That is the sandbox, not the host, so do not
-  record those hosts in `data/hosts.toml`. Note unreachable candidates in the
-  PR as leads, unproposed, rather than adding links you could not open.
-* Probe egress before planning research. The proxy's policy is set per
-  environment, and an edit to it reaches only new sessions, not the one that is
-  running. In one session WebFetch failed DNS on every host (`ENOTFOUND`) while
+  record those hosts in `data/hosts.toml`. Park unreachable candidates
+  in `data/leads.toml`, unproposed, rather than adding links you could not open.
+* Probe egress before planning research (`scripts/probe_egress.py`). The
+  proxy's policy is set per environment, and an edit to it reaches only new
+  sessions, not the one that is running. In one session WebFetch failed DNS on every host (`ENOTFOUND`) while
   plain `curl` through the proxy reached them, so try both. Zenodo and
   tudatalib answered 403 to the sandbox yet passed CI's lychee, so a sandbox
   403 is not a dead link.
 * A summary from WebFetch is a lead, not evidence. "No indication of archival"
   is not "not archived", and it rarely gives a last-commit date. Before listing
-  a GitHub project, check the real repository state, and check whether it is a
-  fork: CANgaroo was listed as a 4-star fork of a 187-star project for weeks.
+  a GitHub project, check the real repository state with
+  `scripts/check_candidate.py`, which reads archived, last push and fork parent
+  from the API, and check whether it is a fork: CANgaroo was listed as a
+  4-star fork of a 187-star project for weeks.
 * CI's link check proves a URL answers, not that it is the thing you meant. A
   search-result link whose page you could not open needs a second source for
   its identity (an AutoHack Zenodo record, a GEM-CAN article page that was not

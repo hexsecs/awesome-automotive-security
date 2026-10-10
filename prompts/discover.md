@@ -27,6 +27,19 @@ in `prompts/sweep.md`.
    a sandbox, run it with `--no-github` for coverage alone. Thin sections are
    one input, not the whole plan: archived, moved and dormant entries are
    candidates for a successor or a URL update.
+5. Run `python3 scripts/probe_egress.py`. A cloud session's egress proxy can
+   allow far less than CI does, and a blocked host looks the same as a dead
+   link. The probe separates hosts the proxy blocks (the sandbox's limit) from
+   hosts that answer but refuse automated clients (their bot filter) and from
+   DNS failures. Plan research around what is reachable. Never record a host in
+   `data/hosts.toml` on the strength of a sandbox block. If a fetch tool fails
+   where the probe succeeds, try `curl` through the same proxy, and say in the PR
+   which tool failed.
+6. Read `data/leads.toml`: candidates earlier runs found but could not open.
+   Re-try each one. If it now opens and qualifies, add it to `README.md` and
+   delete the lead; if it fails CONTRIBUTING.md, record a `rejected` decision
+   and delete the lead; if it still cannot be opened, leave it, and update its
+   `reason` only if you learned something.
 
 If the run was given a focus area, concentrate on it.
 
@@ -43,10 +56,17 @@ If the run was given a focus area, concentrate on it.
    conference output (DEF CON Car Hacking Village, Black Hat, Pwn2Own
    Automotive, escar, VehicleSec), and academic venues (NDSS VehicleSec,
    USENIX Security).
-3. For every candidate, FETCH THE URL AND CONFIRM IT RESOLVES before proposing
-   it. Never propose a link you have not opened. Note whether the project is
-   archived; propose archived projects only when they are still canonical or
-   historically important, and say so in the description.
+3. For every candidate, run `python3 scripts/check_candidate.py <url>` and also
+   FETCH THE URL AND CONFIRM IT RESOLVES before proposing it. Never propose a
+   link you have not opened. The checker covers what a page summary does not:
+   whether the URL is already listed, a lead, or recorded in
+   `data/decisions.toml`; the host rules; and for a GitHub repository whether it
+   is archived, dormant, renamed, or a fork of a more-used project (it reads
+   the GitHub API, and falls back to ecosyste.ms, labelled as third-party, where
+   the API is refused). A BLOCKER means do not propose it. Answer every WARNING
+   in the PR. Note whether the project is archived; propose archived projects
+   only when they are still canonical or historically important, and say so in
+   the description.
 4. Drop anything already on the list, anything failing the CONTRIBUTING.md
    criteria, and anything whose whole subdomain is better served by a linked
    Awesome list.
@@ -73,6 +93,11 @@ This is what makes the list improve rather than just grow. In the same PR:
   record transient reasons such as a host being down today. Only record clear
   failures of CONTRIBUTING.md (plainly out of scope, an `avoid` host with no
   open copy, a duplicate of a listed entry).
+* **Leads.** A candidate that looks worth proposing but whose link you could
+  not open (the proxy blocks the host, or the page needs a browser) goes into
+  `data/leads.toml`, with what you know and exactly what is unverified. It is
+  neither an addition nor a rejection. This replaces leaving such candidates
+  only in the PR body, which the next run never reads.
 * **Flag borderline candidates, do not reject them.** If a candidate is a
   judgement call (low traction, overlaps a listed tool, thin evidence of use),
   the decision is the maintainer's, not yours. Add it to `README.md` like any
@@ -92,7 +117,7 @@ This is what makes the list improve rather than just grow. In the same PR:
    `<!-- automated: discover -->` so later runs can find it. Then list each
    proposed entry with the evidence you gathered: what it is, why it meets
    the criteria, and confirmation that you opened the link. List the
-   decisions and host records you added and why. Put every borderline
+   decisions, leads and host records you added or resolved, and why. Put every borderline
    candidate under "Flagged for review" as described above.
 
 Never merge anything and never push to `main`. A maintainer reviews every
