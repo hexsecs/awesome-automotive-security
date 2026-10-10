@@ -34,7 +34,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [CanCat](https://github.com/atlas0fd00m/CanCat) - Firmware for Arduino CAN shields and Macchina M2 boards paired with a Python client for sniffing and injecting CAN traffic, running UDS and CCP sessions, and placing a device in the middle of a CAN link.
 * [CANdevStudio](https://github.com/GENIVI/CANdevStudio) - Flow-based graphical CAN simulation environment that wires senders, receivers, DBC decoders, and signal viewers together to stand in for missing ECUs on a bench.
 * [CANflict](https://github.com/necst/CANflict) - C library that manipulates the CAN bus at the data link layer from an unmodified microcontroller, abusing pin conflicts between peripherals to craft polyglot frames; the implementation behind the CCS 2022 paper.
-* [CANgaroo](https://github.com/wikilift/CANgaroo) - Open-source CAN bus analyzer with transmit/receive support for standard and FD frames plus DBC decoding.
+* [CANgaroo](https://github.com/Schildkroet/CANgaroo) - Open-source CAN bus analyzer for Linux and Windows with DBC and LDF decoding, CAN FD, Python scripting, SocketCAN, PEAK, Kvaser, Vector, and candlelight interfaces, and Vector ASC, MDF4, candump, and PCAP export.
 * [CanLab](https://github.com/Sherin-SEF-AI/CanLab) - PyQt6 desktop application for offline CAN capture reverse engineering, combining automated counter and checksum detection with entropy-based signal boundary analysis, a visual DBC builder, and UDS/OBD-II/J1939/XCP/DoIP diagnostic support.
 * [canmatrix](https://github.com/ebroecker/canmatrix) - Python package to read and write CAN database formats, converting between DBC, ARXML, KCD, SYM, LDF, ODX, and more.
 * [cannelloni](https://github.com/mguentner/cannelloni) - Tunnels SocketCAN interfaces over UDP, TCP, or SCTP, bridging a vehicle bus to a remote analysis machine and letting bench setups share one physical CAN adapter.
@@ -59,6 +59,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Atlas](https://github.com/kylehulscher/atlas) - Open-source ECU calibration application for reverse engineering and recalibrating Subaru, Toyota, and Honda ECUs, with an integrated Ghidra bundle for analysing tables and emulating ROM machine code.
 * [AutoPi](https://github.com/autopi-io/autopi-core) - Open-source core software for the AutoPi dongle, a Raspberry Pi-based OBD-II device for vehicle diagnostics, CAN bus data collection, and automotive IoT applications.
 * [conescan](https://github.com/ConnorRigby/conescan) - Automotive ECU hacking supertool for firmware dumping and manipulation via J2534 OBD interfaces.
+* [doip-sim-ecu-dsl](https://github.com/doip-sim-ecu/doip-sim-ecu-dsl) - Kotlin DSL for scripting simulated DoIP ECUs, reachable over Ethernet, CAN with ISO-TP, or both at once, for exercising diagnostic clients against UDS error and edge cases without hardware.
 * [EcuBus-Pro](https://github.com/ecubus/EcuBus-Pro) - Cross-platform open-source ECU tool with UDS, CAN-TP, DoIP, LIN, and SOME/IP support, DBC and LDF databases, TypeScript scripting in the style of CAPL, and a command-line interface.
 * [Ford-ECU-Bruteforcer](https://github.com/jakka351/Ford-ECU-Bruteforcer) - Security access brute-force tool for pre-2011 Ford ECUs with 3-byte seed and 5-byte key.
 * [gallia](https://github.com/Fraunhofer-AISEC/gallia) - Extendable automotive pentesting framework from Fraunhofer AISEC focused on UDS, with DoIP and ISO-TP transports and structured logging for reproducible scans.
@@ -153,7 +154,6 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [AVCDL](https://github.com/nutonomy/AVCDL) - Motional's open-sourced Versatile Cybersecurity Development Lifecycle with process definitions and templates mapped to ISO/SAE 21434, ISO 24089, and UN R155/R156, assessed by TUV SUD.
 * [Security AutoDesigner](https://plaxidityx.com/products/security-autodesigner/) - Automated TARA platform for creating ISO 21434 and UNR 155 compliant threat analysis reports.
 * [Uptane](https://uptane.org/) - Open standard for securing automotive over-the-air updates that extends TUF to limit the damage when a repository or signing key is compromised, governed under the Joint Development Foundation.
-* [Uptane Standard](https://github.com/uptane/uptane-standard) - Specification of Uptane, the compromise-resilient automotive software update security framework standardised as IEEE-ISTO 6100, maintained as a Linux Foundation project.
 
 ## Penetration Testing
 
@@ -174,7 +174,9 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [AutoHack](https://zenodo.org/records/19661007) - Multi-bus CAN dataset from a real vehicle covering C-CAN, P-CAN, and B-CAN, with physically verified fuzzing, spoofing, replay, DoS, and UDS-based attacks.
 * [CAN-MIRGU](https://github.com/sampathrajapaksha/CAN-MIRGU) - CAN bus attack dataset from a modern vehicle driven on real roads over six days, with physically verified masquerade, suspension, and real attacks.
 * [Car Hacking Dataset](https://ocslab.hksecurity.net/Datasets/car-hacking-dataset) - HCRL captures from a Kia Soul with labelled DoS, fuzzing, and RPM and gear spoofing injections, the most widely cited baseline in CAN intrusion detection papers.
+* [CarDS](https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/5080) - ACSAC 2025 dataset of over nine hours of traffic from a 2020 electric vehicle with 10 CAN buses and 6 automotive Ethernet buses, covering benign driving and attack scenarios.
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
+* [GEM-CAN](https://digitalcommons.odu.edu/ece_fac_pubs/600) - Labelled capture of about 143,000 CAN frames from an autonomous GEM e6 platform, with normal operation, DoS floods, and brake and steering-lock data-tampering injections, for benchmarking lightweight on-device IDS.
 * [ROAD](https://0xsam.com/road/) - Real ORNL Automotive Dynamometer CAN intrusion dataset with verified fuzzing, targeted ID, masquerade, and accelerator attacks captured on a dynamometer.
 * [Survival Analysis Dataset](https://ocslab.hksecurity.net/Datasets/survival-ids) - HCRL CAN captures from a Hyundai YF Sonata, Kia Soul, and Chevrolet Spark with labelled flooding, fuzzy, and malfunction attacks.
 * [SynCAN](https://github.com/etas/SynCAN) - ETAS synthetic CAN benchmark with continuous, plateau, playback, suspension, and flooding attacks in the signal space, for comparing IDS that work on decoded signals rather than raw arbitration IDs.
