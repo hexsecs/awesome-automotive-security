@@ -88,3 +88,30 @@ delete it here, so this file stays short.
   i.blackhat.com were all refused. That is the sandbox, not the host, so do not
   record those hosts in `data/hosts.toml`. Note unreachable candidates in the
   PR as leads, unproposed, rather than adding links you could not open.
+* Probe egress before planning research. The proxy's policy is set per
+  environment, and an edit to it reaches only new sessions, not the one that is
+  running. In one session WebFetch failed DNS on every host (`ENOTFOUND`) while
+  plain `curl` through the proxy reached them, so try both. Zenodo and
+  tudatalib answered 403 to the sandbox yet passed CI's lychee, so a sandbox
+  403 is not a dead link.
+* A summary from WebFetch is a lead, not evidence. "No indication of archival"
+  is not "not archived", and it rarely gives a last-commit date. Before listing
+  a GitHub project, check the real repository state, and check whether it is a
+  fork: CANgaroo was listed as a 4-star fork of a 187-star project for weeks.
+* CI's link check proves a URL answers, not that it is the thing you meant. A
+  search-result link whose page you could not open needs a second source for
+  its identity (an AutoHack Zenodo record, a GEM-CAN article page that was not
+  the data). Say in the PR which links you did not open.
+* Parallel sessions land overlapping entries. Between opening a PR and merging
+  it, #37 added the same AutoHack entry and #39 added an Uptane entry that made
+  mine redundant. Fetch `main` and grep for each URL and name before pushing
+  and again before merging.
+* Match the repository's merge style. A PR of several deliberate commits gets a
+  merge commit, not a squash, or the history stops teaching later sessions
+  anything. Check `git log` on `main` for what was used before merging.
+* After a squash-merged PR, reset the working branch to `main` before new work.
+  If the assigned branch name must be reused, the remote copy has diverged;
+  `--force-with-lease` is fine only when it holds nothing but merged history.
+* A review bot's claim about a URL is a claim to verify, not an order. When you
+  cannot verify it, reply with what you could confirm and leave the decision to
+  the maintainer instead of swapping in a link you have not opened.
