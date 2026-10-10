@@ -91,3 +91,11 @@ decision = "rejected"
 reason = "A four-commit starter (a candump parser and MCP2515 wiring notes) with no adoption, built as a free lead-in to the author's paid Gumroad courses. Listed tools such as python-can, cantools, SavvyCAN and CANarchy already cover it. Worth a new suggestion only if the author's work becomes established in the field."
 date = "2026-09-29"
 ref = "#26"
+
+[[decision]]
+name = "Zelos"
+url = "https://zeloscloud.io"
+decision = "rejected"
+reason = "A commercial data platform for hardware systems in general; its own demo is a grid battery-storage system and CAN is one extension among many. It is neither automotive-specific nor security tooling (CONTRIBUTING.md criteria 1 and 2), and python-can, cantools, SavvyCAN and CANarchy already cover CAN analysis. Worth a new suggestion only if the company ships an automotive security tool or open-source CAN intrusion-analysis work."
+date = "2026-10-10"
+ref = "#38"
