@@ -140,6 +140,30 @@ away, so that automated discovery never proposes it again.
   that adds the entry back, and say in that change what has changed, for
   example that an archived project has come back to life.
 
+## Leads
+
+[`data/leads.toml`](data/leads.toml) holds candidates that were found but could
+not be opened or confirmed, so they are neither on the list nor turned away. A
+lead records the `name`, `url`, `section`, a `reason` saying what is known and
+what is unverified, and the `date`. Discovery re-tries every lead; when one is
+settled, its record is deleted in the same change that adds it to the list or
+records its rejection. `scripts/validate_list.py` fails on a lead that is
+already listed, was rejected or removed, is on an `avoid` host, or names a
+section the README does not have.
+
+## Vetting a candidate
+
+```
+python3 scripts/check_candidate.py URL [URL...]
+```
+
+reports whether a URL is already listed, a lead or a recorded decision, how the
+host rules treat it, and for a GitHub repository whether it is archived,
+dormant, renamed or a fork of a more-used project. It checks facts; whether the
+project belongs on the list is still a judgement. `python3 scripts/probe_egress.py`
+shows which hosts the current session can reach, which tells a blocked sandbox
+from a dead link.
+
 ## Automated maintenance
 
 This repository maintains itself in part, and learns from review as it goes.
@@ -155,7 +179,9 @@ Checks in GitHub Actions, which need no credentials:
 
 Claude-driven maintenance follows the runbooks in `prompts/`:
 
-* `discover.md` researches additions monthly across every section, giving thin sections extra attention.
+* `discover.md` researches additions monthly across every section, giving thin
+  sections extra attention. It probes egress, re-tries the leads, and vets every
+  candidate with `scripts/check_candidate.py` first.
 * `triage.md` judges a "Suggest an entry" issue against the criteria above,
   comments with a verdict, and drafts a pull request when it qualifies.
 * `fix-links.md` proposes repairs for the links the weekly check found broken.
