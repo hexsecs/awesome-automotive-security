@@ -59,9 +59,11 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Atlas](https://github.com/kylehulscher/atlas) - Open-source ECU calibration application for reverse engineering and recalibrating Subaru, Toyota, and Honda ECUs, with an integrated Ghidra bundle for analysing tables and emulating ROM machine code.
 * [AutoPi](https://github.com/autopi-io/autopi-core) - Open-source core software for the AutoPi dongle, a Raspberry Pi-based OBD-II device for vehicle diagnostics, CAN bus data collection, and automotive IoT applications.
 * [conescan](https://github.com/ConnorRigby/conescan) - Automotive ECU hacking supertool for firmware dumping and manipulation via J2534 OBD interfaces.
+* [ddt4all](https://github.com/cedricp/ddt4all) - Cross-platform diagnostic application for Renault ECUs that reads DTCs and live data and sends manual diagnostic requests, described by its author as an unofficial educational tool.
 * [EcuBus-Pro](https://github.com/ecubus/EcuBus-Pro) - Cross-platform open-source ECU tool with UDS, CAN-TP, DoIP, LIN, and SOME/IP support, DBC and LDF databases, TypeScript scripting in the style of CAPL, and a command-line interface.
 * [Ford-ECU-Bruteforcer](https://github.com/jakka351/Ford-ECU-Bruteforcer) - Security access brute-force tool for pre-2011 Ford ECUs with 3-byte seed and 5-byte key.
 * [gallia](https://github.com/Fraunhofer-AISEC/gallia) - Extendable automotive pentesting framework from Fraunhofer AISEC focused on UDS, with DoIP and ISO-TP transports and structured logging for reproducible scans.
+* [iso14229](https://github.com/driftregion/iso14229) - Dependency-free C implementation of a UDS (ISO 14229) server and client with built-in ISO-TP, for building embedded ECU targets and test tools.
 * [odxtools](https://github.com/mercedes-benz/odxtools) - Python toolkit for parsing ODX/PDX (ISO 22901) diagnostic databases and encoding, decoding, and snooping ECU diagnostic sessions.
 * [OpenSOVD Classic Diagnostic Adapter](https://github.com/eclipse-opensovd/classic-diagnostic-adapter) - Eclipse OpenSOVD bridge in Rust that translates SOVD (ISO 17978) requests into UDS over DoIP for legacy ECUs, with a security plugin architecture.
 * [pq-flasher](https://github.com/I-CAN-hack/pq-flasher) - Python tools for reflashing VW PQ35 EPS using TP 2.0 transport layer and KWP2000 diagnostics.
@@ -89,6 +91,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [eth-ws-someip](https://github.com/jamores/eth-ws-someip) - Wireshark LUA dissectors for Automotive Ethernet SOME/IP and SOME/IP-SD protocols (Autosar 4.2).
 * [ICS CAP](https://intrepidcs.com/products/software/ics-cap/) - Free Wireshark plugin for monitoring Automotive Ethernet, CAN, CAN FD, LIN, and FlexRay networks.
 * [ProtoCrawler](https://cytal.co.uk/) - Intelligent protocol fuzzer for SOME/IP, DoIP, UDS, and Ethernet AVB satisfying ISO/SAE 21434 testing requirements.
+* [pysomeip](https://github.com/afflux/pysomeip) - Python asyncio implementation of the SOME/IP wire format and Service Discovery for scripting test clients and servers, without TCP subscription support.
 * [Scapy](https://scapy.net/) - Python packet manipulation library with support for DoIP, SOME/IP, AUTOSAR PDUs, SecOC, CAN-FD, and FlexRay protocols.
 * [someip-protocol-fuzzer](https://github.com/cfanatic/someip-protocol-fuzzer) - Black-box SOME/IP fuzzer that mutates user-defined protocol fields with radamsa and uses a ping heartbeat to detect when the target service stops responding.
 * [vsomeip](https://github.com/COVESA/vsomeip) - COVESA reference implementation of SOME/IP and SOME/IP-SD, used both as the target in automotive Ethernet fuzzing research and as a client for crafting service calls against production ECUs.
@@ -118,6 +121,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [V2Verifier](https://github.com/twardokus/v2verifier) - Open-source V2X security testbed with first open-source IEEE 1609.2 implementation for DSRC and C-V2X.
 * [VaN3Twin](https://github.com/DriveX-devs/VaN3Twin) - ETSI-compliant multi-stack V2X framework for ns-3 covering ITS-G5, C-V2X, and LTE with SUMO and CARLA co-simulation; the continuation of ms-van3t.
 * [Vanetza](https://github.com/riebl/vanetza) - Open-source ETSI C-ITS protocol stack covering GeoNetworking, BTP, DCC, and the security layer, widely used as the reference implementation for V2X experimentation.
+* [Veins](https://github.com/sommer/veins) - Open-source vehicular network simulation framework coupling OMNeT++ and SUMO, used as the testbed for VANET and V2X security and attack studies.
 
 ## EV Charging Security
 
@@ -126,6 +130,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [CheckOCPP](https://github.com/vfg27/CheckOCPP) - Wireshark dissector for OCPP 1.6 and 2.0.1 that identifies the protocol version and flags messages that do not match the schema.
 * [dsV2Gshark](https://github.com/dspace-group/dsV2Gshark) - Wireshark plugin that dissects ISO 15118 and DIN 70121 traffic, decoding EXI-encoded V2G payloads and SLAC handshakes into readable fields.
 * [EVerest](https://github.com/EVerest/everest-core) - Linux Foundation Energy full-stack open-source EV charging firmware implementing OCPP 1.6/2.0.1/2.1, ISO 15118-2/-3/-20, IEC 61851, and DIN SPEC 70121, useful as a reference target and test peer.
+* [iso15118](https://github.com/ecog-io/iso15118) - Python implementation of ISO 15118-2 and -20 in both the charging station (SECC) and vehicle (EVCC) roles, usable as a test peer for V2G sessions.
 * [open-plc-utils](https://github.com/qca/open-plc-utils) - Qualcomm Atheros powerline toolkit for HomePlug AV and Green PHY devices, the standard means of inspecting and manipulating the PLC layer that CCS charging sessions run over.
 * [OpenV2G](https://github.com/Martin-P/OpenV2G) - C implementation of the ISO 15118 and DIN 70121 vehicle-to-grid interface with an EXI codec, widely reused as the encoding engine behind other V2G analysis tooling.
 * [pyPLC](https://github.com/uhi22/pyPLC) - Python toolkit for CCS charging research that can pose as vehicle or charger, sniff HomePlug Green PHY traffic, and walk the SLAC, DIN 70121, and ISO 15118 state machines.
