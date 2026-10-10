@@ -1,0 +1,45 @@
+# Leads: candidates that were found but could not be opened or confirmed, so they
+# are not yet proposed. Discovery runs read this file first and re-try each lead;
+# when a lead is confirmed it is added to README.md (or rejected in
+# data/decisions.toml) and its record is deleted in the same change.
+#
+# This is the "note unreachable candidates as leads" rule from CLAUDE.md made
+# durable: a PR body is forgotten by the next run, this file is not.
+#
+# scripts/validate_list.py fails if a lead's URL is already in README.md, has a
+# rejected or removed decision, is on an avoid host, or names a section the README
+# does not have. A lead is not a verdict: it records what is unverified.
+#
+# Fields
+#   name     What the lead is.
+#   url      The URL to open and confirm.
+#   section  The README section it would go in (or change).
+#   reason   What is known, and exactly what could not be verified.
+#   date     YYYY-MM-DD, when it was recorded.
+#   ref      Optional. The pull request or issue it came up in, e.g. "#36".
+#
+# Keep records in date order, oldest first.
+
+[[lead]]
+name = "AutoHack, newer Zenodo record"
+url = "https://zenodo.org/records/20321379"
+section = "Datasets"
+reason = "The listed AutoHack entry links record 19661007 (v1, 2026-04-20), which says a newer version exists. A review bot claimed 20321379 is the official record; zenodo.org answered the sandbox with 403, and no page naming 20321379 could be found. If confirmed as the AutoHack record, repoint the existing entry."
+date = "2026-10-10"
+ref = "#36"
+
+[[lead]]
+name = "GEM-CAN data record"
+url = "https://doi.org/10.5281/zenodo.19161139"
+section = "Datasets"
+reason = "The listed GEM-CAN entry links the Data in Brief article page (open access, CC BY-NC 4.0). That page's data availability statement points to this Zenodo DOI, which could not be opened (zenodo.org answers the sandbox with 403). If it is the dataset itself, consider linking it instead."
+date = "2026-10-10"
+ref = "#36"
+
+[[lead]]
+name = "Contextualizing Security and Privacy of Software-Defined Vehicles: A Literature Review and Industry Perspectives"
+url = "https://arxiv.org/abs/2411.10612"
+section = "Research Papers"
+reason = "Opened and read: a systematic literature review plus industry questionnaire on SDV security (De Vincenzi et al., arXiv 2024, revised May 2026). It plausibly fits the Research Papers exception for well-executed surveys, but the maintainer has not decided; the year to state is 2024, which orders it before the 2025 SoKs."
+date = "2026-10-10"
+ref = "#36"
