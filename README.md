@@ -59,7 +59,6 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Atlas](https://github.com/kylehulscher/atlas) - Open-source ECU calibration application for reverse engineering and recalibrating Subaru, Toyota, and Honda ECUs, with an integrated Ghidra bundle for analysing tables and emulating ROM machine code.
 * [AutoPi](https://github.com/autopi-io/autopi-core) - Open-source core software for the AutoPi dongle, a Raspberry Pi-based OBD-II device for vehicle diagnostics, CAN bus data collection, and automotive IoT applications.
 * [conescan](https://github.com/ConnorRigby/conescan) - Automotive ECU hacking supertool for firmware dumping and manipulation via J2534 OBD interfaces.
-* [ddt4all](https://github.com/cedricp/ddt4all) - Cross-platform diagnostic application for Renault ECUs that reads DTCs and live data and sends manual diagnostic requests, described by its author as an unofficial educational tool.
 * [EcuBus-Pro](https://github.com/ecubus/EcuBus-Pro) - Cross-platform open-source ECU tool with UDS, CAN-TP, DoIP, LIN, and SOME/IP support, DBC and LDF databases, TypeScript scripting in the style of CAPL, and a command-line interface.
 * [Ford-ECU-Bruteforcer](https://github.com/jakka351/Ford-ECU-Bruteforcer) - Security access brute-force tool for pre-2011 Ford ECUs with 3-byte seed and 5-byte key.
 * [gallia](https://github.com/Fraunhofer-AISEC/gallia) - Extendable automotive pentesting framework from Fraunhofer AISEC focused on UDS, with DoIP and ISO-TP transports and structured logging for reproducible scans.
@@ -91,7 +90,6 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [eth-ws-someip](https://github.com/jamores/eth-ws-someip) - Wireshark LUA dissectors for Automotive Ethernet SOME/IP and SOME/IP-SD protocols (Autosar 4.2).
 * [ICS CAP](https://intrepidcs.com/products/software/ics-cap/) - Free Wireshark plugin for monitoring Automotive Ethernet, CAN, CAN FD, LIN, and FlexRay networks.
 * [ProtoCrawler](https://cytal.co.uk/) - Intelligent protocol fuzzer for SOME/IP, DoIP, UDS, and Ethernet AVB satisfying ISO/SAE 21434 testing requirements.
-* [pysomeip](https://github.com/afflux/pysomeip) - Python asyncio implementation of the SOME/IP wire format and Service Discovery for scripting test clients and servers, without TCP subscription support.
 * [Scapy](https://scapy.net/) - Python packet manipulation library with support for DoIP, SOME/IP, AUTOSAR PDUs, SecOC, CAN-FD, and FlexRay protocols.
 * [someip-protocol-fuzzer](https://github.com/cfanatic/someip-protocol-fuzzer) - Black-box SOME/IP fuzzer that mutates user-defined protocol fields with radamsa and uses a ping heartbeat to detect when the target service stops responding.
 * [vsomeip](https://github.com/COVESA/vsomeip) - COVESA reference implementation of SOME/IP and SOME/IP-SD, used both as the target in automotive Ethernet fuzzing research and as a client for crafting service calls against production ECUs.
@@ -130,7 +128,6 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [CheckOCPP](https://github.com/vfg27/CheckOCPP) - Wireshark dissector for OCPP 1.6 and 2.0.1 that identifies the protocol version and flags messages that do not match the schema.
 * [dsV2Gshark](https://github.com/dspace-group/dsV2Gshark) - Wireshark plugin that dissects ISO 15118 and DIN 70121 traffic, decoding EXI-encoded V2G payloads and SLAC handshakes into readable fields.
 * [EVerest](https://github.com/EVerest/everest-core) - Linux Foundation Energy full-stack open-source EV charging firmware implementing OCPP 1.6/2.0.1/2.1, ISO 15118-2/-3/-20, IEC 61851, and DIN SPEC 70121, useful as a reference target and test peer.
-* [iso15118](https://github.com/ecog-io/iso15118) - Python implementation of ISO 15118-2 and -20 in both the charging station (SECC) and vehicle (EVCC) roles, usable as a test peer for V2G sessions.
 * [open-plc-utils](https://github.com/qca/open-plc-utils) - Qualcomm Atheros powerline toolkit for HomePlug AV and Green PHY devices, the standard means of inspecting and manipulating the PLC layer that CCS charging sessions run over.
 * [OpenV2G](https://github.com/Martin-P/OpenV2G) - C implementation of the ISO 15118 and DIN 70121 vehicle-to-grid interface with an EXI codec, widely reused as the encoding engine behind other V2G analysis tooling.
 * [pyPLC](https://github.com/uhi22/pyPLC) - Python toolkit for CCS charging research that can pose as vehicle or charger, sniff HomePlug Green PHY traffic, and walk the SLAC, DIN 70121, and ISO 15118 state machines.
@@ -150,7 +147,6 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## Security Analysis
 
-* [Auto-ISAC Best Practice Guides](https://automotiveisac.com/best-practice-guides) - Industry-written guidance on cybersecurity management, governance and risk, third-party risk, awareness and training, and the secure development lifecycle, first released in 2016 and consolidated in 2024.
 * [Automotive Threat Matrix](https://atm.automotiveisac.com/) - Auto-ISAC's MITRE ATT&CK-style matrix of automotive adversary tactics and techniques, drawn from validated attacks and reproducible research, for threat modelling, TARA, and intelligence sharing.
 * [Automotive Threat Modeling Template](https://github.com/nccgroup/The_Automotive_Threat_Modeling_Template) - NCC Group stencil set for the Microsoft Threat Modeling Tool, supplying vehicle-specific element types, trust boundaries, and threat rules for ECU and in-vehicle network diagrams.
 * [AutoTARA](https://github.com/HackProof/AutoTARA) - Web-based TARA (Threat Analysis and Risk Assessment) framework for ISO/SAE 21434 that models systems as attack graphs and applies MITRE's CTSA/CRRA prioritization methodology with a Meta Attack Language simulation backend.
@@ -177,9 +173,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 * [AutoHack](https://zenodo.org/records/19661007) - Multi-bus CAN dataset from a real vehicle covering C-CAN, P-CAN, and B-CAN, with physically verified fuzzing, spoofing, replay, DoS, and UDS-based attacks.
 * [CAN-MIRGU](https://github.com/sampathrajapaksha/CAN-MIRGU) - CAN bus attack dataset from a modern vehicle driven on real roads over six days, with physically verified masquerade, suspension, and real attacks.
-* [can-train-and-test](https://bitbucket.org/brooke-lampe/can-train-and-test/src/master/) - Labelled CAN dataset from four vehicles with nine attack types, split into four train and test sets that vary whether the vehicle and attack are known, and one of the sources of the Cross-Vehicle Generalisation Benchmark.
 * [Car Hacking Dataset](https://ocslab.hksecurity.net/Datasets/car-hacking-dataset) - HCRL captures from a Kia Soul with labelled DoS, fuzzing, and RPM and gear spoofing injections, the most widely cited baseline in CAN intrusion detection papers.
-* [CICIoV2024](https://www.unb.ca/cic/datasets/iov-dataset-2024.html) - Canadian Institute for Cybersecurity CAN capture from a 2019 Ford with DoS and spoofing attacks on gas, RPM, speed, and steering wheel, about 1.4 million records.
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
 * [ROAD](https://0xsam.com/road/) - Real ORNL Automotive Dynamometer CAN intrusion dataset with verified fuzzing, targeted ID, masquerade, and accelerator attacks captured on a dynamometer.
 * [Survival Analysis Dataset](https://ocslab.hksecurity.net/Datasets/survival-ids) - HCRL CAN captures from a Hyundai YF Sonata, Kia Soul, and Chevrolet Spark with labelled flooding, fuzzy, and malfunction attacks.
