@@ -21,22 +21,6 @@
 # Keep records in date order, oldest first.
 
 [[lead]]
-name = "AutoHack, newer Zenodo record"
-url = "https://zenodo.org/records/20321379"
-section = "Datasets"
-reason = "The listed AutoHack entry links record 19661007 (v1, 2026-04-20), which says a newer version exists. A review bot claimed 20321379 is the official record; zenodo.org answered the sandbox with 403, and no page naming 20321379 could be found. If confirmed as the AutoHack record, repoint the existing entry."
-date = "2026-10-10"
-ref = "#36"
-
-[[lead]]
-name = "GEM-CAN data record"
-url = "https://doi.org/10.5281/zenodo.19161139"
-section = "Datasets"
-reason = "The listed GEM-CAN entry links the Data in Brief article page (open access, CC BY-NC 4.0). That page's data availability statement points to this Zenodo DOI, which could not be opened (zenodo.org answers the sandbox with 403). If it is the dataset itself, consider linking it instead."
-date = "2026-10-10"
-ref = "#36"
-
-[[lead]]
 name = "Contextualizing Security and Privacy of Software-Defined Vehicles: A Literature Review and Industry Perspectives"
 url = "https://arxiv.org/abs/2411.10612"
 section = "Research Papers"
