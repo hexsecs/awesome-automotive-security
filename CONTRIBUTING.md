@@ -78,6 +78,20 @@ is immediate and does not depend on having accumulated citations.
   link by hand before adding it. Prefer dropping a candidate over extending the
   exclusions.
 
+## Conference presentations
+
+The [Conference Presentations](README.md#conference-presentations) section is
+for talks that disclosed a real vulnerability in a production vehicle,
+charger or component, or that taught a reusable technique. Peer-reviewed
+papers belong under Research Papers, even when they were also presented.
+
+* Link the slides, white paper, recording or organiser's write-up that you
+  have opened. Prefer stable hosts such as `media.defcon.org`, `media.ccc.de`
+  and the organiser's own site.
+* Credit the speaker(s), venue and year as `Speaker, Venue Year.` at the start
+  of the description, then say what the talk showed in one sentence.
+* Entries are alphabetical by title like every other section.
+
 ## Books
 
 The [Books](README.md#books) section is for full-length books whose subject is
