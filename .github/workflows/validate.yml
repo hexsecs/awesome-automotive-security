@@ -3,9 +3,9 @@ name: Validate list
 on:
   push:
     branches: [main]
-    paths: ['README.md', 'data/**', 'scripts/validate_list.py', '.github/workflows/validate.yml']
+    paths: ['README.md', 'data/**', 'scripts/**', 'tests/**', '.github/workflows/validate.yml']
   pull_request:
-    paths: ['README.md', 'data/**', 'scripts/validate_list.py', '.github/workflows/validate.yml']
+    paths: ['README.md', 'data/**', 'scripts/**', 'tests/**', '.github/workflows/validate.yml']
   workflow_dispatch:
 
 permissions:
@@ -23,6 +23,9 @@ jobs:
 
       - name: Check list structure
         run: python3 scripts/validate_list.py
+
+      - name: Test the discovery tooling
+        run: python3 -m unittest discover -s tests
 
       # Hosts under [[excluded]] in data/hosts.toml answer automated clients with a
       # bot challenge rather than the page, so no link checker can verify them;

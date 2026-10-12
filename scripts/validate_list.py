@@ -5,7 +5,8 @@ Enforces the conventions described in CONTRIBUTING.md so that both human and
 automated contributions stay consistent. Exits non-zero on any error.
 
 Link-host rules come from data/hosts.toml, and candidates already rejected or
-removed from data/decisions.toml. With --lychee-excludes, prints one
+removed from data/decisions.toml. Candidates that could not be opened yet are
+parked in data/leads.toml, which is checked for staleness. With --lychee-excludes, prints one
 lychee exclude regex per `excluded` host instead of validating, for the
 workflows to build their link-check flags from.
 """
@@ -28,6 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
 HOSTS = ROOT / "data" / "hosts.toml"
 DECISIONS = ROOT / "data" / "decisions.toml"
+LEADS = ROOT / "data" / "leads.toml"
 
 # Groups in data/hosts.toml; see the header of that file for their meaning.
 HOST_GROUPS = ("excluded", "avoid", "reliable")
@@ -41,6 +43,9 @@ DECISION_KINDS = ("rejected", "removed", "kept")
 # health report flags (archived or dormant) that a maintainer chose to keep.
 EXCLUDING_KINDS = ("rejected", "removed")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+# Fields of a [[lead]] record in data/leads.toml: a candidate not yet proposed.
+LEAD_FIELDS = ("name", "url", "section", "reason", "date")
 
 ENTRY_RE = re.compile(r"^\* \[(?P<name>[^\]]+)\]\((?P<url>[^)]+)\) - (?P<desc>.+)$")
 TOC_RE = re.compile(r"^\* \[(?P<title>[^\]]+)\]\(#(?P<anchor>[^)]+)\)$")
@@ -149,6 +154,39 @@ def load_decisions(errors: list[str]) -> list[dict]:
     return records
 
 
+def load_leads(errors: list[str], path: Path = LEADS) -> list[dict]:
+    """data/leads.toml records. The file is optional; problems are added to errors."""
+    if not path.exists():
+        return []
+    try:
+        with path.open("rb") as f:
+            data = tomllib.load(f)
+    except (OSError, tomllib.TOMLDecodeError) as e:
+        errors.append(f"data/leads.toml could not be read: {e}")
+        return []
+
+    for table in sorted(set(data) - {"lead"}):
+        errors.append(f"data/leads.toml: unknown table '{table}'; use [[lead]]")
+
+    records = data.get("lead", [])
+    seen: set[str] = set()
+    for record in records:
+        where = f"data/leads.toml [[lead]] '{record.get('name', '')}'"
+        for field in LEAD_FIELDS:
+            if not record.get(field):
+                errors.append(f"{where}: needs '{field}'")
+        if record.get("date") and not DATE_RE.match(str(record["date"])):
+            errors.append(f"{where}: date must be YYYY-MM-DD, not '{record['date']}'")
+        url = record.get("url", "")
+        if url and urlparse(url).scheme != "https":
+            errors.append(f"{where}: url must be https, got '{url}'")
+        key = normalise(url)
+        if key and key in seen:
+            errors.append(f"{where}: URL is already used by another lead")
+        seen.add(key)
+    return records
+
+
 def lychee_excludes() -> int:
     """Print one lychee exclude regex per excluded host, e.g. dl\\.acm\\.org."""
     errors: list[str] = []
@@ -168,6 +206,7 @@ def main() -> int:
     errors: list[str] = []
     hosts = load_hosts(errors)
     decisions = load_decisions(errors)
+    leads = load_leads(errors)
 
     # --- collect sections and entries ---
     sections: list[str] = []
@@ -282,6 +321,26 @@ def main() -> int:
                 f"data/decisions.toml: '{record.get('name')}' is recorded as kept, but no "
                 "entry links to its URL. Delete the record, or record the entry as removed."
             )
+
+    # --- Leads must still be leads: not listed, not turned away, on a known section ---
+    for lead in leads:
+        where = f"data/leads.toml: lead '{lead.get('name')}'"
+        key = normalise(lead.get("url", ""))
+        if lead.get("section") and lead["section"] not in sections:
+            errors.append(f"{where} names section '{lead['section']}', which README.md does not have")
+        if key in listed:
+            errors.append(f"{where} is already listed in README.md. Delete the lead.")
+        record = decided.get(key)
+        if record:
+            errors.append(
+                f"{where} was {record.get('decision')} on {record.get('date')} "
+                f"({record.get('reason')}). Delete the lead, or the decision if it is overturned."
+            )
+        host = (urlparse(lead.get("url", "")).hostname or "").lower()
+        for rec in hosts["avoid"]:
+            allowed = {normalise(u) for u in rec.get("allow", [])}
+            if host_matches(host, rec.get("host", "")) and key not in allowed:
+                errors.append(f"{where} is on {host}, which data/hosts.toml lists under avoid")
 
     # --- Section layout: a blank line after each heading, none between entries ---
     for i, line in enumerate(lines):
