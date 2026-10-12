@@ -32,7 +32,7 @@ ref = "#36"
 name = "Making the Magic Leap past NVIDIA's secure bootchain and breaking some Tesla Autopilots along the way"
 url = "https://app.media.ccc.de/v/39c3-making-the-magic-leap-past-nvidia-s-secure-bootchain-and-breaking-some-tesla-autopilots-along-the-way"
 section = "Conference Presentations"
-reason = "39C3 (Dec 2025) talk by Elise Amber Katze. The page opened and the title is confirmed, but the abstract was seen only in a search snippet: a Tegra X2 BootROM fault-injection flaw said to affect Tesla Autopilot 2/2.5 hardware. The claim and the talk's automotive weight are unverified."
+reason = "39C3 (Dec 2025) talk by Elise Amber Katze. Page and abstract opened (media.ccc.de): the subject is a Tegra X2 BootROM USB-recovery flaw found by fault injection on a Magic Leap One; Tesla Autopilot 2 and 2.5 appear only as other Tegra X2 devices. Automotive weight is thin; add only if a maintainer wants it."
 date = "2026-10-12"
 
 [[lead]]
@@ -40,4 +40,11 @@ name = "Automotive Ethernet, 3rd edition"
 url = "https://www.cambridge.org/core/books/automotive-ethernet/"
 section = "Books"
 reason = "Matheus and Konigseder, Cambridge University Press 2021 (ISBN 9781108841955 per search snippets). cambridge.org answered 403/404 from the sandbox, so neither the URL nor the edition was opened. It covers the Ethernet PHYs and TSN with only brief security coverage, so it may not meet the vehicle-security bar."
+date = "2026-10-12"
+
+[[lead]]
+name = "PCAutomotive Black Hat Europe 2024 infotainment talk (Parnishchev and Ivachev)"
+url = "https://www.welivesecurity.com/en/privacy/black-hat-europe-2024-hacking-car-infotainment-system/"
+section = "Conference Presentations"
+reason = "Only a press article about the talk was opened; it describes exploiting an infotainment unit to record the cabin microphone and track GPS. The talk's formal title and a blackhat.com or slides URL are unconfirmed because blackhat.com refuses the sandbox. Replace with the talk page before adding."
 date = "2026-10-12"
