@@ -295,6 +295,7 @@ and similar venues.
 * [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml) - Automotive networking security standards and solutions overview.
 * [Car Hacking Village](https://www.carhackingvillage.com/events) - Non-profit running hands-on car hacking workshops and CTFs at DEF CON, Black Hat, HITCON, CODE BLUE, and other conferences.
 * [OpenGarages](https://www.opengarages.org/) - Open vehicle research collective behind the Car Hacker's Handbook, publishing the free edition of the book, ICSim, and workshop material for hands-on vehicle security practice.
+* [OWASP Automotive Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Automotive_Security_Cheat_Sheet.html) - OWASP cheat sheet covering threat modeling, message authentication, secure boot, and update verification for vehicle ECUs and connected services.
 * [What is Automotive MACsec?](https://youtu.be/5QiHmMoJCOE) - Video training on Automotive MACsec concepts by Technica Engineering.
 
 ## Related Awesome Lists
