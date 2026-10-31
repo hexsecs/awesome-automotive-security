@@ -49,9 +49,3 @@ section = "Conference Presentations"
 reason = "Only a press article about the talk was opened; it describes exploiting an infotainment unit to record the cabin microphone and track GPS. The talk's formal title and a blackhat.com or slides URL are unconfirmed because blackhat.com refuses the sandbox. Replace with the talk page before adding."
 date = "2026-10-12"
 
-[[lead]]
-name = "can-train-and-test"
-url = "https://arxiv.org/abs/2308.04972"
-section = "Datasets"
-reason = "Opened the arXiv page (Lampe and Meng, 2023): CAN captures from four vehicles of two manufacturers with replayable .log and labelled .csv files and nine attack types, already cited by the listed Cross-Vehicle Generalisation Benchmark. The page does not say where the data is hosted, and a search found no repository; a guessed GitHub URL could not be read. Needs the dataset's real download location (see the paper's data-availability section) before it can be listed."
-date = "2026-10-12"
