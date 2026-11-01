@@ -129,6 +129,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [ChargeSploit](https://github.com/konicst1/ChargeSploit) - Security testing framework for ISO 15118-2 and DIN SPEC 70121 that emulates either the charger or the vehicle, with TLS support and extensible handlers for injecting non-compliant behaviour at any step of a session.
 * [CheckOCPP](https://github.com/vfg27/CheckOCPP) - Wireshark dissector for OCPP 1.6 and 2.0.1 that identifies the protocol version and flags messages that do not match the schema.
 * [dsV2Gshark](https://github.com/dspace-group/dsV2Gshark) - Wireshark plugin that dissects ISO 15118 and DIN 70121 traffic, decoding EXI-encoded V2G payloads and SLAC handshakes into readable fields.
+* [EmuOCPP](https://github.com/vfg27/EmuOCPP) - Mininet-based emulator for OCPP charging networks covering versions 1.6, 2.0, and 2.0.1 across all three security profiles, with attack demos for the MitM and downgrade flaws in its companion research.
 * [EVerest](https://github.com/EVerest/EVerest) - Linux Foundation Energy full-stack open-source EV charging firmware implementing OCPP 1.6/2.0.1/2.1, ISO 15118-2/-3/-20, IEC 61851, and DIN SPEC 70121, useful as a reference target and test peer.
 * [open-plc-utils](https://github.com/qca/open-plc-utils) - Qualcomm Atheros powerline toolkit for HomePlug AV and Green PHY devices, the standard means of inspecting and manipulating the PLC layer that CCS charging sessions run over.
 * [OpenV2G](https://github.com/Martin-P/OpenV2G) - C implementation of the ISO 15118 and DIN 70121 vehicle-to-grid interface with an EXI codec, widely reused as the encoding engine behind other V2G analysis tooling.
@@ -174,6 +175,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 * [AutoHack](https://zenodo.org/records/19661006) - Multi-bus CAN dataset from a real vehicle covering C-CAN, P-CAN, and B-CAN, with physically verified fuzzing, spoofing, replay, DoS, and UDS-based attacks.
 * [CAN-MIRGU](https://github.com/sampathrajapaksha/CAN-MIRGU) - CAN bus attack dataset from a modern vehicle driven on real roads over six days, with physically verified masquerade, suspension, and real attacks.
+* [can-train-and-test](https://bitbucket.org/brooke-lampe/can-train-and-test/src/master/) - Labelled CAN captures from four vehicles across two manufacturers with nine attack types, split into known and unknown vehicle and attack test subsets for evaluating IDS generalisation.
 * [Car Hacking Dataset](https://ocslab.hksecurity.net/Datasets/car-hacking-dataset) - HCRL captures from a Kia Soul with labelled DoS, fuzzing, and RPM and gear spoofing injections, the most widely cited baseline in CAN intrusion detection papers.
 * [CarDS](https://tudatalib.ulb.tu-darmstadt.de/handle/tudatalib/5080) - ACSAC 2025 dataset of over nine hours of traffic from a 2020 electric vehicle with 10 CAN buses and 6 automotive Ethernet buses, covering benign driving and attack scenarios.
 * [Cross-Vehicle Generalisation Benchmark](https://github.com/obaf/Cross-Vehicle-Generalisation-of-In-Vehicle-Intrusion-Detection) - Leave-one-vehicle-out benchmark unifying ROAD, CIDv2, and can-train-and-test into 217 captures across eight vehicles for evaluating whether CAN IDS models transfer.
@@ -251,6 +253,8 @@ publication. Open-access copies are linked where one exists.
 * [The Heat is On: Understanding and Mitigating Vulnerabilities of Thermal Image Perception in Autonomous Systems](https://www.ndss-symposium.org/ndss-paper/the-heat-is-on-understanding-and-mitigating-vulnerabilities-of-thermal-image-perception-in-autonomous-systems/) - Bhupathiraju et al., NDSS 2026. Shows heat sources degrade thermal-camera pedestrian detection and sensor fusion, including in real driving, and proposes real-time defences.
 * [Charge It to My Neighbor: A Relay Attack on ISO 15118 Plug and Charge Payment](https://www.usenix.org/conference/vehiclesec26/presentation/low) - Löw et al., USENIX VehicleSec 2026. Relays Plug and Charge authentication so the attacker charges their own car while the victim is billed, exploiting missing station identity in the signature and weak TLS certificate handling, with a proof of concept.
 * [Reversing a Brake ECU Firmware Update](https://www.usenix.org/conference/vehiclesec26/presentation/gardiner) - Gardiner, USENIX VehicleSec 2026. Reverse engineers the Bendix EC80 brake ECU's J2497 power-line updater, diffs the firmware to show a safety recall also patched security bugs, and demonstrates a write-where primitive and DoS on a bench and in a moving truck.
+* [Race to Charge: Concurrency Bugs and State Integrity Violations in EV Charging Infrastructure](https://www.usenix.org/conference/vehiclesec26/presentation/lee) - Lee and Lee, USENIX VehicleSec 2026. Audits the open-source EVerest charging stack and finds 11 CVE-assigned flaws, from data races confirmed with sanitizers to logic exploits such as charging that continues after a remote stop.
+* [On the Real-World Applicability of Automotive CAN Intrusion Detection Systems](https://www.usenix.org/conference/vehiclesec26/presentation/lazeski) - Lazeski et al., USENIX VehicleSec 2026. Work in progress showing that ML-based CAN intrusion detectors often learn dataset shortcuts because common datasets contain only simple attacks, so high scores do not imply robustness against a practical attacker.
 
 ## Conference Presentations
 
@@ -295,6 +299,7 @@ and similar venues.
 * [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml) - Automotive networking security standards and solutions overview.
 * [Car Hacking Village](https://www.carhackingvillage.com/events) - Non-profit running hands-on car hacking workshops and CTFs at DEF CON, Black Hat, HITCON, CODE BLUE, and other conferences.
 * [OpenGarages](https://www.opengarages.org/) - Open vehicle research collective behind the Car Hacker's Handbook, publishing the free edition of the book, ICSim, and workshop material for hands-on vehicle security practice.
+* [OWASP Automotive Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Automotive_Security_Cheat_Sheet.html) - OWASP cheat sheet covering threat modeling, message authentication, secure boot, and update verification for vehicle ECUs and connected services.
 * [What is Automotive MACsec?](https://youtu.be/5QiHmMoJCOE) - Video training on Automotive MACsec concepts by Technica Engineering.
 
 ## Related Awesome Lists
