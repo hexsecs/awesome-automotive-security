@@ -155,7 +155,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [Automotive Threat Modeling Template](https://github.com/nccgroup/The_Automotive_Threat_Modeling_Template) - NCC Group stencil set for the Microsoft Threat Modeling Tool, supplying vehicle-specific element types, trust boundaries, and threat rules for ECU and in-vehicle network diagrams.
 * [AutoTARA](https://github.com/HackProof/AutoTARA) - Web-based TARA (Threat Analysis and Risk Assessment) framework for ISO/SAE 21434 that models systems as attack graphs and applies MITRE's CTSA/CRRA prioritization methodology with a Meta Attack Language simulation backend.
 * [AVCDL](https://github.com/nutonomy/AVCDL) - Motional's open-sourced Versatile Cybersecurity Development Lifecycle with process definitions and templates mapped to ISO/SAE 21434, ISO 24089, and UN R155/R156, assessed by TUV SUD.
-* [Security AutoDesigner](https://plaxidityx.com/products/security-autodesigner/) - Automated TARA platform for creating ISO 21434 and UNR 155 compliant threat analysis reports.
+* [Security AutoDesigner](https://plaxidityx.com/security-engines/security-autodesigner/) - Automated TARA platform for creating ISO 21434 and UNR 155 compliant threat analysis reports.
 * [Uptane](https://uptane.org/) - Open standard for securing automotive over-the-air updates that extends TUF to limit the damage when a repository or signing key is compromised, governed under the Joint Development Foundation.
 
 ## Penetration Testing

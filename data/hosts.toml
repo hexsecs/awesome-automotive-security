@@ -55,6 +55,10 @@ reason = "Answers automated clients with a 202 challenge (#6). DOI-backed and st
 host = "infoscience.epfl.ch"
 reason = "Answers 202 host-wide, entity pages and direct bitstreams alike (#8). Hosts Raya and Hubaux, which has no other open copy."
 
+[[excluded]]
+host = "plaxidityx.com"
+reason = "CI lychee reports connection failure for this host on the old URL (#56) and the moved URL (#57), while search crawlers index the site; www answers 401 to automated clients. Vendor's own canonical product page, hand-verified via search-index crawl in #57."
+
 # --- avoid: the validator rejects README URLs on these ------------------------
 
 [[avoid]]
