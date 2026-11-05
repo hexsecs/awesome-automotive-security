@@ -66,6 +66,10 @@ host = "amazon.com"
 reason = "Documented as refusing automated clients (#10). Link the publisher, or a books.google.com record, instead."
 
 [[avoid]]
+host = "cambridge.org"
+reason = "Answers CI lychee with 403 (#60) while answering a sandbox curl with 200; link the books.google.com catalogue record for Cambridge titles instead."
+
+[[avoid]]
 host = "link.springer.com"
 reason = "Documented as bot-challenging since #8, and as refusing Springer book pages in #10. Link an arXiv or author copy, or a books.google.com record, instead."
 # Chimaera's article page has been on the list since #1 and passed lychee in
@@ -106,10 +110,6 @@ reason = "Passed in every CI run; the default for preprints and open copies of p
 [[reliable]]
 host = "books.google.com"
 reason = "Passed in #10; the neutral catalogue record for books whose publisher refuses the checker."
-
-[[reliable]]
-host = "cambridge.org"
-reason = "Publisher page for Automotive Ethernet answered 200 to automated clients; the short ISBN URL redirects to the /us/ title page, which is the URL listed."
 
 [[reliable]]
 host = "copperhilltech.com"
