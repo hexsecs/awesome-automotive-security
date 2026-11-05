@@ -42,3 +42,10 @@ section = "Conference Presentations"
 reason = "Only a press article about the talk was opened; it describes exploiting an infotainment unit to record the cabin microphone and track GPS. The talk's formal title and a blackhat.com or slides URL are unconfirmed because blackhat.com refuses the sandbox. Replace with the talk page before adding."
 date = "2026-10-12"
 
+
+[[lead]]
+name = "Pedal to the Bare Metal"
+url = "https://www.ITNews.com.au/news/researchers-chain-tesla-charger-bug-into-a-four-vendor-ev-worm-628346"
+section = "Conference Presentations"
+reason = "Scharnowski and Covic (Fuzzware.io), Black Hat USA 2026: wormable chain from a Tesla Universal Wall Connector over SWCAN to an Alpine infotainment unit over Wi-Fi, then to Autel and ChargePoint chargers over Bluetooth; Tesla confirmed the bug patched late 2025. Press article opened and verified; still needs the Black Hat briefing page or slides PDF before adding."
+date = "2026-11-05"
