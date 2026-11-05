@@ -86,6 +86,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [pyXCP](https://github.com/christoph2/pyxcp) - Python implementation of the ASAM MCD-1 XCP protocol over CAN, Ethernet, and USB, with seed-and-key access handling, for measuring, calibrating, and flashing ECUs.
 * [Simos18_SBOOT](https://github.com/bri3d/Simos18_SBOOT) - Documented exploit chain against the VW Simos18 supplier bootloader, chaining PWM entry, a weak Mersenne Twister seed/key, and a CRC bounds-check flaw into arbitrary flash read.
 * [TC1791_CAN_BSL](https://github.com/bri3d/TC1791_CAN_BSL) - CAN bootstrap loader for Infineon TriCore AudoMAX parts such as the TC1791, giving arbitrary flash and RAM read/write on Simos18 and related ECUs without desoldering.
+* [Zephyr-Reference-ECU](https://github.com/Xaloqi/Zephyr-Reference-ECU) - Forkable body control module on Zephyr with UDS diagnostics over CAN and DoIP, SecurityAccess with AES-128-CMAC, and signed firmware update, runnable with no hardware or on a NUCLEO-H753ZI board.
 
 ## Automotive Ethernet
 
