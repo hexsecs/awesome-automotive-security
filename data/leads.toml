@@ -36,13 +36,6 @@ reason = "39C3 (Dec 2025) talk by Elise Amber Katze. Page and abstract opened (m
 date = "2026-10-12"
 
 [[lead]]
-name = "Automotive Ethernet, 3rd edition"
-url = "https://www.cambridge.org/core/books/automotive-ethernet/"
-section = "Books"
-reason = "Matheus and Konigseder, Cambridge University Press 2021 (ISBN 9781108841955 per search snippets). cambridge.org answered 403/404 from the sandbox, so neither the URL nor the edition was opened. It covers the Ethernet PHYs and TSN with only brief security coverage, so it may not meet the vehicle-security bar."
-date = "2026-10-12"
-
-[[lead]]
 name = "PCAutomotive Black Hat Europe 2024 infotainment talk (Parnishchev and Ivachev)"
 url = "https://www.welivesecurity.com/en/privacy/black-hat-europe-2024-hacking-car-infotainment-system/"
 section = "Conference Presentations"

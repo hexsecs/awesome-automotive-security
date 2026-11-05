@@ -108,6 +108,10 @@ host = "books.google.com"
 reason = "Passed in #10; the neutral catalogue record for books whose publisher refuses the checker."
 
 [[reliable]]
+host = "cambridge.org"
+reason = "Publisher page for Automotive Ethernet answered 200 to automated clients; the short ISBN URL redirects to the /us/ title page, which is the URL listed."
+
+[[reliable]]
 host = "copperhilltech.com"
 reason = "Passed in #10 as the publisher page for the Voss CAN guide."
 
