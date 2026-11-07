@@ -36,14 +36,6 @@ reason = "39C3 (Dec 2025) talk by Elise Amber Katze. Page and abstract opened (m
 date = "2026-10-12"
 
 [[lead]]
-name = "PCAutomotive Black Hat Europe 2024 infotainment talk (Parnishchev and Ivachev)"
-url = "https://www.welivesecurity.com/en/privacy/black-hat-europe-2024-hacking-car-infotainment-system/"
-section = "Conference Presentations"
-reason = "Only a press article about the talk was opened; it describes exploiting an infotainment unit to record the cabin microphone and track GPS. The talk's formal title and a blackhat.com or slides URL are unconfirmed because blackhat.com refuses the sandbox. Replace with the talk page before adding."
-date = "2026-10-12"
-
-
-[[lead]]
 name = "Pedal to the Bare Metal"
 url = "https://www.ITNews.com.au/news/researchers-chain-tesla-charger-bug-into-a-four-vendor-ev-worm-628346"
 section = "Conference Presentations"
