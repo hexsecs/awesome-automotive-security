@@ -35,9 +35,3 @@ section = "Conference Presentations"
 reason = "39C3 (Dec 2025) talk by Elise Amber Katze. Page and abstract opened (media.ccc.de): the subject is a Tegra X2 BootROM USB-recovery flaw found by fault injection on a Magic Leap One; Tesla Autopilot 2 and 2.5 appear only as other Tegra X2 devices. Automotive weight is thin; add only if a maintainer wants it."
 date = "2026-10-12"
 
-[[lead]]
-name = "Pedal to the Bare Metal"
-url = "https://www.ITNews.com.au/news/researchers-chain-tesla-charger-bug-into-a-four-vendor-ev-worm-628346"
-section = "Conference Presentations"
-reason = "Scharnowski and Covic (Fuzzware.io), Black Hat USA 2026: wormable chain from a Tesla Universal Wall Connector over SWCAN to an Alpine infotainment unit over Wi-Fi, then to Autel and ChargePoint chargers over Bluetooth; Tesla confirmed the bug patched late 2025. Press article opened and verified; still needs the Black Hat briefing page or slides PDF before adding."
-date = "2026-11-05"
