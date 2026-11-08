@@ -99,3 +99,12 @@ decision = "rejected"
 reason = "A commercial data platform for hardware systems in general; its own demo is a grid battery-storage system and CAN is one extension among many. It is neither automotive-specific nor security tooling (CONTRIBUTING.md criteria 1 and 2), and python-can, cantools, SavvyCAN and CANarchy already cover CAN analysis. Worth a new suggestion only if the company ships an automotive security tool or open-source CAN intrusion-analysis work."
 date = "2026-10-10"
 ref = "#38"
+
+
+[[decision]]
+name = "Ioniq5_CAN"
+url = "https://github.com/tylerharvey/Ioniq5_CAN"
+decision = "rejected"
+reason = "Tuning/preconditioning project; out of scope per CONTRIBUTING.md (pure telemetry/tuning unless headline security feature)."
+date = "2026-11-08"
+ref = "hana/daily-2026-11-08"
