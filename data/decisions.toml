@@ -108,3 +108,19 @@ decision = "rejected"
 reason = "Tuning/preconditioning project; out of scope per CONTRIBUTING.md (pure telemetry/tuning unless headline security feature)."
 date = "2026-11-08"
 ref = "hana/daily-2026-11-08"
+
+[[decision]]
+name = "Unlocking a Van From My Phone (One CAN Frame)"
+url = "https://akj7.github.io/posts/reverse-engineering-a-vans-keyless-entry/"
+decision = "rejected"
+reason = "A single-vehicle write-up (finding and replaying one van's central-locking frame, 0x351, with CANExplorer), not a reusable resource; the tool it demonstrates is already listed. Declined by the owner 2026-11-09. The author removed the post from the blog the same day."
+date = "2026-11-09"
+ref = "#64"
+
+[[decision]]
+name = "Open Source CAN Bridge"
+url = "https://bitbucket.org/emile_nijssen/open-source-can-bridge"
+decision = "rejected"
+reason = "Emile Nijssen's three-bus CAN man-in-the-middle bridge (2020): open hardware and firmware, but no maintenance signal since a single 2022 Bitbucket upload, and no API or front-end, so behaviour changes mean editing and reflashing the firmware. Declined by the owner 2026-11-09."
+date = "2026-11-09"
+ref = "#64"
