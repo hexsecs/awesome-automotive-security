@@ -124,3 +124,19 @@ decision = "rejected"
 reason = "Emile Nijssen's three-bus CAN man-in-the-middle bridge (2020): open hardware and firmware, but no maintenance signal since a single 2022 Bitbucket upload, and no API or front-end, so behaviour changes mean editing and reflashing the firmware. Declined by the owner 2026-11-09."
 date = "2026-11-09"
 ref = "#64"
+
+[[decision]]
+name = "Automotive Security Testing Lab"
+url = "https://github.com/everna44/automotive-security-testing-lab"
+decision = "rejected"
+reason = "Personal job-preparation practice project (Korean), created 2026-11-10: two vcan labs done (SocketCAN capture and a minimal virtual-ECU read test), with fuzzing, dataset analysis, and SCA/SBOM only planned and no adoption. A learning log, not a reusable resource."
+date = "2026-11-11"
+ref = "hana/daily-2026-11-11"
+
+[[decision]]
+name = "can-ids"
+url = "https://github.com/d0ok/can-ids"
+decision = "rejected"
+reason = "Single-author ML experiment on the HCRL Car-Hacking dataset (Isolation Forest plus ID whitelist vs LSTM), 1 star, last push 2026-11-02. A well-documented one-off experiment with honest limitations, not a reusable tool or dataset; the HCRL dataset it evaluates on is already listed."
+date = "2026-11-11"
+ref = "hana/daily-2026-11-11"
