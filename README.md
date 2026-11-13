@@ -69,6 +69,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [iso14229](https://github.com/driftregion/iso14229) - Dependency-free C implementation of a UDS (ISO 14229) server and client with built-in ISO-TP, for building embedded ECU targets and test tools.
 * [odxtools](https://github.com/mercedes-benz/odxtools) - Python toolkit for parsing ODX/PDX (ISO 22901) diagnostic databases and encoding, decoding, and snooping ECU diagnostic sessions.
 * [OpenSOVD Classic Diagnostic Adapter](https://github.com/eclipse-opensovd/classic-diagnostic-adapter) - Eclipse OpenSOVD bridge in Rust that translates SOVD (ISO 17978) requests into UDS over DoIP for legacy ECUs, with a security plugin architecture.
+* [OpenVehicleDiag](https://github.com/rnd-ash/OpenVehicleDiag) - Rust ECU diagnostics and reprogramming application over J2534 pass-through adapters and Linux SocketCAN, with UDS and KWP2000 sessions and a converter that turns Mercedes CBF diagnostic databases into its own JSON format.
 * [pq-flasher](https://github.com/I-CAN-hack/pq-flasher) - Python tools for reflashing VW PQ35 EPS using TP 2.0 transport layer and KWP2000 diagnostics.
 * [python-doipclient](https://github.com/jacobschaer/python-doipclient) - Pure Python DoIP (ISO 13400) client that plugs into udsoncan as a transport layer for diagnostics over automotive Ethernet.
 * [uds](https://github.com/mdabrowski1990/uds) - Python package for ISO 14229 UDS in both client and server roles over CAN, Ethernet, LIN, FlexRay, and K-Line, usable for simulation, testing, and decoding UDS traffic.
@@ -125,6 +126,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [V2Verifier](https://github.com/twardokus/v2verifier) - Open-source V2X security testbed with first open-source IEEE 1609.2 implementation for DSRC and C-V2X.
 * [VaN3Twin](https://github.com/DriveX-devs/VaN3Twin) - ETSI-compliant multi-stack V2X framework for ns-3 covering ITS-G5, C-V2X, and LTE with SUMO and CARLA co-simulation; the continuation of ms-van3t.
 * [Vanetza](https://github.com/riebl/vanetza) - Open-source ETSI C-ITS protocol stack covering GeoNetworking, BTP, DCC, and the security layer, widely used as the reference implementation for V2X experimentation.
+* [VASP](https://github.com/quic/vasp) - V2X Application Spoofing Platform from Qualcomm that runs a library of BSM spoofing and falsification attacks on top of Veins, the artifact of the VehicleSec 2023 paper; archived in 2026.
 * [Veins](https://github.com/sommer/veins) - Open-source vehicular network simulation framework coupling OMNeT++ and SUMO, used as the testbed for VANET and V2X security and attack studies.
 
 ## EV Charging Security
@@ -311,7 +313,9 @@ and similar venues.
 * [Automotive Cybersecurity Roadmap](https://github.com/AutoSecurityy/Automotive-Cybersecurity-Roadmap) - Structured learning path from CAN and UDS fundamentals through TARA, firmware reverse engineering, and hardware hacking into specialized career tracks.
 * [Automotive Security Timeline](https://github.com/automotive-security/Automotive-Security-Timeline) - Continuously updated knowledge base of automotive cybersecurity events including vulnerability disclosures, attack demonstrations, Pwn2Own Automotive results, and supply-chain incidents.
 * [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml) - Automotive networking security standards and solutions overview.
+* [Bypassing Debug Password Protection on the RH850 Family](https://blog.quarkslab.com/bypassing-debug-password-protection-on-the-rh850-family-using-fault-injection.html) - Quarkslab walkthrough of defeating the 16-byte IDCODE debug lock on Renesas RH850 ECU microcontrollers with crowbar voltage glitching, using a ChipWhisperer Husky or a low-cost Pico Glitcher.
 * [Car Hacking Village](https://www.carhackingvillage.com/events) - Non-profit running hands-on car hacking workshops and CTFs at DEF CON, Black Hat, HITCON, CODE BLUE, and other conferences.
+* [Fleet Cyber Challenge](https://nmfta.org/standards/cybersecurity/fleet-cyber-challenge/) - NMFTA's free self-paced capture-the-flag lab for commercial vehicle security, with scenarios on CAN traffic analysis, ELD compromise, GPS spoofing, firmware artifacts, and telematics API credentials, needing no account to start.
 * [OpenGarages](https://www.opengarages.org/) - Open vehicle research collective behind the Car Hacker's Handbook, publishing the free edition of the book, ICSim, and workshop material for hands-on vehicle security practice.
 * [OWASP Automotive Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Automotive_Security_Cheat_Sheet.html) - OWASP cheat sheet covering threat modeling, message authentication, secure boot, and update verification for vehicle ECUs and connected services.
 * [What is Automotive MACsec?](https://youtu.be/5QiHmMoJCOE) - Video training on Automotive MACsec concepts by Technica Engineering.
