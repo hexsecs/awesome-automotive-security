@@ -140,3 +140,11 @@ decision = "rejected"
 reason = "Single-author ML experiment on the HCRL Car-Hacking dataset (Isolation Forest plus ID whitelist vs LSTM), 1 star, last push 2026-11-02. A well-documented one-off experiment with honest limitations, not a reusable tool or dataset; the HCRL dataset it evaluates on is already listed."
 date = "2026-11-11"
 ref = "hana/daily-2026-11-11"
+
+[[decision]]
+name = "workshop_firmware_reverse_engineering"
+url = "https://github.com/emproof-com/workshop_firmware_reverse_engineering"
+decision = "rejected"
+reason = "Emproof's general firmware reverse engineering workshop (ELF analysis, keygenning, malware triage, embedded Linux, ARM bare metal). Presented at ScapyCon Automotive 2025, but the material is not automotive-specific: one car_demo task about Wi-Fi credential extraction, no ECU architectures or vehicle networks. Fails CONTRIBUTING.md criterion 1."
+date = "2026-11-13"
+ref = "discover/2026-11-13"
