@@ -320,6 +320,7 @@ and similar venues.
 ## Learning Resources
 
 * [Automotive Cybersecurity Roadmap](https://github.com/AutoSecurityy/Automotive-Cybersecurity-Roadmap) - Structured learning path from CAN and UDS fundamentals through TARA, firmware reverse engineering, and hardware hacking into specialized career tracks.
+* [Automotive Security Research Group (ASRG)](https://asrg.io/) - Non-profit community with local chapters worldwide that runs talks, workshops, and CTFs, and hosts open research projects such as an automotive vulnerability database and threat catalogue.
 * [Automotive Security Timeline](https://github.com/automotive-security/Automotive-Security-Timeline) - Continuously updated knowledge base of automotive cybersecurity events including vulnerability disclosures, attack demonstrations, Pwn2Own Automotive results, and supply-chain incidents.
 * [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml) - Automotive networking security standards and solutions overview.
 * [Bypassing Debug Password Protection on the RH850 Family](https://blog.quarkslab.com/bypassing-debug-password-protection-on-the-rh850-family-using-fault-injection.html) - Quarkslab walkthrough of defeating the 16-byte IDCODE debug lock on Renesas RH850 ECU microcontrollers with crowbar voltage glitching, using a ChipWhisperer Husky or a low-cost Pico Glitcher.
