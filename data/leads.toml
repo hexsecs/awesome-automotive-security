@@ -35,3 +35,19 @@ section = "Conference Presentations"
 reason = "39C3 (Dec 2025) talk by Elise Amber Katze. Page and abstract opened (media.ccc.de): the subject is a Tegra X2 BootROM USB-recovery flaw found by fault injection on a Magic Leap One; Tesla Autopilot 2 and 2.5 appear only as other Tegra X2 devices. Automotive weight is thin; add only if a maintainer wants it."
 date = "2026-10-12"
 
+[[lead]]
+name = "EVPot: A High-Interaction Honeypot for Detecting and Analyzing Attacks Against OCPP-Based Electric Vehicle Charging Infrastructures"
+url = "https://dl.acm.org/doi/10.1145/3847353.3847494"
+section = "Research Papers"
+reason = "ACM paper published 14 Nov 2026 (Universite de Sherbrooke): high-interaction OCPP honeypot that found eight OCPP specification vulnerabilities, five previously undocumented, disclosed to the Open Charge Alliance. Abstract and ACM page opened; full text not openable from the sandbox (dl.acm.org answers automated clients with 403). Too new to judge influence against the Research Papers bar; revisit once it has had time to be cited or adopted."
+date = "2026-11-18"
+ref = "hana/daily-2026-11-18"
+
+[[lead]]
+name = "Towards Secure In-Vehicle Communication: Surveying CAN and Automotive Ethernet Threats, Standards, and Detection Techniques"
+url = "https://doi.org/10.23919/cje.2025.00.230"
+section = "Research Papers"
+reason = "Survey of CAN and automotive Ethernet threats, standards, and detection techniques (Li et al., Chinese Journal of Electronics 2026, 35(2): 625-650). Plausibly fits the Research Papers exception for well-executed surveys, but quality not yet assessed and the paper itself not opened from the sandbox. Revisit in the monthly discover pass."
+date = "2026-11-18"
+ref = "hana/daily-2026-11-18"
+
