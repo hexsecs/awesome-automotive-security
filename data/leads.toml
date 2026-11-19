@@ -51,3 +51,11 @@ reason = "Survey of CAN and automotive Ethernet threats, standards, and detectio
 date = "2026-11-18"
 ref = "hana/daily-2026-11-18"
 
+[[lead]]
+name = "CAN Opener"
+url = "https://dev.canopener.io/"
+section = "CAN Bus Analysis"
+reason = "ESP32-C5 dual CAN-FD OBD adapter with Renigne desktop app (SLCAN sniffing, dashcam sync, LLM-assisted CAN ID reverse engineering) and a community COVESA VSS vehicle-profile marketplace. Site opened 2026-11-19 (HTTP 200, real product in free beta) and the hamradio.my write-up read, but no public source repository could be found and the open-source claim is unverified; commercial product with no field-use track record yet. Revisit once repositories are public or the tool is established."
+date = "2026-11-19"
+ref = "hana/daily-2026-11-19"
+
