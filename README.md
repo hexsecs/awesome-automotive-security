@@ -27,6 +27,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 ## CAN Bus Analysis
 
 * [BUSMASTER](https://github.com/rbei-etas/busmaster) - Open-source CAN simulation, analysis, and test tool from Bosch Engineering and ETAS, with a node simulator, DBC-driven signal interpretation, and scriptable test automation.
+* [Cabana](https://github.com/deanlee/openpilot-cabana) - Standalone CAN and CAN FD analyzer split from openpilot, with live bit-level heatmaps, signal discovery, a DBC editor, and drive replay synchronized to video.
 * [CAN Commander](https://github.com/MatthewKuKanich/CAN_Commander) - Flipper Zero application and companion ESP32 CAN board for reverse engineering vehicle networks, with sniffing, DBC decoding, replay, and injection profiles usable without a laptop.
 * [CAN Playground](https://github.com/numbpill3d/can-playground) - Local-first Tauri desktop app for viewing, decoding, and capturing CAN bus traffic, with DBC import, signal annotation, and bit-level change timelines.
 * [can-utils](https://github.com/linux-can/can-utils) - Linux-CAN SocketCAN userspace utilities including cansniffer, candump, cansend, canplayer, and cangen for CAN bus analysis.
