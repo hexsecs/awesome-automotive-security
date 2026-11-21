@@ -164,3 +164,11 @@ decision = "kept"
 reason = "Archived, but the ETAS synthetic CAN benchmark remains the standard signal-space dataset for comparing CAN intrusion detection systems, widely cited in IDS research; historically important under CONTRIBUTING.md criterion 5."
 date = "2026-11-17"
 ref = "#73"
+
+[[decision]]
+name = "P4can-universal-unlock"
+url = "https://github.com/06066060606060/P4can-universal-unlock"
+decision = "rejected"
+reason = "ESP32 Tesla feature-unlock and modification tool (nag-killer, FSD visualisation, EAP activation, region bypass) rather than security tooling; out of scope under CONTRIBUTING.md criterion 2 on the same ground as the flipper-tesla-fsd rejection in #25. No license, and a single-purpose anonymous account created 2026-11-06."
+date = "2026-11-21"
+ref = "hana/daily-2026-11-21"
