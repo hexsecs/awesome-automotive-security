@@ -58,12 +58,3 @@ section = "CAN Bus Analysis"
 reason = "ESP32-C5 dual CAN-FD OBD adapter with Renigne desktop app (SLCAN sniffing, dashcam sync, LLM-assisted CAN ID reverse engineering) and a community COVESA VSS vehicle-profile marketplace. Site opened 2026-11-19 (HTTP 200, real product in free beta) and the hamradio.my write-up read, but no public source repository could be found and the open-source claim is unverified; commercial product with no field-use track record yet. Revisit once repositories are public or the tool is established."
 date = "2026-11-19"
 ref = "hana/daily-2026-11-19"
-
-
-[[lead]]
-name = "Hacking Two Automakers: ForgeRock Path Confusion, RCE, and Remote Vehicle Access"
-url = "https://samcurry.net/forgerock"
-section = "Research Papers"
-reason = "Shah and Curry, published 2026-11-07: WAF path-confusion plus default admin:admin Felix console gave RCE on the production ForgeRock identity servers behind two automakers' connected-car apps, then any-customer account takeover with remote unlock, engine start, location and telemetry. Landmark industry disclosure in the Miller/Valasek mould, but two weeks old and a blog write-up, so too new to judge influence against the Research Papers bar (same treatment as the EVPot lead). Revisit in the monthly discover pass; the companion Australian write-up covers the same disclosure."
-date = "2026-11-21"
-ref = "hana/daily-2026-11-21"
