@@ -58,6 +58,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 * [python-can](https://github.com/hardbyte/python-can) - Python library providing a common interface over many CAN hardware backends with CAN FD support and logging to ASC, BLF, MF4, TRC, CSV, and SQLite.
 * [python-can-isotp](https://github.com/pylessard/python-can-isotp) - ISO-TP (ISO 15765) transport for Python on top of python-can or Linux SocketCAN, the segmentation layer that UDS and OBD-II diagnostics run over.
 * [SavvyCAN](https://github.com/collin80/SavvyCAN) - Cross-platform Qt-based CAN bus reverse engineering and capture tool with DBC file loading, UDS scanning, and fuzzing support.
+* [WebUSB CAN](https://github.com/roaldnefs/webusb-can) - Browser-based CAN console that talks to gs_usb adapters over WebUSB without drivers or installs, with an in-browser simulator whose virtual ECU answers UDS over ISO-TP.
 
 ## Diagnostic Tools
 
