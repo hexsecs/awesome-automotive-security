@@ -180,3 +180,11 @@ decision = "rejected"
 reason = "Same author's Tesla feature-unlock firmware as P4can-universal-unlock (NAG Killer, EU unlock, Advanced EAP, R79 and Summon bypasses, FSD visualisation): a vehicle-modification tool for unlocking paid and region-locked driver-assistance features rather than security tooling; out of scope under CONTRIBUTING.md criterion 2 on the same ground as the P4can rejection in hana/daily-2026-11-21. GPL-3.0 licensed and actively maintained, but the purpose is feature unlocking."
 date = "2026-11-23"
 ref = "hana/daily-2026-11-23"
+
+[[decision]]
+name = "CANalyse"
+url = "https://github.com/canalyse/CANalyse-2.0"
+decision = "kept"
+reason = "Archived, but the owner decided on 2026-11-23 that it stays on the list: it remains published on PyPI and is still a referenced CAN analysis tool with SQL-like queries over CAN data; CONTRIBUTING.md criterion 5 keeps archived projects that are still canonical."
+date = "2026-11-23"
+ref = "hana/daily-2026-11-23"
