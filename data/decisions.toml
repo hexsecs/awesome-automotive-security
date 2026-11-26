@@ -188,3 +188,11 @@ decision = "kept"
 reason = "Archived, but the owner decided on 2026-11-23 that it stays on the list: it remains published on PyPI and is still a referenced CAN analysis tool with SQL-like queries over CAN data; CONTRIBUTING.md criterion 5 keeps archived projects that are still canonical."
 date = "2026-11-23"
 ref = "hana/daily-2026-11-23"
+
+[[decision]]
+name = "VASP"
+url = "https://github.com/quic/vasp"
+decision = "kept"
+reason = "Archived, but the artifact of the VehicleSec 2023 paper on V2X application spoofing, still the reference implementation for simulating BSM spoofing and falsification attacks on Veins; historically important under CONTRIBUTING.md criterion 5."
+date = "2026-11-26"
+ref = "#73"
