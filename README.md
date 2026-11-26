@@ -26,6 +26,7 @@ Suggestions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for what earn
 
 ## CAN Bus Analysis
 
+* [automotive](https://github.com/I-CAN-hack/automotive) - Rust crate and Python library for CAN communication with ISO-TP and DoIP transports and UDS, XCP, and CCP clients.
 * [BUSMASTER](https://github.com/rbei-etas/busmaster) - Open-source CAN simulation, analysis, and test tool from Bosch Engineering and ETAS, with a node simulator, DBC-driven signal interpretation, and scriptable test automation.
 * [Cabana](https://github.com/deanlee/openpilot-cabana) - Standalone CAN and CAN FD analyzer split from openpilot, with live bit-level heatmaps, signal discovery, a DBC editor, and drive replay synchronized to video.
 * [CAN Commander](https://github.com/MatthewKuKanich/CAN_Commander) - Flipper Zero application and companion ESP32 CAN board for reverse engineering vehicle networks, with sniffing, DBC decoding, replay, and injection profiles usable without a laptop.
