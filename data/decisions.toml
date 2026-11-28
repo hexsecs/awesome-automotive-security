@@ -148,3 +148,51 @@ decision = "rejected"
 reason = "Emproof's general firmware reverse engineering workshop (ELF analysis, keygenning, malware triage, embedded Linux, ARM bare metal). Presented at ScapyCon Automotive 2025, but the material is not automotive-specific: one car_demo task about Wi-Fi credential extraction, no ECU architectures or vehicle networks. Fails CONTRIBUTING.md criterion 1."
 date = "2026-11-13"
 ref = "discover/2026-11-13"
+
+[[decision]]
+name = "Kayak"
+url = "https://github.com/dschanoeh/Kayak"
+decision = "kept"
+reason = "Archived, but still a canonical SocketCAN-based CAN bus analysis tool (340 stars, 78 forks) and a standard reference in vehicle-network tooling; CONTRIBUTING.md criterion 5 keeps archived projects that are still canonical."
+date = "2026-11-17"
+ref = "#73"
+
+[[decision]]
+name = "SynCAN"
+url = "https://github.com/etas/SynCAN"
+decision = "kept"
+reason = "Archived, but the ETAS synthetic CAN benchmark remains the standard signal-space dataset for comparing CAN intrusion detection systems, widely cited in IDS research; historically important under CONTRIBUTING.md criterion 5."
+date = "2026-11-17"
+ref = "#73"
+
+[[decision]]
+name = "P4can-universal-unlock"
+url = "https://github.com/06066060606060/P4can-universal-unlock"
+decision = "rejected"
+reason = "ESP32 Tesla feature-unlock and modification tool (nag-killer, FSD visualisation, EAP activation, region bypass) rather than security tooling; out of scope under CONTRIBUTING.md criterion 2 on the same ground as the flipper-tesla-fsd rejection in #25. No license, and a single-purpose anonymous account created 2026-11-06."
+date = "2026-11-21"
+ref = "hana/daily-2026-11-21"
+
+[[decision]]
+name = "T2CAN Universal Unlock"
+url = "https://github.com/06066060606060/t2can-universal-unlock"
+decision = "rejected"
+reason = "Same author's Tesla feature-unlock firmware as P4can-universal-unlock (NAG Killer, EU unlock, Advanced EAP, R79 and Summon bypasses, FSD visualisation): a vehicle-modification tool for unlocking paid and region-locked driver-assistance features rather than security tooling; out of scope under CONTRIBUTING.md criterion 2 on the same ground as the P4can rejection in hana/daily-2026-11-21. GPL-3.0 licensed and actively maintained, but the purpose is feature unlocking."
+date = "2026-11-23"
+ref = "hana/daily-2026-11-23"
+
+[[decision]]
+name = "CANalyse"
+url = "https://github.com/canalyse/CANalyse-2.0"
+decision = "kept"
+reason = "Archived, but the owner decided on 2026-11-23 that it stays on the list: it remains published on PyPI and is still a referenced CAN analysis tool with SQL-like queries over CAN data; CONTRIBUTING.md criterion 5 keeps archived projects that are still canonical."
+date = "2026-11-23"
+ref = "hana/daily-2026-11-23"
+
+[[decision]]
+name = "VASP"
+url = "https://github.com/quic/vasp"
+decision = "kept"
+reason = "Archived, but the artifact of the VehicleSec 2023 paper on V2X application spoofing, still the reference implementation for simulating BSM spoofing and falsification attacks on Veins; historically important under CONTRIBUTING.md criterion 5."
+date = "2026-11-26"
+ref = "#73"

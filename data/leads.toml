@@ -19,3 +19,51 @@
 #   ref      Optional. The pull request or issue it came up in, e.g. "#36".
 #
 # Keep records in date order, oldest first.
+[[lead]]
+name = "EVPot: A High-Interaction Honeypot for Detecting and Analyzing Attacks Against OCPP-Based Electric Vehicle Charging Infrastructures"
+url = "https://dl.acm.org/doi/10.1145/3847353.3847494"
+section = "Research Papers"
+reason = "ACM paper published 14 Nov 2026 (Universite de Sherbrooke): high-interaction OCPP honeypot that found eight OCPP specification vulnerabilities, five previously undocumented, disclosed to the Open Charge Alliance. Abstract and ACM page opened; full text not openable from the sandbox (dl.acm.org answers automated clients with 403). Too new to judge influence against the Research Papers bar; revisit once it has had time to be cited or adopted."
+date = "2026-11-18"
+ref = "hana/daily-2026-11-18"
+
+[[lead]]
+name = "Towards Secure In-Vehicle Communication: Surveying CAN and Automotive Ethernet Threats, Standards, and Detection Techniques"
+url = "https://doi.org/10.23919/cje.2025.00.230"
+section = "Research Papers"
+reason = "Survey of CAN and automotive Ethernet threats, standards, and detection techniques (Li et al., Chinese Journal of Electronics 2026, 35(2): 625-650). Plausibly fits the Research Papers exception for well-executed surveys, but quality not yet assessed and the paper itself not opened from the sandbox. Revisit in the monthly discover pass."
+date = "2026-11-18"
+ref = "hana/daily-2026-11-18"
+
+[[lead]]
+name = "CAN Opener"
+url = "https://dev.canopener.io/"
+section = "CAN Bus Analysis"
+reason = "ESP32-C5 dual CAN-FD OBD adapter with Renigne desktop app (SLCAN sniffing, dashcam sync, LLM-assisted CAN ID reverse engineering) and a community COVESA VSS vehicle-profile marketplace. Site opened 2026-11-19 (HTTP 200, real product in free beta) and the hamradio.my write-up read, but no public source repository could be found and the open-source claim is unverified; commercial product with no field-use track record yet. Revisit once repositories are public or the tool is established."
+date = "2026-11-19"
+ref = "hana/daily-2026-11-19"
+
+[[lead]]
+name = "vehsec"
+url = "https://github.com/xuange-hu/vehsec"
+section = "Diagnostic Tools"
+reason = "Opened and read 2026-11-23: MIT-licensed vehicle security toolkit (CAN replay/fuzz/discovery, UDS security access with seed-key recovery, DoIP and DoIP-over-TLS audit, J1939, V2X ECDSA nonce-reuse analysis, MCP server, 5 Docker labs, CI with 326 tests). Well-built but created 2026-10-16 with 1 star, 0 forks and no PyPI release, so no adoption signal yet; last push 2026-11-22. Revisit once it has field use or a release track record."
+date = "2026-11-23"
+ref = "hana/daily-2026-11-23"
+
+[[lead]]
+name = "Cross-Layer Telemetry Falsification in EV Charging Infrastructure"
+url = "https://zenodo.org/records/23911488"
+section = "Research Papers"
+reason = "Zenodo preprint published 2026-11-03 (v2): unauthenticated CUPS cups-browsed RCE (CVE-2024-47176) as the entry point into a Linux charger host, then OCPP telemetry falsification accepted by the CSMS despite TLS, validated in a two-VM testbed. Record opened (HTTP 200) and abstract read; full text not yet assessed. Too new to judge influence against the Research Papers bar; revisit once cited or adopted."
+date = "2026-11-23"
+ref = "hana/daily-2026-11-23"
+
+[[lead]]
+name = "Telemetry Falsification by Compromised Sources in OCPP-Based EV Charging Infrastructure"
+url = "https://zenodo.org/records/23912755"
+section = "Research Papers"
+reason = "Zenodo preprint published 2026-11-03 (v2): falsified OCPP MeterValues injected over a legitimate authenticated TLS session (Security Profile 2) against an EVerest stack, driving a measured connection-point overload and false OpenADR curtailment. Record opened (HTTP 200) and abstract read; full text not yet assessed. Too new to judge influence against the Research Papers bar; revisit once cited or adopted."
+date = "2026-11-23"
+ref = "hana/daily-2026-11-23"
+
