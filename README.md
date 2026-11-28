@@ -326,6 +326,7 @@ and similar venues.
 
 ## Learning Resources
 
+* [AI CAN Bus Reverse Engineering](https://www.csselectronics.com/pages/can-bus-reverse-engineering-ai-llm-claude) - Walkthrough by CSS Electronics of reverse engineering CAN signals into DBC files with Claude Code, python-can and open-source skills.
 * [Automotive Cybersecurity Roadmap](https://github.com/AutoSecurityy/Automotive-Cybersecurity-Roadmap) - Structured learning path from CAN and UDS fundamentals through TARA, firmware reverse engineering, and hardware hacking into specialized career tracks.
 * [Automotive Security Timeline](https://github.com/automotive-security/Automotive-Security-Timeline) - Continuously updated knowledge base of automotive cybersecurity events including vulnerability disclosures, attack demonstrations, Pwn2Own Automotive results, and supply-chain incidents.
 * [Automotive-Networking-Security](https://automotive-network-security.com/standard_solutions.shtml) - Automotive networking security standards and solutions overview.
