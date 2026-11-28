@@ -196,3 +196,11 @@ decision = "removed"
 reason = "Repository deleted by the author: GitHub web and API both return 404, and no renamed or transferred repository exists under the author's account. The only other copy found is an unaffiliated 0-star re-upload (reynsys/Ford-ECU-Bruteforcer, last push 2024-05-02, no license), not a canonical new home. No Wayback snapshot exists. Niche pre-2011 Ford tool, not important enough to justify a Wayback link."
 date = "2026-11-24"
 ref = "#75"
+
+[[decision]]
+name = "VASP"
+url = "https://github.com/quic/vasp"
+decision = "kept"
+reason = "Archived, but the artifact of the VehicleSec 2023 paper on V2X application spoofing, still the reference implementation for simulating BSM spoofing and falsification attacks on Veins; historically important under CONTRIBUTING.md criterion 5."
+date = "2026-11-26"
+ref = "#73"
